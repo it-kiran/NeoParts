@@ -1,0 +1,36 @@
+
+plugins {
+  id "com.moowork.node" version "1.1.1"
+}
+
+node {
+  version = '8.6.0'
+  npmVersion = '5.4.2'
+  download = true
+  // distBaseUrl = Custom artifactory location here for node/npm.
+}
+
+task npmBuild(type: NpmTask) {
+   group = 'Node'
+   description = "Run \'npm run build\'."
+   args = ['run', 'build']
+   doFirst {
+      println "Running ${description}"
+   }
+
+}
+
+task build {
+   dependsOn 'copyFiles'
+}
+
+task copyFiles(type: Copy) {
+  doFirst {
+  	println "Copying angular2 files to ../server/src/main/resources/static"
+  }
+  from 'dist'
+  into '../server/src/main/resources/static'
+}
+
+npmBuild.dependsOn 'npmInstall'
+copyFiles.dependsOn 'npmBuild'

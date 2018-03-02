@@ -1,33 +1,20 @@
-buildscript {
-	ext {
-		springBootVersion = '1.5.10.RELEASE'
-	}
+plugins {
+	id "fi.evident.beanstalk" version "0.1.1"
+}
+
+allprojects {
+//    task alltask.doLast  { task -> println "In $task.project.name" }
+//
+	version = '1.0.0-SNAPSHOT'
+}
+
+subprojects {
+
 	repositories {
 		mavenCentral()
 	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-
-group = 'com.abm.neo'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-
-repositories {
-	mavenCentral()
-}
-
-
-dependencies {
-	compile('org.springframework.boot:spring-boot-starter-jdbc')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-
-	runtime('mysql:mysql-connector-java')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.4.1'
 }
