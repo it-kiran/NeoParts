@@ -13,13 +13,13 @@ public class TransactionController {
     @Autowired
     private WebTransactionManager webTransactionManager;
 
-    @RequestMapping(value = "/addTransaction", method = RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "/addToCart", method = RequestMethod.POST, consumes = "application/json")
     public WebTransactionDao addTransactionToDB(@RequestBody WebTransactionDao webTransactionDao)
     {
        return webTransactionManager.addTransaction(webTransactionDao);
     }
 
-    @RequestMapping(value = "/getTransactionByPhoneNo", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/getCartDetails", method = RequestMethod.GET, produces = "application/json")
     public WebTransactionDao getTransactionByPhoneNo(String phoneNo)
     {
         return webTransactionManager.getTransactionByPhoneNo(phoneNo);

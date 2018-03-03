@@ -39,12 +39,9 @@ public class WebTransactionManager {
                     lineItem.setDescription(productDao.getDescription());
                     webTransactionLineItemDaoList.add(lineItem);
                 }
-
             }
-
             webTransactionDao.setWebTransactionLineItemDaoList(webTransactionLineItemDaoList);
         }
-
         return webTransactionDao;
     }
 }
