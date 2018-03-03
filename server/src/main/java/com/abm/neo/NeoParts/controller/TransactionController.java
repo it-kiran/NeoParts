@@ -1,9 +1,12 @@
 package com.abm.neo.NeoParts.controller;
 
 import com.abm.neo.NeoParts.entity.WebTransactionDao;
+import com.abm.neo.NeoParts.entity.WebTransactionLineItemDao;
 import com.abm.neo.NeoParts.manager.WebTransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("")
@@ -18,11 +21,21 @@ public class TransactionController {
     {
        return webTransactionManager.addTransaction(webTransactionDao);
     }
-
-    @RequestMapping(value = "/getCartDetails", method = RequestMethod.GET, produces = "application/json")
-    public WebTransactionDao getTransactionByPhoneNo(String phoneNo)
+    @RequestMapping(value = "/addCartItem", method = RequestMethod.POST, consumes = "application/json")
+    public WebTransactionLineItemDao addCartItem(@RequestBody WebTransactionLineItemDao webTransactionDao)
     {
-        return webTransactionManager.getTransactionByPhoneNo(phoneNo);
+        return webTransactionManager.addCartItem(webTransactionDao);
     }
+    @RequestMapping(value = "/getCartItem", method = RequestMethod.GET, produces = "application/json")
+    public List<WebTransactionLineItemDao> addCartItem(String phoneNo)
+    {
+        return webTransactionManager.getCartItem(phoneNo);
+    }
+
+//    @RequestMapping(value = "/getCartDetails", method = RequestMethod.GET, produces = "application/json")
+//    public WebTransactionDao getTransactionByPhoneNo(String phoneNo)
+//    {
+//        return webTransactionManager.getTransactionByPhoneNo(phoneNo);
+//    }
 
 }

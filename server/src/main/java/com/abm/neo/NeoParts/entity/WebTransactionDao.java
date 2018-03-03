@@ -28,20 +28,6 @@ import java.util.List;
     private String note;
     private boolean rmi;
 
-    //this is need to handle store credit scenario
-    @Transient
-    private int previousTransactionId;
-
-    @Transient
-    private double totalReturn;
-
-    @Transient
-    private StoreSetupDao storeSetupDao;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "transaction_com_id")
-    private List<WebTransactionLineItemDao> webTransactionLineItemDaoList;
-
 
     public int getTransactionComId() {
         return transactionComId;
@@ -169,37 +155,5 @@ import java.util.List;
 
     public void setRmi(boolean rmi) {
         this.rmi = rmi;
-    }
-
-    public int getPreviousTransactionId() {
-        return previousTransactionId;
-    }
-
-    public void setPreviousTransactionId(int previousTransactionId) {
-        this.previousTransactionId = previousTransactionId;
-    }
-
-    public double getTotalReturn() {
-        return totalReturn;
-    }
-
-    public void setTotalReturn(double totalReturn) {
-        this.totalReturn = totalReturn;
-    }
-
-    public StoreSetupDao getStoreSetupDao() {
-        return storeSetupDao;
-    }
-
-    public void setStoreSetupDao(StoreSetupDao storeSetupDao) {
-        this.storeSetupDao = storeSetupDao;
-    }
-
-    public List<WebTransactionLineItemDao> getWebTransactionLineItemDaoList() {
-        return webTransactionLineItemDaoList;
-    }
-
-    public void setWebTransactionLineItemDaoList(List<WebTransactionLineItemDao> webTransactionLineItemDaoList) {
-        this.webTransactionLineItemDaoList = webTransactionLineItemDaoList;
     }
 }

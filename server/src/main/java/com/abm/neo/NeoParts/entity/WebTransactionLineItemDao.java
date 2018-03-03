@@ -21,6 +21,7 @@ import javax.persistence.*;
         private double discount;
         private double totalProductPrice;
         private String imeiNo;
+        private String customerPhoneNo;
 
         @Transient
         private String description;
@@ -56,7 +57,6 @@ import javax.persistence.*;
         public void setProductNo(String productNo) {
             this.productNo = productNo;
         }
-
 
         public int getSaleQuantity() {
             return saleQuantity;
@@ -112,6 +112,14 @@ import javax.persistence.*;
 
         public void setImeiNo(String imeiNo) {
             this.imeiNo = imeiNo;
+        }
+
+        public String getCustomerPhoneNo() {
+            return customerPhoneNo;
+        }
+
+        public void setCustomerPhoneNo(String customerPhoneNo) {
+            this.customerPhoneNo = customerPhoneNo;
         }
 
         public String getDescription() {

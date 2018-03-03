@@ -4,6 +4,7 @@ import com.abm.neo.NeoParts.entity.ProductDao;
 import com.abm.neo.NeoParts.entity.WebTransactionDao;
 import com.abm.neo.NeoParts.entity.WebTransactionLineItemDao;
 import com.abm.neo.NeoParts.repository.ProductRepository;
+import com.abm.neo.NeoParts.repository.WebTransactionLineItemRepository;
 import com.abm.neo.NeoParts.repository.WebTransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,28 +21,42 @@ public class WebTransactionManager {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private WebTransactionLineItemRepository webTransactionLineItemRepository;
+
 
     public WebTransactionDao addTransaction(WebTransactionDao webTransactionDao) {
         return webTransactionRepository.save(webTransactionDao);
     }
 
-    public WebTransactionDao getTransactionByPhoneNo(String phoneNo) {
+//    public WebTransactionDao getTransactionByPhoneNo(String phoneNo) {
+//
+//        List<WebTransactionLineItemDao> webTransactionLineItemDaoList = new ArrayList<>();
+//        WebTransactionDao webTransactionDao =  webTransactionRepository.findOneByCustomerPhoneno(phoneNo);
+//
+////        if(null != webTransactionDao)
+////        {
+////            for(WebTransactionLineItemDao lineItem: webTransactionDao.getWebTransactionLineItemDaoList()){
+////
+////                ProductDao productDao = productRepository.findOneByProductNo(lineItem.getProductNo());
+////                if (null != productDao) {
+////                    lineItem.setDescription(productDao.getDescription());
+////                    webTransactionLineItemDaoList.add(lineItem);
+////                }
+////            }
+////            webTransactionDao.setWebTransactionLineItemDaoList(webTransactionLineItemDaoList);
+////        }
+//        return webTransactionDao;
+//    }
 
-        List<WebTransactionLineItemDao> webTransactionLineItemDaoList = new ArrayList<>();
-        WebTransactionDao webTransactionDao =  webTransactionRepository.findOneByCustomerPhoneno(phoneNo);
+    public WebTransactionLineItemDao addCartItem(WebTransactionLineItemDao webTransactionLineItemDao) {
 
-        if(null != webTransactionDao)
-        {
-            for(WebTransactionLineItemDao lineItem: webTransactionDao.getWebTransactionLineItemDaoList()){
+       return webTransactionLineItemRepository.save(webTransactionLineItemDao);
 
-                ProductDao productDao = productRepository.findOneByProductNo(lineItem.getProductNo());
-                if (null != productDao) {
-                    lineItem.setDescription(productDao.getDescription());
-                    webTransactionLineItemDaoList.add(lineItem);
-                }
-            }
-            webTransactionDao.setWebTransactionLineItemDaoList(webTransactionLineItemDaoList);
-        }
-        return webTransactionDao;
+    }
+
+    public List<WebTransactionLineItemDao> getCartItem(String phoneNo) {
+
+        return webTransactionLineItemRepository.findAllByCustomerPhoneNo(phoneNo);
     }
 }
