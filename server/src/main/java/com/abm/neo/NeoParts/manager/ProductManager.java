@@ -104,7 +104,7 @@ public class ProductManager {
             //Here getting image as MultipartFile and then getting input stream of the file and then getting the size of the file.
             SqlLobValue lobValue = new SqlLobValue(image_file.getInputStream(), (int) image_file.getSize(), lobHandler);
 
-            int a = jdbcTemplate.update("UPDATE product_image SET image = ? WHERE product_no = ?" ,new Object[]{lobValue, productNo}, new int[] {Types.BLOB, Types.INTEGER} );
+            int a = jdbcTemplate.update("UPDATE product_image SET image = ? WHERE product_no = ?" ,new Object[]{lobValue, productNo}, new int[] {Types.BLOB, Types.LONGNVARCHAR} );
 //                jdbcTemplate.update("INSERT INTO  product_image ('product_no', 'image') VALUE (?1,?2)" , lobValue, productNo);
 
 
