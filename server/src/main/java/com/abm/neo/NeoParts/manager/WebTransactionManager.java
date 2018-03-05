@@ -59,4 +59,8 @@ public class WebTransactionManager {
 
         return webTransactionLineItemRepository.findAllByCustomerPhoneNo(phoneNo);
     }
+
+    public void deleteCartItem(String phoneNo, int transactionLineItemId) {
+        webTransactionLineItemRepository.deleteLineItemByCustomer(phoneNo, transactionLineItemId);
+    }
 }

@@ -31,6 +31,11 @@ public class TransactionController {
     {
         return webTransactionManager.getCartItem(phoneNo);
     }
+    @RequestMapping(value = "/deleteCartItem", method = RequestMethod.GET, produces = "application/json")
+    public void deleteCartItem(String phoneNo, int transactionLineItemId)
+    {
+         webTransactionManager.deleteCartItem(phoneNo, transactionLineItemId);
+    }
 
 //    @RequestMapping(value = "/getCartDetails", method = RequestMethod.GET, produces = "application/json")
 //    public WebTransactionDao getTransactionByPhoneNo(String phoneNo)
