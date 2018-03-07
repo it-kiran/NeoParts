@@ -38,7 +38,7 @@ public class ProductManager {
         return setEcomerceDto(result);
     }
 
-    public List<ProductEcomerceDto> getEcommerceProductsByBrand(int modelId) {
+    public List<ProductEcomerceDto> getEcommerceProductsByModel(int modelId) {
 
         List<Object[]> result = productRepository.getEcommerceProductsByBrand(modelId);
         return setEcomerceDto(result);

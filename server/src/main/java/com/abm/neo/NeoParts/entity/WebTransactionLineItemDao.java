@@ -26,6 +26,9 @@ import javax.persistence.*;
         @Transient
         private String description;
 
+        @Transient
+        private byte[] image;
+
         public int getTransactionLineItemId() {
             return transactionLineItemId;
         }
@@ -128,5 +131,13 @@ import javax.persistence.*;
 
         public void setDescription(String description) {
             this.description = description;
+        }
+
+        public byte[] getImage() {
+            return image;
+        }
+
+        public void setImage(byte[] image) {
+            this.image = image;
         }
     }

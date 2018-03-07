@@ -57,10 +57,37 @@ public class WebTransactionManager {
 
     public List<WebTransactionLineItemDao> getCartItem(String phoneNo) {
 
-        return webTransactionLineItemRepository.findAllByCustomerPhoneNo(phoneNo);
+        List<Object[]> result = webTransactionLineItemRepository.getCartItemForCustomer(phoneNo);
+        List<WebTransactionLineItemDao> webTransactionLineItemDaoList = new ArrayList<>();
+
+        if(null != result)
+        {
+            for(Object[] j: result ){
+
+                WebTransactionLineItemDao webTransactionLineItemDao = new WebTransactionLineItemDao();
+
+                webTransactionLineItemDao.setTransactionLineItemId(Integer.parseInt(j[0].toString()));
+                webTransactionLineItemDao.setDate(j[1].toString());
+                webTransactionLineItemDao.setStatus(j[2].toString());
+                webTransactionLineItemDao.setProductNo(j[3].toString());
+                webTransactionLineItemDao.setSaleQuantity(Integer.parseInt(j[4].toString()));
+                webTransactionLineItemDao.setRetail(Double.parseDouble(j[5].toString()));
+                webTransactionLineItemDao.setRetailWithDiscount(Double.parseDouble(j[6].toString()));
+                webTransactionLineItemDao.setTotalProductPrice(Double.parseDouble(j[7].toString()));
+                webTransactionLineItemDao.setCustomerPhoneNo(j[8].toString());
+                if(null != j[9]) {
+                    webTransactionLineItemDao.setImage((byte[]) j[9]);
+                }
+                webTransactionLineItemDaoList.add(webTransactionLineItemDao);
+
+            }
+        }
+        return webTransactionLineItemDaoList;
+
     }
 
     public void deleteCartItem(String phoneNo, int transactionLineItemId) {
         webTransactionLineItemRepository.deleteLineItemByCustomer(phoneNo, transactionLineItemId);
     }
+
 }

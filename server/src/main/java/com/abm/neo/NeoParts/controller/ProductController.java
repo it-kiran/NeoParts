@@ -38,15 +38,14 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/getEcommerceProductsByModel", method = RequestMethod.GET)
-    public List<ProductEcomerceDto> getEcommerceProductsByBrand(@RequestParam int modelId) {
+    public List<ProductEcomerceDto> getEcommerceProductsByModel(@RequestParam int modelId) {
 
-        return productManager.getEcommerceProductsByBrand(modelId);
+        return productManager.getEcommerceProductsByModel(modelId);
     }
     @RequestMapping(value = "/insertProductImage", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void insertProductImage(@RequestParam String productNo, @RequestParam("file") MultipartFile file) throws IOException {
 
         System.out.println(file.getSize());
-
         productManager.insertProductImage(productNo,file);
     }
 
