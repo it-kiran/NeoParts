@@ -78,6 +78,7 @@ public class WebTransactionManager {
                 if(null != j[9]) {
                     webTransactionLineItemDao.setImage((byte[]) j[9]);
                 }
+                webTransactionLineItemDao.setDescription(j[10].toString());
                 webTransactionLineItemDaoList.add(webTransactionLineItemDao);
 
             }

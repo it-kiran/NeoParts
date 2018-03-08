@@ -21,8 +21,11 @@ public interface WebTransactionLineItemRepository extends JpaRepository<WebTrans
 
     List<WebTransactionLineItemDao> findAllByCustomerPhoneNo(String PhonoeNo);
 
-    @Query(value = "SELECT l.transaction_line_item_Id, l.date, l.status, l.product_no , l.sale_quantity, l.retail, l.retail_with_discount, l.total_product_price, l.customer_phone_no, p.image\n" +
-            "from web_transaction_line_item l inner join product_image p on p.product_no = l.product_no where l.customer_phone_no = ?1", nativeQuery = true)
+    @Query(value = "SELECT l.transaction_line_item_Id, l.date, l.status, l.product_no , l.sale_quantity, l.retail, l.retail_with_discount, l.total_product_price, l.customer_phone_no, p.image, pp.description\n" +
+            "from web_transaction_line_item l\n" +
+            "inner join product_image p on p.product_no = l.product_no\n" +
+            "inner join product pp on l.product_no = pp.product_no\n" +
+            "where l.customer_phone_no = ?1", nativeQuery = true)
    List<Object[]> getCartItemForCustomer(String phoneNo);
 
     @Modifying
