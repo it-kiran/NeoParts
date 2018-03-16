@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-
-import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { SellComponent } from './components/sell/sell.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { HomeComponent } from './home/home.component';
+import { ProductPageComponent } from './product-page/product-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'home', component: HomeComponent },
-  { path: 'sell/:id/:id', component: SellComponent },
-  { path: '**', redirectTo: '' },
+  { path: 'product', component: ProductPageComponent},
+
+  // { path: 'sell/:id/:id', component: SellComponent },
+  // { path: '**', redirectTo: '' },
 ];
 @NgModule({
 

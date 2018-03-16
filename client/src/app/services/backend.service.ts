@@ -3,11 +3,15 @@ import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { FormControl } from '@angular/forms/forms';
 import { Observer } from 'rxjs';
-import { Product } from '../components/sell/sell.component';
 import 'rxjs/Rx';
+import { Product } from '../product-page/product-page.component';
 
 @Injectable()
 export class BackendService {
+
+  productList: Product [] = [];
+  cartCount: number = 0;
+
 
   private apiURL = 'http://localhost:8080/getWebMenu';
   private searchURL = 'http://localhost:8080/getAllProductForSearch';
@@ -34,6 +38,29 @@ export class BackendService {
     .map(this.extractData)
     .catch(this.handleError);
 
+  }
+
+  addProductToCart(webTransactionDao: Product) {
+    console.log("Transaction Amount",webTransactionDao);
+    this.http.post('http://localhost:8080/addCartItem', webTransactionDao)
+      .subscribe(data => {
+        alert('ok');
+        console.log(data);
+
+        if(data){
+          this.productList.push(webTransactionDao);
+        }
+      },
+      error => {
+        console.log(JSON.stringify(error.json()));
+      });
+
+      this.productList = this.productList.slice();
+
+      this.productList.forEach((list)=>{
+        this.cartCount = +this.cartCount+list.saleQuantity;
+      })
+      
   }
 
   private extractData(res: Response): Product[] {
