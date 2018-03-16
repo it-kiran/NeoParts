@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Response } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/map';
 import { BackendService } from '../../services/backend.service';
 import { GlobalService } from '../../global-service.service';
@@ -13,11 +13,13 @@ import { count } from 'rxjs/operator/count';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent  implements OnInit {
-list :Product[] = [];
+purchasedProductList :Product[] = [];
 _subscription: any;
 _countSubscription: any;
+_totalAmountSubscription: any;
 sum =  0;
-total: number = 0;
+totalQuantity: number = 0;
+totalAmount: number = 0.00;
 
   title = 'app';
 searchText: string;
@@ -58,15 +60,13 @@ characters = [
 
 ngOnInit() {
 
-this.test();
-  // this.globalService.getPurchasedProductList();
-  // this.globalService.getPurchasedProductCountForCart();
+    this.getPurchasedProductList();
 }
 
-constructor(private http:Http,public backendService:BackendService,private router: Router, public globalService: GlobalService){
-this.list = this.globalService.purchasedProductList;
+constructor(private http:Http,public backendService:BackendService,private route: ActivatedRoute, private router: Router, public globalService: GlobalService){
+//this.list = this.globalService.purchasedProductList;
 
-console.log('lit after simple', this.list);
+//console.log('lit after simple', this.list);
 
    this.backendService.getData()
     .subscribe(data=>{
@@ -143,22 +143,31 @@ console.log('lit after simple', this.list);
 
 }
 
-test(){
+goToViewCartPage(){
+  console.log("OKEY ROUTER");
 
+  this.router.navigate(['/viewCart']);
+}
+getPurchasedProductList(){
 
-//   this.list = this.globalService.purchasedProductList;
+  // this._subscription =  this.globalService.purchasedProductListChange.subscribe((products)=>{
+  //   this.purchasedProductList = products;
+  //   console.log('Product on change by subject', this.purchasedProductList);
+  // });
 
-  this._subscription =  this.globalService.purchasedProductListChange.subscribe((test)=>{
-    this.list = test;
-    console.log('subject test', this.list);
-  }
-);
+  this._subscription =  this.globalService.purchasedProductListChange.subscribe((products)=>{
+    this.purchasedProductList = products;
+    console.log('Product on change by subject From Cart page', this.purchasedProductList);
+  });
 
 this._countSubscription = this.globalService.totalPurchasedProductCountChange.subscribe((count)=>{
+  this.totalQuantity = count;
+  console.log('subject count', this.totalQuantity);
+});
 
-  this.total = count;
-  console.log('subject count', this.total);
-
+this._totalAmountSubscription = this.globalService.totalPurchasedProductAmountChange.subscribe((totalAmount)=>{
+  this.totalAmount = totalAmount;
+  console.log('subject Total Amount', this.totalAmount);
 });
 
 
@@ -195,6 +204,7 @@ ngOnDestroy() {
   //prevent memory leak when component destroyed
    this._subscription.unsubscribe();
    this._countSubscription.unsubscribe();
+   this._totalAmountSubscription.unsubscribe();
    
  }
 

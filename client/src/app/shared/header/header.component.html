@@ -1,4 +1,4 @@
-<div class="page" *ngIf="this.list">
+<div class="page" *ngIf="this.purchasedProductList">
     <div class="top-newsletter" style="background-color: #868686; padding: 10px 0;text-align:center">
         <div class="container">
             <div class="row">
@@ -59,16 +59,59 @@
                 <div class="mini-cart">
                     <a href="javascript:void(0)" class="mybag-link">
                         <i class="icon-cart"></i><span class="cart-info">
-                      <span class="cart-qty">{{this.total}}</span>
+                      <span class="cart-qty">{{this.totalQuantity}}</span>
                         <span>item(s)</span></span>
                     </a>
                     <div class="topCartContent block-content theme-border-color">
                         <div class="inner-wrapper">
                             <p class="cart-empty">You have no items in your shopping cart.</p>
+
+                            <div class="actions">
+                                <a class="btn btn-default" href="javascript:void(0)" (click)="this.goToViewCartPage()">
+                                    <i class="icon-basket"></i> View Cart
+                                </a>
+                                <a class="btn btn-default" href="https://www.mobiledefenders.com/checkout/onepage/"><i class="icon-right-thin"></i>Checkout</a>
+                                <div class="clearer"></div>
+                            </div>
+                            <ol class="mini-products-list">
+                                <li *ngFor="let prodcut of this.purchasedProductList" class="item">
+                                    <a href="#" class="product-image" style="height:80px; width:80px;">
+                                        <img src="data:image/png;base64,{{prodcut.image}}" alt={{prodcut.description}}>
+                                    </a>
+                                    <div class="product-details">
+                                        <p class="product-name">
+                                            <a href="#">
+                                                {{prodcut.description}}
+                                            </a>
+                                        </p>
+
+                                        <p class="qty-price">
+                                            {{prodcut.saleQuantity}} X
+                                            <span class="price">{{prodcut.retail | currency:'USD':'true'}}</span> </p>
+                                        <a href="https://www.mobiledefenders.com/checkout/cart/delete/id/2626675/form_key/wwtUQgvrw4EGlFhu" title="Remove This Item" onclick="return confirm('Are you sure you would like to remove this item from the shopping cart?');" class="btn-remove"><i class="icon-cancel"></i></a>
+                                    </div>
+                                    <div class="clearer"></div>
+                                </li>
+                            </ol>
+
+
+                            <div class="totals">
+                                <span class="label">Total: </span>
+                                <span class="price-total"><span class="price">{{this.totalAmount | currency:'USD':'true' }}</span></span>
+                            </div>
+
+                            <div class="actions">
+                                <a class="btn btn-default" href="https://www.mobiledefenders.com/checkout/cart/"><i class="icon-basket"></i>View Cart</a>
+                                <a class="btn btn-default" href="https://www.mobiledefenders.com/checkout/onepage/"><i class="icon-right-thin"></i>Checkout</a>
+                                <div class="clearer"></div>
+                            </div>
+
+
+
                         </div>
-                        <div *ngFor="let test of this.list">
+                        <!-- <div *ngFor="let test of this.list">
                             {{test.description}}
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

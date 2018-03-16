@@ -87,8 +87,8 @@ public class WebTransactionManager {
 
     }
 
-    public void deleteCartItem(String phoneNo, int transactionLineItemId) {
-        webTransactionLineItemRepository.deleteLineItemByCustomer(phoneNo, transactionLineItemId);
+    public void deleteCartItem(WebTransactionLineItemDao webTransactionLineItemDao) {
+        webTransactionLineItemRepository.delete(webTransactionLineItemDao);
     }
 
 }

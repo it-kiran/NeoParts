@@ -9,17 +9,17 @@ import { Product } from './product-page/product-page.component';
 
 @Injectable()
 export class GlobalService  {
-
-
   purchasedProductList: Product[] = [];
   totalPurchasedProductCount: number = 0;
+  totalPurchasedProductAmount: number = 0.0;
 
   purchasedProductListChange: Subject<Product[]> = new Subject<Product[]>();
   totalPurchasedProductCountChange: Subject<number> = new Subject<number>();
+  totalPurchasedProductAmountChange: Subject<number> = new Subject<number>();
 
+  constructor(private http: Http) {
 
-  constructor(private http: Http) { 
-    this.purchasedProductList = [];
+    this.getPurchasedProductList();
   }
 
   addProductToCart(webTransactionDao: Product) {
@@ -28,13 +28,20 @@ export class GlobalService  {
         if(data){
           this.purchasedProductList.push(webTransactionDao);
           this.purchasedProductList = this.purchasedProductList.slice();
-          let a = 0;
+          let quantity = 0;
+          let totalAmount = 0;
+
           this.purchasedProductList.forEach((count)=>{
-            a = +a +count.saleQuantity;
+            quantity = +quantity +count.saleQuantity;
+            totalAmount = +totalAmount +(count.saleQuantity * count.retail);
           });
-          this.totalPurchasedProductCount = a;
+          this.totalPurchasedProductCount = quantity;
+          this.totalPurchasedProductAmount = totalAmount;
+
+          this.purchasedProductListChange.next(this.purchasedProductList);
           this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
-         this.purchasedProductListChange.next(this.purchasedProductList)
+          this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+          
           console.log('purchased product after add and slice',this.purchasedProductList )
         }
       },
@@ -43,42 +50,85 @@ export class GlobalService  {
       });
   }
 
-  getPurchasedProductList() {
+  getPurchasedProductList(): Product[] {
 
     console.log('first',this.purchasedProductList )
 
     if(this.purchasedProductList.length <= 0){
+
       this.getPurchasedProductListFromBackEnd()
       .subscribe((purchasedProduct)=>{
         this.purchasedProductList = purchasedProduct;
-        // this.getPurchasedProductCountForCart();
         this.purchasedProductList = this.purchasedProductList.slice();
-        console.log('purchased product list after service Call',this.purchasedProductList )
+        console.log('purchased product list after service Call',this.purchasedProductList );
+        this.purchasedProductListChange.next(this.purchasedProductList);
+        let quantity = 0;
+        let totalAmount = 0;
+        this.purchasedProductList.forEach((count)=>{
+          quantity = +quantity +count.saleQuantity;
+          totalAmount = +totalAmount +(count.saleQuantity * count.retail);
+        });
+        this.totalPurchasedProductCount = quantity;
+        this.totalPurchasedProductAmount = totalAmount;
 
-      });
-      
+        this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
+        this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+        
+      }); 
     }
     else {
+      // this is very important.
+      this.purchasedProductListChange.next(this.purchasedProductList);
+      let quantity = 0;
+      let totalAmount = 0;
+      this.purchasedProductList.forEach((count)=>{
+        quantity = +quantity +count.saleQuantity;
+        totalAmount = +totalAmount +(count.saleQuantity * count.retail);
+      });
+      this.totalPurchasedProductCount = quantity;
+      this.totalPurchasedProductAmount = totalAmount;
+
+      this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
+      this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+      
       return this.purchasedProductList;
     }
-    return this.purchasedProductList;
-  }
 
-  // getPurchasedProductCountForCart(): number {
-  //   if(this.purchasedProductList.length > 0){
-  //     this.purchasedProductList.forEach((a)=>{
-  //       this.totalPurchasedProduct = +this.totalPurchasedProduct +a.saleQuantity;
-  //     })
-  //     console.log('cart number', this.totalPurchasedProduct);
-  //     return this.totalPurchasedProduct;
-  //   }
-  // }
+  }
 
   getPurchasedProductListFromBackEnd(): Observable<Product[]> {
 
     return this.http.get('http://localhost:8080/getCartItem?phoneNo=7707030801')
     .map(this.extractData)
     .catch(this.handleError);
+  }
+
+  deleteProductFromCart(webTransactionDao: Product){
+    this.http.post('http://localhost:8080/deleteCartItem', webTransactionDao)
+    .subscribe((data)=>{
+      if(data.status == 200){
+        let index = this.purchasedProductList.indexOf(webTransactionDao, 0);
+        if (index > -1) {
+          this.purchasedProductList.splice(index, 1);
+          this.purchasedProductList = this.purchasedProductList.slice();
+        }
+        //this.purchasedProductList = this.purchasedProductList.slice();
+        let quantity = 0;
+        let totalAmount = 0;
+
+        this.purchasedProductList.forEach((count)=>{
+          quantity = +quantity +count.saleQuantity;
+          totalAmount = +totalAmount +(count.saleQuantity * count.retail);
+        });
+        this.totalPurchasedProductCount = quantity;
+        this.totalPurchasedProductAmount = totalAmount;
+
+        this.purchasedProductListChange.next(this.purchasedProductList);
+        this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
+        this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+        console.log("Delete done");
+      }
+    })
   }
 
   private extractData(res: Response) : Product[] {

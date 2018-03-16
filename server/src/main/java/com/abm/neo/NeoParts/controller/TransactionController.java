@@ -31,10 +31,10 @@ public class TransactionController {
     {
         return webTransactionManager.getCartItem(phoneNo);
     }
-    @RequestMapping(value = "/deleteCartItem", method = RequestMethod.GET, produces = "application/json")
-    public void deleteCartItem(String phoneNo, int transactionLineItemId)
+    @RequestMapping(value = "/deleteCartItem", method = RequestMethod.POST)
+    public void deleteCartItem(@RequestBody WebTransactionLineItemDao webTransactionDao)
     {
-         webTransactionManager.deleteCartItem(phoneNo, transactionLineItemId);
+         webTransactionManager.deleteCartItem(webTransactionDao);
     }
 
 //    @RequestMapping(value = "/getCartDetails", method = RequestMethod.GET, produces = "application/json")

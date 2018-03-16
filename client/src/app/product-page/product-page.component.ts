@@ -65,6 +65,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   export class Product {
+    transactionLineItemId: number;
     productNo: string;
     description: string;
     categoryId: number;
