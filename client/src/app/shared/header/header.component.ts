@@ -20,6 +20,7 @@ _totalAmountSubscription: any;
 sum =  0;
 totalQuantity: number = 0;
 totalAmount: number = 0.00;
+productList: Product[] = [];
 
   title = 'app';
 searchText: string;
@@ -144,8 +145,8 @@ constructor(private http:Http,public backendService:BackendService,private route
 }
 
 goToViewCartPage(){
-  console.log("OKEY ROUTER");
 
+  console.log("OKEY ROUTER");
   this.router.navigate(['/viewCart']);
 }
 getPurchasedProductList(){

@@ -34,7 +34,7 @@ export class BackendService {
   }
 
   getProductByModelId(modelId: number): Observable<Product[]> {
-    return this.http.get('http://localhost:8080/getEcommerceProductsByModel?modelId=111')
+    return this.http.get('http://localhost:8080/getEcommerceProductsByModel?modelId='+modelId)
     .map(this.extractData)
     .catch(this.handleError);
 

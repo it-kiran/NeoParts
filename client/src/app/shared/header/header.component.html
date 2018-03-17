@@ -221,7 +221,11 @@
                                                                 <div class="nav-sublist level1">
                                                                     <ul>
                                                                         <li class="menu-item " *ngFor="let item of appleDataIphone">
-                                                                            <a class="level2"><span>{{item.name}}</span></a>
+                                                                            <a class="level2" routerLink="/product/{{item.modelId}}">
+                                                                                <span>
+                                                                                    {{item.name}}
+                                                                                </span>
+                                                                            </a>
                                                                         </li>
 
                                                                     </ul>

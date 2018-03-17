@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { BackendService } from '../services/backend.service';
-import { Router } from '@angular/router';
+import { Router, Route, Routes, ActivatedRoute } from '@angular/router';
 import { GlobalService } from '../global-service.service';
 
 @Component({
@@ -16,19 +16,30 @@ export class ProductPageComponent implements OnInit {
   cartCount: number = 0;
   alok: Product[] = [];
 
-  constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router) { }
+  constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute) { }
   
     ngOnInit() {
+
+      this.route.params.subscribe(params => {
+        // PARAMS CHANGED .. TO SOMETHING REALLY COOL HERE ..
+   
+        // for example extract the id..
+        let id = +params['id']; // (+) converts string 'id' to a number
+        this.getProductByModelId(id);
+        
+      });
         // console.log(this.backendService.appleInfo);
-        this.getProductByModelId(111);
         this.getMenuDetails();
     }
   
-    getProductByModelId(modelId: number){
-      this.backendService.getProductByModelId(modelId)
+    getProductByModelId(id: number){
+      //let id = +this.route.snapshot.paramMap.get('id');
+      console.log("model id", id);
+      this.backendService.getProductByModelId(id)
       .subscribe((product) =>{
         this.productList = product;
-        //console.log('product list', this.productList);
+        this.productList = this.productList.slice();
+        console.log('product list', this.productList);
       })
     }
   

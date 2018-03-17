@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FilterPipe } from '../filter.pipe';
 import {MatCardModule, MatButtonModule} from  "@angular/material";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -12,7 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
+
   ],
   declarations: [HeaderComponent, FooterComponent,FilterPipe],
   providers:[],
@@ -24,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     HeaderComponent, 
     FooterComponent,
+    RouterModule
   ],
 
 })

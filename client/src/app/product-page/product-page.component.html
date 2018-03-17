@@ -37,7 +37,7 @@
         <mat-card *ngFor="let product of this.productList">
             <img mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="Photo of a Shiba Inu">
             <mat-card-content>
-                <p>{{product.description}}</p>
+                <p style="height: 38px;">{{product.description}}</p>
                 <p style="font-weight: 650;">{{product.retail | currency:'USD':'true'}}</p>
                 <div style="display: flex;">
                     <input type="number" class="form-control" placeholder="Quantity" [(ngModel)]='product.saleQuantity'>
