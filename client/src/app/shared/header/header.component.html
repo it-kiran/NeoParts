@@ -236,7 +236,11 @@
                                                                 <div class="nav-sublist level1">
                                                                     <ul>
                                                                         <li class="menu-item " *ngFor="let item of appleDataIpad">
-                                                                            <a class="level2" data-id="989" href=""><span>{{item.name}}</span></a>
+                                                                            <a class="level2" data-id="989" routerLink="/product/{{item.modelId}}">
+                                                                                <span>
+                                                                                    {{item.name}}
+                                                                                </span>
+                                                                            </a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -284,7 +288,9 @@
                                                                 <div class="nav-sublist level1">
                                                                     <ul>
                                                                         <li class="menu-item " *ngFor="let item of samsungS">
-                                                                            <a class="level2" data-id="989" href=""><span>{{item}}</span></a>
+                                                                            <a class="level2" data-id="989" routerLink="/product/{{item.modelId}}">
+                                                                                <span>{{item.name}}</span>
+                                                                            </a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -294,7 +300,11 @@
                                                                 <div class="nav-sublist level1">
                                                                     <ul>
                                                                         <li class="menu-item " *ngFor="let item of samsungNote">
-                                                                            <a class="level2" data-id="989" href=""><span>{{item}}</span></a>
+                                                                            <a class="level2" data-id="989" routerLink="/product/{{item.modelId}}">
+                                                                                <span>
+                                                                                {{item.name}}
+                                                                            </span>
+                                                                            </a>
                                                                         </li>
 
                                                                     </ul>
@@ -305,7 +315,7 @@
                                                                 <div class="nav-sublist level1">
                                                                     <ul>
                                                                         <li class="menu-item " *ngFor="let item of samsungOther">
-                                                                            <a class="level2" data-id="989" href=""><span>{{item}}</span></a>
+                                                                            <a class="level2" data-id="989" routerLink="/product/{{item.modelId}}"><span>{{item.name}}</span></a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -487,7 +497,7 @@
                                 </li>
                                 <li class="menu-full-width  ">
                                     <a href="https://www.mobiledefenders.com/accessories.html">Batteries</a>
-                                    <div class="nav-sublist-dropdown" style="display: none;">
+                                    <!-- <div class="nav-sublist-dropdown" style="display: none;">
                                         <div class="container">
                                             <div class="top-mega-block">
                                                 <div style="margin: 0 20px;padding: 10px 0 15px;border-bottom: 1px solid #eee;width: 63%;color: #000;">
@@ -570,7 +580,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </li>
 
 

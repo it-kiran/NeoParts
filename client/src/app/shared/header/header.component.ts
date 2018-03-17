@@ -121,9 +121,9 @@ constructor(private http:Http,public backendService:BackendService,private route
       }
 
       for(var i = 0;i<this.samsungData[0].modelDtoList.length;i++){
-        var str = this.samsungData[0].modelDtoList[i].name;
-        var note = str.includes("Galaxy Note");
-        var s = str.includes("Galaxy S");
+        var str = this.samsungData[0].modelDtoList[i];
+        var note = str.name.includes("Galaxy Note");
+        var s = str.name.includes("Galaxy S");
 
         if(note){
           this.samsungNote.push(str)
