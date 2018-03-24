@@ -37,7 +37,11 @@ export class BackendService {
     return this.http.get('http://localhost:8080/getEcommerceProductsByModel?modelId='+modelId)
     .map(this.extractData)
     .catch(this.handleError);
-
+  }
+  getProductByCategoryId(categoryId: number): Observable<Product[]> {
+    return this.http.get('http://localhost:8080/getProductsByCategory?categoryId='+categoryId)
+    .map(this.extractData)
+    .catch(this.handleError);
   }
 
   addProductToCart(webTransactionDao: Product) {

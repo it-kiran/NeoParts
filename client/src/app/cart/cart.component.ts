@@ -11,9 +11,11 @@ export class CartComponent implements OnInit {
 
   purchasedProductList: Product[] = [];
   totalAmount: number = 0.00;
+  totalQuantity: number = 0;
 
   _subscription: any;
   _totalAmountSubscription: any;
+  _totalQuantitySubscription: any;
 
 
   constructor(public globalService: GlobalService) { 
@@ -45,12 +47,18 @@ export class CartComponent implements OnInit {
       console.log('subject Total Amount', this.totalAmount);
     });
 
+    this._totalQuantitySubscription = this.globalService.totalPurchasedProductCountChange.subscribe((count)=>{
+      this.totalQuantity = count;
+      console.log('subject count', this.totalQuantity);
+    });
+
   }
 
   ngOnDestroy() {
     //prevent memory leak when component destroyed
      this._subscription.unsubscribe();
      this._totalAmountSubscription.unsubscribe();
+     this._totalQuantitySubscription.unsubscribe();
   }
 
 }
