@@ -149,13 +149,13 @@ goToViewCartPage(){
   console.log("OKEY ROUTER");
   this.router.navigate(['/viewCart']);
 }
-getPurchasedProductList(){
+ getPurchasedProductList(){
 
   // this._subscription =  this.globalService.purchasedProductListChange.subscribe((products)=>{
   //   this.purchasedProductList = products;
   //   console.log('Product on change by subject', this.purchasedProductList);
   // });
-
+  
   this._subscription =  this.globalService.purchasedProductListChange.subscribe((products)=>{
     this.purchasedProductList = products;
     console.log('Product on change by subject From Cart page', this.purchasedProductList);

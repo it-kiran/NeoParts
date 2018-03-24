@@ -1,0 +1,34 @@
+.signup-ul {
+    display: flex;
+}
+
+.signup-li {
+    width: 50%;
+    margin: 5px;
+}
+
+p {
+    color: red;
+}
+
+h3 {
+    color: red;
+}
+
+h2 {
+    color: red;
+}
+
+hr {
+    border-top: 2px solid rgba(0, 0, 0, .1);
+}
+
+.mat-button {
+    background: red;
+    color: white;
+    width: 100%
+}
+
+em {
+    color: red;
+}

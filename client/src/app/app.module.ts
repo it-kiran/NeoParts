@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { GlobalService } from './global-service.service';
 import { CartModule } from './cart/cart.module';
+import { CustomerModule } from './customer/customer.module';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { CartModule } from './cart/cart.module';
     HttpModule,
     RouterModule,
     CartModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    CustomerModule
   ],
   declarations: [AppComponent],
   providers: [BackendService, GlobalService],
