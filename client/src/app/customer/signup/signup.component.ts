@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from '../customer.service';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-signup',
@@ -27,7 +29,11 @@ export class SignupComponent implements OnInit {
         'city': ['',Validators.required],
         'state': ['Alabama',Validators.required],
         'country':[''],
-        'companyName': ['',Validators.required]
+        'companyName': ['',Validators.required],
+        'name': [''],
+        'createdTimestamp': ['']
+
+
       }
     );
 
@@ -50,6 +56,11 @@ export class SignupComponent implements OnInit {
 
   register(){
 
+    let name:string = this.customerForm.get('firstName').value;
+    let a = this.customerForm.get('lastName');
+
+    this.customerForm.get('name').setValue(this.customerForm.get('firstName').value + ' '+this.customerForm.get('lastName').value);
+    this.customerForm.get('createdTimestamp').setValue(moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'));
     this.customerService.addOrUpdateCustomer(this.customerForm.value);
     this.customerForm.reset();
     console.log('inside register');

@@ -59,10 +59,12 @@ constructor(private http: Http) {
 
     addOrUpdateCustomer(customer: Customer)
     {
-      this.http.post(this.url+'/addCustomer', customer)
+      this.http.post('http://localhost:8080/addCustomer', customer)
       .subscribe(data => {
         if(data.status == 200 || data.status == 201){
 
+          alert('Customer Added Successfully');
+          console.log("registered customer successfully!!!")
         }
       },
         error => {

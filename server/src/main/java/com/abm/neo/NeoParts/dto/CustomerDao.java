@@ -1,4 +1,4 @@
-package com.abm.pos.ABMPos.dao;
+package com.abm.neo.NeoParts.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,6 +31,7 @@ public class CustomerDao {
     private String password;
     private String customerNote;
     private String keytag;
+    private String createdTimestamp;
 
     public String getPhoneNo() {
         return phoneNo;
@@ -170,5 +171,13 @@ public class CustomerDao {
 
     public void setKeytag(String keytag) {
         this.keytag = keytag;
+    }
+
+    public String getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(String createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 }

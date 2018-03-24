@@ -1,7 +1,6 @@
-package com.abm.pos.ABMPos.repository;
+package com.abm.neo.NeoParts.repository;
 
-import com.abm.pos.ABMPos.dao.CustomerDao;
-import org.springframework.cache.annotation.Cacheable;
+import com.abm.neo.NeoParts.dto.CustomerDao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,7 +12,7 @@ import java.util.List;
  */
 
 @Transactional
-public interface CustomerRepository extends JpaRepository<CustomerDao, String>{
+public interface CustomerRepository extends JpaRepository<CustomerDao, String> {
 
     List<CustomerDao> findAll();
 

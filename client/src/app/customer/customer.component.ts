@@ -33,6 +33,6 @@ export class Customer {
   // balance: number;
   // lastUpdatedStoreCreditDate: any;
   password: any;
-  createdDate: any;
+  createdTimestamp: any;
   // customerNote: any;
 }
