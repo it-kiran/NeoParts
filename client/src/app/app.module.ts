@@ -17,6 +17,7 @@ import { HomeModule } from './home/home.module';
 import { GlobalService } from './global-service.service';
 import { CartModule } from './cart/cart.module';
 import { CustomerModule } from './customer/customer.module';
+import { CheckoutModule } from './checkout/checkout.module';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { CustomerModule } from './customer/customer.module';
     RouterModule,
     CartModule,
     ClickOutsideModule,
-    CustomerModule
+    CustomerModule,
+    CheckoutModule
   ],
   declarations: [AppComponent],
   providers: [BackendService, GlobalService],

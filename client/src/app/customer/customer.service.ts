@@ -72,6 +72,10 @@ constructor(private http: Http) {
     });
     }
 
+    getLoginDetails(username:string, password:string){
+      return this.http.get('http://localhost:8080/validateUser?username='+username+'&password='+password);
+    }
+
     private extractData(res: Response): Customer[] {
     let body = res.json();
     // console.log(body);

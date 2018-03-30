@@ -3,6 +3,7 @@ package com.abm.neo.NeoParts.dto;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * Created by apatel2 on 5/17/17.
@@ -32,6 +33,9 @@ public class CustomerDao {
     private String customerNote;
     private String keytag;
     private String createdTimestamp;
+
+    @Transient
+    private boolean isValidUser;
 
     public String getPhoneNo() {
         return phoneNo;
@@ -179,5 +183,13 @@ public class CustomerDao {
 
     public void setCreatedTimestamp(String createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
+    }
+
+    public boolean isValidUser() {
+        return isValidUser;
+    }
+
+    public void setValidUser(boolean validUser) {
+        isValidUser = validUser;
     }
 }

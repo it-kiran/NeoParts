@@ -28,4 +28,23 @@ public class CustomerManager {
         return customerRepository.findAll();
     }
 
+    public CustomerDao getUserLoginDetails(String username, String password) {
+
+        CustomerDao customerDao = new CustomerDao();
+
+         customerDao = this.customerRepository.findByEmailAndPassword(username, password);
+        if(null != customerDao && customerDao.getEmail().equalsIgnoreCase(username)) {
+            customerDao.setValidUser(true);
+            return customerDao;
+        }
+        else if(null == customerDao){
+            CustomerDao customerDao1 = new CustomerDao();
+            customerDao1.setValidUser(false);
+            return customerDao1;
+        }
+
+        return new CustomerDao();
+    }
+
 }
+

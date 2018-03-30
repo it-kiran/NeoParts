@@ -1,0 +1,238 @@
+<div class="page-title" *ngIf="this.purchasedProductList && this.purchasedProductList.length > 0">
+    <div class="container">
+        <div class="column">
+            <h1>Checkout</h1>
+        </div>
+        <div class="column">
+            <ul class="breadcrumbs">
+                <!-- <li><a [routerLink]="['']">Home</a>
+              </li> -->
+                <li class="separator">&nbsp;</li>
+                <li>Checkout</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container padding-bottom-3x mb-2">
+
+    <div class="row">
+        <!-- Checkout Adress-->
+        <div class="col-xl-9 col-lg-8">
+            <form [formGroup]="this.customerForm">
+                <div class="checkout-steps">
+                    <a>4. Review</a>
+                    <a>
+                        <span class="angle"></span>3. Payment
+                    </a>
+                    <a>
+                        <span class="angle"></span>2. Shipping
+                    </a>
+                    <a class="active">
+                        <span class="angle"></span>1. Address
+                    </a>
+                </div>
+
+                <hr>
+                <div>
+                    <h4 style="margin-top: 85px;">Billing Address</h4>
+                </div>
+
+                <hr class="padding-bottom-1x">
+                <p>PERSONAL INFORMATION</p>
+                <hr>
+                <ul class="checkout-ul">
+                    <li class="checkout-li">
+                        <label>First Name
+                              <em>*</em>
+                          </label>
+                        <div>
+                            <input type=" text" class="form-control" formControlName="firstName">
+                        </div>
+                    </li>
+                    <li class="checkout-li">
+                        <label>Last Name
+                              <em>*</em>
+                          </label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="lastName">
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="checkout-ul">
+                    <li class="checkout-li">
+                        <label>Email Address
+                              <em>*</em>
+                          </label>
+                        <div>
+                            <input type="email" class="form-control" formControlName="email">
+                        </div>
+                    </li>
+                    <li class="checkout-li">
+                        <label>Phone Number
+                              <em>*</em>
+                          </label>
+                        <div>
+                            <input type="number" class="form-control" formControlName="phoneNo">
+                        </div>
+                    </li>
+                </ul>
+                <p>ADDRESS INFORMATION</p>
+                <hr>
+                <ul class="checkout-ul">
+                    <li class="checkout-li">
+                        <label>Company Name
+                      <em>*</em>
+
+                  </label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="companyName">
+                        </div>
+
+                    </li>
+                    <li class="checkout-li">
+                        <label>Street Address
+                      <em>*</em>
+
+                  </label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="street">
+                        </div>
+                    </li>
+                </ul>
+                <ul class="checkout-ul">
+                    <li class="checkout-li">
+                        <label>City
+                      <em>*</em>
+
+                  </label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="city">
+                        </div>
+                    </li>
+                    <li class="checkout-li">
+                        <label>State
+                      <em>*</em>
+
+                  </label>
+                        <div>
+                            <select class="form-control" formControlName="state">
+                              <option *ngFor="let state of this.state" [ngValue]="state">
+                                {{state}}
+                              </option>
+                              
+                          </select>
+                        </div>
+
+                    </li>
+                </ul>
+                <ul class="checkout-ul">
+                    <li class="checkout-li">
+                        <label>Zipcode
+                      <em>*</em>
+
+                  </label>
+                        <div>
+                            <input type="number" class="form-control" formControlName="zipCode">
+                        </div>
+
+                    </li>
+                    <li class="checkout-li">
+                        <label>Country</label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="country">
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="checkout-ul" style="justify-content: space-between;">
+                    <li>
+                        <button mat-button style="background-color: darkgrey; color: white;" (click)="this.goToViewCartPage()">Back To Cart</button>
+                    </li>
+                    <li>
+                        <button mat-button style="background-color: red; color: white;" (click)="this.goShippingPage()">Continue</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+        <!-- Sidebar          -->
+        <div class="col-xl-3 col-lg-4">
+            <aside class="sidebar">
+                <div class="padding-top-2x hidden-lg-up"></div>
+                <!-- Order Summary Widget-->
+                <section class="widget widget-order-summary">
+                    <h3 class="widget-title">Order Summary</h3>
+                    <table class="table">
+                        <tr>
+                            <td>Cart Subtotal:</td>
+                            <td class="text-medium">$ {{this.totalAmount}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Quantity:</td>
+                            <td class="text-medium">{{this.totalQuantity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping:</td>
+                            <td class="text-medium">$ 10.95</td>
+                        </tr>
+                        <tr>
+                            <td>Estimated tax:</td>
+                            <td class="text-medium">$ 0.00</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="text-lg text-medium">${{this.totalAmount}}</td>
+                        </tr>
+                    </table>
+                </section>
+                <!-- Featured Products Widget-->
+                <!-- <section class="widget widget-featured-products">
+                    <h3 class="widget-title">Recently Viewed</h3>
+                    <div class="entry">
+                        <div class="entry-thumb">
+                            <a href="shop-single.html"><img src="/assets/images/product-details/xmdtl0308_9.jpg" alt="Product"></a>
+                        </div>
+                        <div class="entry-content">
+                            <h4 class="entry-title"><a href="shop-single.html">Oakley Kickback</a></h4><span class="entry-meta">$155.00</span>
+                        </div>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-thumb">
+                            <a href="shop-single.html"><img src="img/shop/widget/02.jpg" alt="Product"></a>
+                        </div>
+                        <div class="entry-content">
+                            <h4 class="entry-title"><a href="shop-single.html">Top-Sider Fathom</a></h4><span class="entry-meta">$90.00</span>
+                        </div>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-thumb">
+                            <a href="shop-single.html"><img src="img/shop/widget/03.jpg" alt="Product"></a>
+                        </div>
+                        <div class="entry-content">
+                            <h4 class="entry-title"><a href="shop-single.html">Vented Straw Fedora</a></h4><span class="entry-meta">$49.50</span>
+                        </div>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-thumb">
+                            <a href="shop-single.html"><img src="img/shop/widget/04.jpg" alt="Product"></a>
+                        </div>
+                        <div class="entry-content">
+                            <h4 class="entry-title"><a href="shop-single.html">Big Wordmark Tote</a></h4><span class="entry-meta">$29.99</span>
+                        </div>
+                    </div>
+                </section> -->
+                <!-- Promo Banner-->
+                <!-- <section class="promo-box" style="background-image: url(img/banners/02.jpg);"><span class="overlay-dark" style="opacity: .4;"></span>
+                    <div class="promo-box-content text-center padding-top-2x padding-bottom-2x">
+                        <h4 class="text-light text-thin text-shadow">New Collection of</h4>
+                        <h3 class="text-bold text-light text-shadow">Sunglasses</h3><a class="btn btn-outline-white btn-sm" href="shop-grid-ls.html">Shop Now</a>
+                    </div>
+                </section> -->
+            </aside>
+        </div>
+
+
+    </div>
+</div>

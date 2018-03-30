@@ -75,7 +75,7 @@
                                 <a class="btn btn-default" href="javascript:void(0)" (click)="this.goToViewCartPage()">
                                     <i class="icon-basket"></i> View Cart
                                 </a>
-                                <a class="btn btn-default" href=""><i class="icon-right-thin"></i>Checkout</a>
+                                <a class="btn btn-default" href="javascript:void(0)" routerLink="/address"><i class="icon-right-thin"></i>Checkout</a>
                                 <div class="clearer"></div>
                             </div>
                             <ol class="mini-products-list">
@@ -106,8 +106,10 @@
                             </div>
 
                             <div class="actions">
-                                <a class="btn btn-default" href="https://www.mobiledefenders.com/checkout/cart/"><i class="icon-basket"></i>View Cart</a>
-                                <a class="btn btn-default" href="https://www.mobiledefenders.com/checkout/onepage/"><i class="icon-right-thin"></i>Checkout</a>
+                                <a class="btn btn-default" href="javascript:void(0)" (click)="this.goToViewCartPage()">
+                                    <i class="icon-basket"></i> View Cart
+                                </a>
+                                <a class="btn btn-default" href="javascript:void(0)" routerLink="/address"><i class="icon-right-thin"></i>Checkout</a>
                                 <div class="clearer"></div>
                             </div>
 

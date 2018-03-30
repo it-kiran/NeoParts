@@ -34,5 +34,6 @@ export class Customer {
   // lastUpdatedStoreCreditDate: any;
   password: any;
   createdTimestamp: any;
+  validUser: boolean;
   // customerNote: any;
 }

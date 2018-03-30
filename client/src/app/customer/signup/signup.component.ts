@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from '../customer.service';
 import * as moment from 'moment';
+import { Customer } from '../customer.component';
+import { GlobalService } from '../../global-service.service';
 
 
 @Component({
@@ -14,7 +16,7 @@ export class SignupComponent implements OnInit {
   loginForm: FormGroup;
   state:string[] = [];
 
-  constructor(private formBuilder: FormBuilder, private customerService: CustomerService) { }
+  constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private globalService: GlobalService) { }
 
   ngOnInit() {
     
@@ -32,8 +34,6 @@ export class SignupComponent implements OnInit {
         'companyName': ['',Validators.required],
         'name': [''],
         'createdTimestamp': ['']
-
-
       }
     );
 
@@ -41,7 +41,6 @@ export class SignupComponent implements OnInit {
       {
         'email': ['', Validators.required], // TODO - Need to fox this too .com is not validating
         'password': [null, Validators.required]
-
       }
     );
 
@@ -52,7 +51,32 @@ export class SignupComponent implements OnInit {
   login(){
 
     console.log('inside login');
-  }
+
+    let username = this.loginForm.get('email').value;
+    let password = this.loginForm.get('password').value;
+
+    this.customerService.getLoginDetails(username, password)
+    .subscribe((data)=>{
+      if(data.status == 200) {
+
+        if(data.json() && data.json().validUser) {
+          alert('Yes Valid user!!!');
+          this.globalService.setLoginedCustomer(data.json())
+        }
+        else {
+
+          alert('Can not varify username and password');
+
+        }
+    
+          }
+          else{
+            alert('Can not varify username and password');
+
+          }
+    })
+}
+
 
   register(){
 

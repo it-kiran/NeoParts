@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms/forms';
 import { Observer, Subject } from 'rxjs';
 import 'rxjs/Rx';
 import { Product } from './product-page/product-page.component';
+import { Customer } from './customer/customer.component';
 
 
 @Injectable()
@@ -13,12 +14,13 @@ export class GlobalService  {
   totalPurchasedProductCount: number = 0;
   totalPurchasedProductAmount: number = 0.0;
 
+  loginedCustomer: Customer;
+
   purchasedProductListChange: Subject<Product[]> = new Subject<Product[]>();
   totalPurchasedProductCountChange: Subject<number> = new Subject<number>();
   totalPurchasedProductAmountChange: Subject<number> = new Subject<number>();
 
   constructor(private http: Http) {
-
     this.getPurchasedProductList();
   }
 
@@ -129,6 +131,14 @@ export class GlobalService  {
         console.log("Delete done");
       }
     })
+  }
+
+  // I am using these two methods at all over the application.
+  getLoginedCustomer(): Customer{
+    return this.loginedCustomer;
+  }
+  setLoginedCustomer(loginCustomer: Customer){
+    this.loginedCustomer = loginCustomer
   }
 
   private extractData(res: Response) : Product[] {

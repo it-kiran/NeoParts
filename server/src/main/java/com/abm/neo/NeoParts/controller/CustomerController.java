@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+
 @RestController
 @RequestMapping("*")
 @CrossOrigin(origins = {"*"})
@@ -21,4 +23,13 @@ public class CustomerController {
         System.out.println("Customer Added or Updated Successfully!!");
         return new ResponseEntity(HttpStatus.CREATED);
     }
+
+    @RequestMapping(value = "/validateUser", method = RequestMethod.GET)
+    public CustomerDao getUserLoginDetails(@RequestParam String username, @RequestParam String password) throws SQLException {
+
+        return customerManager.getUserLoginDetails(username,password);
+
+    }
+
+
 }
