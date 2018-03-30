@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
     console.log('final test2', this.test);
   }
 
+
 //   title = 'app';
 //   searchText: string;
 

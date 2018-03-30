@@ -57,6 +57,13 @@ export class CheckoutComponent implements OnInit {
 
   }
 
+  goToPaymentPage(){
+    this.router.navigate(['/payment']);
+  }
+  goCompleteOrder(){
+    this.router.navigate(['/completeOrder']);
+   }
+
   ngOnDestroy() {
     //prevent memory leak when component destroyed
      this._subscription.unsubscribe();

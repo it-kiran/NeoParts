@@ -25,11 +25,17 @@ export class GlobalService  {
   }
 
   addProductToCart(webTransactionDao: Product) {
+    console.log('sale quanity frist check', webTransactionDao.saleQuantity);
     this.http.post('http://localhost:8080/addCartItem', webTransactionDao)
       .subscribe(data => {
         if(data){
+          console.log('sale quanity second check', data.json().saleQuantity);
+
+          this.purchasedProductList = this.purchasedProductList.slice();
           this.purchasedProductList.push(webTransactionDao);
           this.purchasedProductList = this.purchasedProductList.slice();
+          console.log('sale quanity third check', this.purchasedProductList);
+
           let quantity = 0;
           let totalAmount = 0;
 
@@ -37,6 +43,9 @@ export class GlobalService  {
             quantity = +quantity +count.saleQuantity;
             totalAmount = +totalAmount +(count.saleQuantity * count.retail);
           });
+          
+          console.log('sale quanity forth check', quantity);
+
           this.totalPurchasedProductCount = quantity;
           this.totalPurchasedProductAmount = totalAmount;
 

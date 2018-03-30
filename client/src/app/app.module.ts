@@ -19,6 +19,7 @@ import { CartModule } from './cart/cart.module';
 import { CustomerModule } from './customer/customer.module';
 import { CheckoutModule } from './checkout/checkout.module';
 
+
 @NgModule({
   imports: [
     AppRoutingModule,
@@ -32,7 +33,7 @@ import { CheckoutModule } from './checkout/checkout.module';
     CartModule,
     ClickOutsideModule,
     CustomerModule,
-    CheckoutModule
+    CheckoutModule,
   ],
   declarations: [AppComponent],
   providers: [BackendService, GlobalService],

@@ -16,7 +16,9 @@ export class ProductPageComponent implements OnInit {
   cartCount: number = 0;
   alok: Product[] = [];
 
-  constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute) { }
+  constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute) { 
+    
+  }
   
     ngOnInit() {
 
@@ -30,8 +32,12 @@ export class ProductPageComponent implements OnInit {
       });
         // console.log(this.backendService.appleInfo);
         this.getMenuDetails();
+
+      
+
+        
     }
-  
+
     getProductByModelId(id: number){
       //let id = +this.route.snapshot.paramMap.get('id');
       console.log("model id", id);
@@ -60,12 +66,23 @@ export class ProductPageComponent implements OnInit {
     }
   
     addProductToCart(product: Product){
+
+
      // console.log('product', product);
       product.customerPhoneNo = '7707030801';
       product.status = 'Online';
       product.date = '2018-03-11 09:41:27';
+
+      console.log('Product Quanity to add from ui', product.saleQuantity);
+
+      if(product.saleQuantity > 0){
+        this.globalService.addProductToCart(product);
+
+      }
+      else {
+        alert("Please Enter Valid Quantity");
+      }
     
-      this.globalService.addProductToCart(product);
 
   
 
