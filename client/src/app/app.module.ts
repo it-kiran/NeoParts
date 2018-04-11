@@ -18,6 +18,7 @@ import { GlobalService } from './global-service.service';
 import { CartModule } from './cart/cart.module';
 import { CustomerModule } from './customer/customer.module';
 import { CheckoutModule } from './checkout/checkout.module';
+import { VirtualScrollModule } from 'angular2-virtual-scroll';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { CheckoutModule } from './checkout/checkout.module';
     ClickOutsideModule,
     CustomerModule,
     CheckoutModule,
+    VirtualScrollModule,
   ],
   declarations: [AppComponent],
   providers: [BackendService, GlobalService],

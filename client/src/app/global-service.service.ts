@@ -26,16 +26,54 @@ export class GlobalService  {
 
   addProductToCart(webTransactionDao: Product) {
     console.log('sale quanity frist check', webTransactionDao.saleQuantity);
+    console.log('before push to product list', this.purchasedProductList);
     this.http.post('http://localhost:8080/addCartItem', webTransactionDao)
       .subscribe(data => {
         if(data){
           console.log('sale quanity second check', data.json().saleQuantity);
 
-          this.purchasedProductList = this.purchasedProductList.slice();
           this.purchasedProductList.push(webTransactionDao);
+          console.log('after push to product list', this.purchasedProductList);
+
           this.purchasedProductList = this.purchasedProductList.slice();
           console.log('sale quanity third check', this.purchasedProductList);
 
+          let quantity = 0;
+          let totalAmount = 0;
+
+          this.purchasedProductList.forEach((count)=>{
+            quantity = +quantity +count.saleQuantity;
+            totalAmount = +totalAmount +(count.saleQuantity * count.retail);
+          });
+          
+          console.log('sale quanity forth check', quantity);
+
+          this.totalPurchasedProductCount = quantity;
+          this.totalPurchasedProductAmount = totalAmount;
+
+          this.purchasedProductListChange.next(this.purchasedProductList);
+          this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
+          this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+          
+          console.log('purchased product after add and slice',this.purchasedProductList )
+        }
+      },
+      error => {
+        console.log(JSON.stringify(error.json()));
+      });
+  }
+  updateProductFromCart(webTransactionDao: Product) {
+
+    this.http.post('http://localhost:8080/addCartItem', webTransactionDao)
+      .subscribe(data => {
+        if(data){
+          console.log('sale quanity second check', data.json().saleQuantity);
+
+          let index = this.purchasedProductList.findIndex((el) => el.productNo == webTransactionDao.productNo);
+          if (index > -1) {
+            this.purchasedProductList[index].saleQuantity = webTransactionDao.saleQuantity;    
+            this.purchasedProductList = this.purchasedProductList.slice();
+          }
           let quantity = 0;
           let totalAmount = 0;
 
@@ -65,7 +103,7 @@ export class GlobalService  {
 
     console.log('first',this.purchasedProductList )
 
-    if(this.purchasedProductList.length <= 0){
+    // if(this.purchasedProductList.length <= 0){
 
       this.getPurchasedProductListFromBackEnd()
       .subscribe((purchasedProduct)=>{
@@ -75,10 +113,13 @@ export class GlobalService  {
         this.purchasedProductListChange.next(this.purchasedProductList);
         let quantity = 0;
         let totalAmount = 0;
+
+
         this.purchasedProductList.forEach((count)=>{
           quantity = +quantity +count.saleQuantity;
           totalAmount = +totalAmount +(count.saleQuantity * count.retail);
         });
+
         this.totalPurchasedProductCount = quantity;
         this.totalPurchasedProductAmount = totalAmount;
 
@@ -86,24 +127,26 @@ export class GlobalService  {
         this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
         
       }); 
-    }
-    else {
-      // this is very important.
-      this.purchasedProductListChange.next(this.purchasedProductList);
-      let quantity = 0;
-      let totalAmount = 0;
-      this.purchasedProductList.forEach((count)=>{
-        quantity = +quantity +count.saleQuantity;
-        totalAmount = +totalAmount +(count.saleQuantity * count.retail);
-      });
-      this.totalPurchasedProductCount = quantity;
-      this.totalPurchasedProductAmount = totalAmount;
 
-      this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
-      this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
-      
       return this.purchasedProductList;
-    }
+    // }
+    // else {
+    //   // this is very important.
+    //   this.purchasedProductListChange.next(this.purchasedProductList);
+    //   let quantity = 0;
+    //   let totalAmount = 0;
+    //   this.purchasedProductList.forEach((count)=>{
+    //     quantity = +quantity +count.saleQuantity;
+    //     totalAmount = +totalAmount +(count.saleQuantity * count.retail);
+    //   });
+    //   this.totalPurchasedProductCount = quantity;
+    //   this.totalPurchasedProductAmount = totalAmount;
+
+    //   this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
+    //   this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+      
+    //   return this.purchasedProductList;
+    // }
 
   }
 
@@ -115,6 +158,7 @@ export class GlobalService  {
   }
 
   deleteProductFromCart(webTransactionDao: Product){
+    console.log('product Coming for delete', webTransactionDao);
     this.http.post('http://localhost:8080/deleteCartItem', webTransactionDao)
     .subscribe((data)=>{
       if(data.status == 200){

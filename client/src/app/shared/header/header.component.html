@@ -92,7 +92,7 @@
                                         <p class="qty-price">
                                             {{prodcut.saleQuantity}} X
                                             <span class="price">{{prodcut.retail | currency:'USD':'true'}}</span> </p>
-                                        <a href="javascript:void(0)" (click)="this.globalService.deleteProductFromCart(prodcut)" title="Remove This Item" class="btn-remove"><i class="icon-cancel"></i></a>
+                                        <a href="javascript:void(0)" (click)="this.setProductToDeleteFromCart(prodcut)" title="Remove This Item" class="btn-remove" data-toggle="modal" data-target="#deleteProduct"><i class="icon-cancel"></i></a>
                                     </div>
                                     <div class="clearer"></div>
                                 </li>
@@ -510,6 +510,26 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Product Delete From Cart Modal -->
+<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Remove Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                Are You Sure You Want To Remove This Product From The Cart ?? </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="this.deleteProduct()" data-dismiss="modal">Yes</button>
             </div>
         </div>
     </div>

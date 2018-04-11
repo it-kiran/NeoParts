@@ -21,6 +21,7 @@ sum =  0;
 totalQuantity: number = 0;
 totalAmount: number = 0.00;
 productList: Product[] = [];
+seletedProductForDelete: Product;
 
   title = 'app';
 searchText: string;
@@ -172,6 +173,13 @@ this._totalAmountSubscription = this.globalService.totalPurchasedProductAmountCh
 });
 
 
+}
+
+setProductToDeleteFromCart(product: Product){
+this.seletedProductForDelete = product;
+}
+deleteProduct(){
+  this.globalService.deleteProductFromCart(this.seletedProductForDelete);
 }
 
 

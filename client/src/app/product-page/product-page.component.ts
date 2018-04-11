@@ -82,11 +82,7 @@ export class ProductPageComponent implements OnInit {
       else {
         alert("Please Enter Valid Quantity");
       }
-    
-
-  
-
-      
+        
       //console.log('added cart product List', this.backendService.productList);
     }
   

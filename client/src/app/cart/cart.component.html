@@ -5,7 +5,7 @@
             <h1>Shopping Cart</h1>
             <ul class="checkout-types">
                 <li>
-                    <button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout btn-checkout" onclick="window.location='https://www.mobiledefenders.com/checkout/onepage/';">
+                    <button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout btn-checkout">
                     <span><span>
                       Proceed to Checkout
                     </span></span>
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-8 col-lg-9">
                 <div class="cart-table-wrap">
-                    <form action="https://www.mobiledefenders.com/checkout/cart/updatePost/" method="post">
+                    <form>
                         <input name="form_key" type="hidden" value="wwtUQgvrw4EGlFhu">
                         <fieldset>
                             <table id="shopping-cart-table" class="data-table cart-table">
@@ -26,14 +26,16 @@
                                         <th rowspan="1">&nbsp;</th>
                                         <th rowspan="1"><span class="nobr">Product Name</span></th>
                                         <th colspan="1"><span class="nobr">Unit Price</span></th>
-                                        <th rowspan="1">Qty</th>
+                                        <th rowspan="1" style="text-align: center">Quantity</th>
+                                        <!-- <th rowspan="1">Edit</th> -->
+
                                         <th class="last" colspan="1">Subtotal</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr class="first last">
                                         <td colspan="50" class="a-right last">
-                                            <button type="button" title="Continue Shopping" class="button btn-continue" onclick="setLocation('https://www.mobiledefenders.com/')"><span><span>Continue Shopping</span></span></button>
+                                            <button type="button" title="Continue Shopping" class="button btn-continue"><span><span>Continue Shopping</span></span></button>
                                             <button type="submit" name="update_cart_action" value="update_qty" title="Update Shopping Cart" class="button btn-update"><span><span>Update Shopping Cart</span></span></button>
                                             <button type="submit" name="update_cart_action" value="empty_cart" title="Clear Shopping Cart" class="button btn-empty" id="empty_cart_button"><span><span>Clear Shopping Cart</span></span></button>
                                         </td>
@@ -42,7 +44,7 @@
                                 <tbody>
                                     <tr *ngFor="let prodcut of this.purchasedProductList; let index = index;" class="first last odd">
                                         <td class="action-td">
-                                            <a href="javascript:void(0)" (click)="this.globalService.deleteProductFromCart(prodcut)" class="btn-remove btn-remove2"></a>
+                                            <a href="javascript:void(0)" (click)="this.setProductToDeleteFromCart(prodcut)" class="btn-remove btn-remove2" data-toggle="modal" data-target="#deleteProduct"></a>
                                         </td>
                                         <td class="pr-img-td">
                                             <a href="#" class="product-image">
@@ -51,7 +53,6 @@
                                         </td>
                                         <td class="product-name-td">
                                             <h2 class="product-name">
-                                                <!-- <a href="https://www.mobiledefenders.com/lcd-digitizer-frame-assembly-for-motorola-moto-g5-plus-authorized-oem-gold.html">LCD &amp; Digitizer Assembly (w/ Fingerprint Scanner) for Motorola Moto G5 Plus (XT1687) (Authorized OEM) - Gold</a> -->
                                                 <a href="#" style="color:red; margin: 0px">{{prodcut.description}}</a>
                                                 <br>SKU: {{prodcut.productNo}}
                                             </h2>
@@ -62,16 +63,18 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <div class="qty-holder">
-                                                <a href="javascript:void(0)" class="table_qty_dec" data-increment="1">-</a>
+                                            <div style="display: flex;justify-content: space-evenly;">
+                                                <!-- <a href="javascript:void(0)" class="table_qty_dec" data-increment="1">-</a> -->
 
                                                 <!-- This is very important to understand when you use ngModel with the ngFor, u must write name = a{{index}}
                                                 DO NOT DELETE THIS -->
-                                                <input name=a{{index}} [(ngModel)]="this.purchasedProductList[index].saleQuantity" size="4" title="Qty" class="input-text qty" maxlength="12">
-                                                <a href="javascript:void(0)" class="table_qty_inc" data-increment="1">+</a>
-                                                <a class="edit-qty" href="https://www.mobiledefenders.com/checkout/cart/configure/id/2626674/" title="Edit item parameters"><i class="icon-pencil"></i></a>
+                                                <input name=a{{index}} [(ngModel)]="this.purchasedProductList[index].saleQuantity" size="4" title="Qty" class="form-control" maxlength="12" type="number">
+                                                <button type="button" title="Edit" class="button btn-continue" (click)="this.updateProductFromCart(prodcut)"><span><span>Edit</span></span></button>
+                                                <!-- <a href="javascript:void(0)" class="table_qty_inc" data-increment="1">+</a> -->
+                                                <!-- <a class="edit-qty"><i class="icon-pencil"></i></a> -->
                                             </div>
                                         </td>
+
                                         <td class="td-total last">
                                             <span class="cart-price">
         
@@ -117,7 +120,7 @@
                     <div class="discount">
 
                         <h2>Discount Codes</h2>
-                        <form id="discount-coupon-form" action="https://www.mobiledefenders.com/checkout/cart/couponPost/" method="post">
+                        <form id="discount-coupon-form">
                             <div class="discount-form">
                                 <label for="coupon_code">Enter your coupon code if you have any.</label>
                                 <input type="hidden" name="remove" id="remove-coupone" value="0">
@@ -152,7 +155,7 @@
                     <div class="shipping">
                         <h2>Estimate Shipping and Tax</h2>
                         <div class="shipping-form">
-                            <form action="https://www.mobiledefenders.com/checkout/cart/estimatePost/" method="post" id="shipping-zip-form">
+                            <form id="shipping-zip-form">
                                 <p>Enter your destination to get a shipping estimate.</p>
                                 <ul class="form-list">
                                     <li>
@@ -249,6 +252,26 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Product Delete From Cart Modal -->
+<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Remove Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                Are You Sure You Want To Remove This Product From The Cart ?? </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="this.deleteProduct(this.seletedProductForDelete)">Yes</button>
             </div>
         </div>
     </div>

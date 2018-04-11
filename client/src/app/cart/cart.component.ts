@@ -12,6 +12,8 @@ export class CartComponent implements OnInit {
   purchasedProductList: Product[] = [];
   totalAmount: number = 0.00;
   totalQuantity: number = 0;
+  seletedProductForDelete =  new Product();
+
 
   _subscription: any;
   _totalAmountSubscription: any;
@@ -53,6 +55,32 @@ export class CartComponent implements OnInit {
     });
 
   }
+
+  updateProductFromCart(product: Product){
+    this.globalService.updateProductFromCart(product);
+  }
+
+  setProductToDeleteFromCart(product: Product){
+    this.seletedProductForDelete = product;
+    console.log('selected product for delete', this.seletedProductForDelete);
+    console.log('final delete', this.seletedProductForDelete);
+    //this.globalService.deleteProductFromCart(this.seletedProductForDelete);
+    }
+
+    deleteProduct(product: Product){
+      console.log('final delete', this.seletedProductForDelete);
+      console.log('final delete', this.seletedProductForDelete);
+      console.log('final delete', this.seletedProductForDelete);
+      console.log('final delete', this.seletedProductForDelete);
+      console.log('final delete', this.seletedProductForDelete);
+      console.log('final delete', this.seletedProductForDelete);
+      console.log('final delete', this.seletedProductForDelete);
+      console.log('final delete', this.seletedProductForDelete);
+      console.log('final delete', this.seletedProductForDelete);
+
+      console.log('final delete', this.seletedProductForDelete);
+      this.globalService.deleteProductFromCart(this.seletedProductForDelete);
+    }
 
   ngOnDestroy() {
     //prevent memory leak when component destroyed
