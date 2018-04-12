@@ -67,8 +67,9 @@
                         <span>item(s)</span></span>
                     </a>
                     <div class="topCartContent block-content theme-border-color">
-                        <div class="inner-wrapper">
-                            <p class="cart-empty">You have no items in your shopping cart.</p>
+                        <p class="cart-empty" *ngIf="this.purchasedProductList.length <= 0">You have no items in your shopping cart.</p>
+
+                        <div class="inner-wrapper" *ngIf="this.purchasedProductList.length > 0">
 
                             <div class="actions">
                                 <a class="btn btn-default" href="javascript:void(0)" (click)="this.goToViewCartPage()">
