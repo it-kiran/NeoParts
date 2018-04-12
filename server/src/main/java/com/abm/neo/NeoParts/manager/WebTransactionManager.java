@@ -91,4 +91,7 @@ public class WebTransactionManager {
         webTransactionLineItemRepository.delete(webTransactionLineItemDao);
     }
 
+    public void clearCart(String username) {
+        webTransactionLineItemRepository.deleteAllByCustomerPhoneNo(username);
+    }
 }

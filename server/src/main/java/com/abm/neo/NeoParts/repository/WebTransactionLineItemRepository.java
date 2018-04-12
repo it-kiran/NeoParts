@@ -19,6 +19,8 @@ public interface WebTransactionLineItemRepository extends JpaRepository<WebTrans
 
     List<WebTransactionLineItemDao> findAll();
 
+    void deleteAllByCustomerPhoneNo(String phoneNo);
+
     List<WebTransactionLineItemDao> findAllByCustomerPhoneNo(String PhonoeNo);
 
     @Query(value = "SELECT l.transaction_line_item_Id, l.date, l.status, l.product_no , l.sale_quantity, l.retail, l.retail_with_discount, l.total_product_price, l.customer_phone_no, p.image, pp.description\n" +

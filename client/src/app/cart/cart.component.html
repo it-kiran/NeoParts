@@ -37,7 +37,7 @@
                                         <td colspan="50" class="a-right last">
                                             <button type="button" title="Continue Shopping" class="button btn-continue"><span><span>Continue Shopping</span></span></button>
                                             <button type="submit" name="update_cart_action" value="update_qty" title="Update Shopping Cart" class="button btn-update"><span><span>Update Shopping Cart</span></span></button>
-                                            <button type="submit" name="update_cart_action" value="empty_cart" title="Clear Shopping Cart" class="button btn-empty" id="empty_cart_button"><span><span>Clear Shopping Cart</span></span></button>
+                                            <button type="submit" data-toggle="modal" data-target="#clearCart" name="update_cart_action" title="Clear Shopping Cart" class="button btn-empty" id="empty_cart_button"><span><span>Clear Shopping Cart</span></span></button>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -276,3 +276,29 @@
         </div>
     </div>
 </div>
+
+<!-- End Of Product Delete From Cart Modal -->
+
+<!-- Satrt OF Clear Shopping Cart From Cart Modal -->
+<div class="modal fade" id="clearCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Remove All Products</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h4>Caution !!!</h4>
+                <p>Are You Sure You Want To Remove All These Products From The Cart ?? </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="this.clearShopingCart()" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End OF Clear Shopping Cart From Cart Modal -->

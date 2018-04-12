@@ -63,7 +63,10 @@ export class CheckoutComponent implements OnInit {
   goCompleteOrder(){
     this.router.navigate(['/completeOrder']);
    }
-
+   goViewCart(){
+    this.router.navigate(['/viewCart']);
+  }
+  
   ngOnDestroy() {
     //prevent memory leak when component destroyed
      this._subscription.unsubscribe();

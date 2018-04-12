@@ -34,7 +34,12 @@ public class TransactionController {
     @RequestMapping(value = "/deleteCartItem", method = RequestMethod.POST)
     public void deleteCartItem(@RequestBody WebTransactionLineItemDao webTransactionDao)
     {
-         webTransactionManager.deleteCartItem(webTransactionDao);
+        webTransactionManager.deleteCartItem(webTransactionDao);
+    }
+    @RequestMapping(value = "/clearCart", method = RequestMethod.DELETE)
+    public void clearCart(String username)
+    {
+        webTransactionManager.clearCart(username);
     }
 
 //    @RequestMapping(value = "/getCartDetails", method = RequestMethod.GET, produces = "application/json")

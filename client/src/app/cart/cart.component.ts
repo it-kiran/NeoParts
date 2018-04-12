@@ -82,6 +82,10 @@ export class CartComponent implements OnInit {
       this.globalService.deleteProductFromCart(this.seletedProductForDelete);
     }
 
+    clearShopingCart(){
+      this.globalService.clearCart('7707030801');
+    }
+
   ngOnDestroy() {
     //prevent memory leak when component destroyed
      this._subscription.unsubscribe();

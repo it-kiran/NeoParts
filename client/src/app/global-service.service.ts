@@ -186,6 +186,31 @@ export class GlobalService  {
     })
   }
 
+  clearCart(username : string){
+    this.http.delete('http://localhost:8080/clearCart?username='+username)
+    .subscribe((data)=>{
+      if(data.status == 200){
+        this.purchasedProductList = [];      
+        //this.purchasedProductList = this.purchasedProductList.slice();
+        let quantity = 0;
+        let totalAmount = 0;
+
+        this.purchasedProductList.forEach((count)=>{
+          quantity = +quantity +count.saleQuantity;
+          totalAmount = +totalAmount +(count.saleQuantity * count.retail);
+        });
+        this.totalPurchasedProductCount = quantity;
+        this.totalPurchasedProductAmount = totalAmount;
+
+        this.purchasedProductListChange.next(this.purchasedProductList);
+        this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
+        this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+        console.log("clear cart is done!!");
+      }
+    })
+
+  }
+
   // I am using these two methods at all over the application.
   getLoginedCustomer(): Customer{
     return this.loginedCustomer;
