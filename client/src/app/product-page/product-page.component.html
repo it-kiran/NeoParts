@@ -33,7 +33,7 @@
             </li>
         </ul>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10" *ngIf="false">
         <mat-card *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
             <img mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="">
             <mat-card-content>
@@ -51,5 +51,27 @@
             </mat-card-content>
         </mat-card>
     </div>
+    <div class="col-md-10" *ngIf="true">
+        <mat-card *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
+            <img mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="">
+            <mat-card-content>
+                <p style="height: 38px;">{{product.description}}</p>
+                <p style="font-weight: 650;">{{product.retail | currency:'USD':'true'}}</p>
+                <div style="display: flex;">
+                    <input type="number" class="form-control" placeholder="Quantity" [(ngModel)]='product.saleQuantity' min="1">
+                </div>
+                <div>
+                    <button mat-button class="addToCartOnSalePage" (click)="this.addProductToCart(product)">
+                                  <i class="fa fa-cart-plus"></i>
+                                      Add to cart
+                                  </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+
+
 
 </div>
