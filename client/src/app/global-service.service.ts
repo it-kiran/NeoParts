@@ -6,10 +6,13 @@ import { Observer, Subject } from 'rxjs';
 import 'rxjs/Rx';
 import { Product } from './product-page/product-page.component';
 import { Customer } from './customer/customer.component';
+import { environment } from '../environments/environment';
+
 
 
 @Injectable()
 export class GlobalService  {
+  private url: string;
   purchasedProductList: Product[] = [];
   totalPurchasedProductCount: number = 0;
   totalPurchasedProductAmount: number = 0.0;
@@ -21,13 +24,14 @@ export class GlobalService  {
   totalPurchasedProductAmountChange: Subject<number> = new Subject<number>();
 
   constructor(private http: Http) {
+    this.url = environment.productUrl;
     this.getPurchasedProductList();
   }
 
   addProductToCart(webTransactionDao: Product) {
     console.log('sale quanity frist check', webTransactionDao.saleQuantity);
     console.log('before push to product list', this.purchasedProductList);
-    this.http.post('http://localhost:8080/addCartItem', webTransactionDao)
+    this.http.post(this.url+'/addCartItem', webTransactionDao)
       .subscribe(data => {
         if(data){
           console.log('sale quanity second check', data.json().saleQuantity);
@@ -64,7 +68,7 @@ export class GlobalService  {
   }
   updateProductFromCart(webTransactionDao: Product) {
 
-    this.http.post('http://localhost:8080/addCartItem', webTransactionDao)
+    this.http.post(this.url+'/addCartItem', webTransactionDao)
       .subscribe(data => {
         if(data){
           console.log('sale quanity second check', data.json().saleQuantity);
@@ -152,14 +156,14 @@ export class GlobalService  {
 
   getPurchasedProductListFromBackEnd(): Observable<Product[]> {
 
-    return this.http.get('http://localhost:8080/getCartItem?phoneNo=7707030801')
+    return this.http.get(this.url+'/getCartItem?phoneNo=7707030801')
     .map(this.extractData)
     .catch(this.handleError);
   }
 
   deleteProductFromCart(webTransactionDao: Product){
     console.log('product Coming for delete', webTransactionDao);
-    this.http.post('http://localhost:8080/deleteCartItem', webTransactionDao)
+    this.http.post(this.url+'/deleteCartItem', webTransactionDao)
     .subscribe((data)=>{
       if(data.status == 200){
         let index = this.purchasedProductList.indexOf(webTransactionDao, 0);
@@ -187,7 +191,7 @@ export class GlobalService  {
   }
 
   clearCart(username : string){
-    this.http.delete('http://localhost:8080/clearCart?username='+username)
+    this.http.delete(this.url+'/clearCart?username='+username)
     .subscribe((data)=>{
       if(data.status == 200){
         this.purchasedProductList = [];      

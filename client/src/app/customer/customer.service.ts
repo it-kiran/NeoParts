@@ -59,7 +59,7 @@ constructor(private http: Http) {
 
     addOrUpdateCustomer(customer: Customer)
     {
-      this.http.post('http://localhost:8080/addCustomer', customer)
+      this.http.post(this.url+'/addCustomer', customer)
       .subscribe(data => {
         if(data.status == 200 || data.status == 201){
 
@@ -73,7 +73,7 @@ constructor(private http: Http) {
     }
 
     getLoginDetails(username:string, password:string){
-      return this.http.get('http://localhost:8080/validateUser?username='+username+'&password='+password);
+      return this.http.get(this.url+'/validateUser?username='+username+'&password='+password);
     }
 
     private extractData(res: Response): Customer[] {
