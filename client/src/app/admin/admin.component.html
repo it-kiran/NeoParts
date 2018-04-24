@@ -59,7 +59,7 @@
                 <td>$ {{product.retail}}</td>
                 <td>{{product.saleQuantity}}</td>
                 <td><input type="file" id="file-input"> <img class="image" /></td>
-                <td><button class="btn btn-outline-success">Add Image</button></td>
+                <td><button class="btn btn-outline-success" (click)="addImage(product, i)">Add Image</button></td>
             </tr>
         </tbody>
     </table>

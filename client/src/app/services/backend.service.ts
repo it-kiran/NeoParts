@@ -78,6 +78,16 @@ export class BackendService {
       })
       
   }
+  addImage(productNo: string, image: any) {
+    console.log('Customer to be Added' + image);
+     this.http.post(this.url+'/insertProductImage?productNo=' + productNo, image)
+     .subscribe(data => {
+       console.log('Response From Add Customer call' + data);
+     },
+       error => {
+     console.log(JSON.stringify(error.json()));
+   });
+       }
 
   private extractData(res: Response): Product[] {
     let body = res.json();
