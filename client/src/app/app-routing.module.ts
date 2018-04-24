@@ -10,6 +10,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ShippingComponent } from './checkout/shipping/shipping.component';
 import { PaymentComponent } from './checkout/payment/payment.component';
 import { AddressComponent } from './checkout/address/address.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -19,9 +20,7 @@ const routes: Routes = [
   { path: 'shipping', component: ShippingComponent},
   { path: 'payment', component: PaymentComponent},
   { path: 'address', component: AddressComponent},
-
-
-
+  { path: 'admin', component: AdminComponent},
   { path: 'customer/signup', component: SignupComponent},
 
 

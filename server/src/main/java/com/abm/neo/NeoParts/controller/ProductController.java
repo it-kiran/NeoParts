@@ -2,6 +2,7 @@ package com.abm.neo.NeoParts.controller;
 
 
 import com.abm.neo.NeoParts.dto.ProductEcomerceDto;
+import com.abm.neo.NeoParts.entity.ProductDao;
 import com.abm.neo.NeoParts.manager.ProductManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,6 +20,12 @@ public class ProductController {
 
     @Autowired
     private ProductManager productManager;
+
+    @RequestMapping(value = "/getAllProduct", method = RequestMethod.GET)
+    public List<ProductEcomerceDto> getAllProduct() {
+
+        return productManager.getAllProduct();
+    }
 
     @RequestMapping(value = "/getAllProductForSearch", method = RequestMethod.GET)
     public List<ProductEcomerceDto> getProduct() {

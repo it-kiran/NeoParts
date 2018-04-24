@@ -1,6 +1,7 @@
 package com.abm.neo.NeoParts.manager;
 
 import com.abm.neo.NeoParts.dto.ProductEcomerceDto;
+import com.abm.neo.NeoParts.entity.ProductDao;
 import com.abm.neo.NeoParts.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,6 +32,7 @@ public class ProductManager {
         List<Object[]> result = productRepository.getProductForSearch(searchInput);
         return setEcomerceDto(result);
     }
+
 
     public List<ProductEcomerceDto> getEcommerceProductsByCategory(int categoryId) {
 
@@ -112,4 +114,9 @@ public class ProductManager {
 
 
         }
+
+    public List<ProductEcomerceDto> getAllProduct() {
+
+        return  setEcomerceDto(productRepository.getAllActiveProducts());
     }
+}

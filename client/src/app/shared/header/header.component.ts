@@ -6,6 +6,7 @@ import { BackendService } from '../../services/backend.service';
 import { GlobalService } from '../../global-service.service';
 import { Product } from '../../product-page/product-page.component';
 import { count } from 'rxjs/operator/count';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -65,7 +66,7 @@ ngOnInit() {
     this.getPurchasedProductList();
 }
 
-constructor(private http:Http,public backendService:BackendService,private route: ActivatedRoute, private router: Router, public globalService: GlobalService){
+constructor(private http:Http,public backendService:BackendService,private route: ActivatedRoute, private router: Router, public globalService: GlobalService, private authServcie: AuthService){
 //this.list = this.globalService.purchasedProductList;
 
 //console.log('lit after simple', this.list);
@@ -142,6 +143,12 @@ constructor(private http:Http,public backendService:BackendService,private route
     });
 
 
+
+}
+
+testLogin(){
+  
+  this.authServcie.login();
 
 }
 

@@ -28,6 +28,13 @@ export class BackendService {
 
   }
 
+  getAllProducts(){
+
+    return this.http.get(this.url+'/getAllProduct')
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
+
   getData(){
     return this.http.get(this.url+'/getWebMenu', { headers: new Headers({ 'Content-Type': 'application/json' }) })
     .map((res:Response)=>res.json());

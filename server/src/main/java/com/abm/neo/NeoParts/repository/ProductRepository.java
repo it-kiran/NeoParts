@@ -46,4 +46,9 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "LEFT JOIN product_image i ON i.product_no = p.product_no\n" +
             "WHERE active = 1 AND ecommerce = 1 AND p.model_id = ?1", nativeQuery = true)
     List<Object[]> getEcommerceProductsByBrand(int modelId);
+
+    @Query(value = "SELECT p.product_no,p.description,p.category_id,p.brand_id,p.vendor_id,p.model_id,p.cost,p.retail,p.quantity, i.image FROM product p\n" +
+            "            LEFT JOIN product_image i ON i.product_no = p.product_no\n" +
+            "            WHERE active = 1 AND ecommerce = 1", nativeQuery = true)
+    List<Object[]> getAllActiveProducts();
 }

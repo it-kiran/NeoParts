@@ -1,0 +1,66 @@
+<div class="row" *ngIf="this.productViewList">
+    <!-- <div class="col-md-1">
+
+  </div> -->
+
+    <!-- <div class="loading" *ngIf="this.isLoading">
+    </div> -->
+    <div class="col-md-4">
+        <input class="form-control" type="search" id="search-input" placeholder="Search By Description">
+    </div>
+    <div class="col-md-3">
+        <select class="form-control">
+          <option>Select All</option>
+          <option>Brand</option>
+          <option>Category</option>
+          <option>Model</option>
+          <!-- <option>Model</option> -->
+      </select>
+    </div>
+    <!-- <div class="col-md-3" *ngIf="this.listOfProductOption != null">
+        <select (change)="this.loadProductsToView()" class="form-control" id="select-input">
+              <option  *ngFor = "let option of this.listOfProductOption" [value]="option.id">
+                      {{option.name}}
+                  </option>
+          </select>
+    </div> -->
+    <div class="col-md-1">
+
+    </div>
+</div>
+
+
+<h6 class="text-muted text-normal text-uppercase padding-top-2x">
+    Product Table For Admin</h6>
+<hr class="margin-bottom-1x">
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product No</th>
+                <th>Description</th>
+                <th>Cost</th>
+                <th>Retails</th>
+                <th>Stocks</th>
+                <th>Edit</th>
+                <th>Add Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of this.productViewList;let i = index" [attr.data-index]="i">
+                <td>
+                    <img *ngIf="product.image!=null" src="data:image/png;base64,{{product.image}}" height="100px" width="100px" />
+                    <img *ngIf="(product.image=='aW1hZ2U=')" src="assets/images/no-image-found.jpg" height="100px" width="100px" alt="{{product.productNo}}">
+                </td>
+                <td>{{product.productNo}}</td>
+                <td>{{product.description}}</td>
+                <td>$ {{product.cost}}</td>
+                <td>$ {{product.retail}}</td>
+                <td>{{product.saleQuantity}}</td>
+                <td><input type="file" id="file-input"> <img class="image" /></td>
+                <td><button class="btn btn-outline-success">Add Image</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

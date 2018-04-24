@@ -19,6 +19,9 @@ import { CartModule } from './cart/cart.module';
 import { CustomerModule } from './customer/customer.module';
 import { CheckoutModule } from './checkout/checkout.module';
 import { VirtualScrollModule } from 'angular2-virtual-scroll';
+import { AuthService } from './auth/auth.service';
+import { AdminModule } from './admin/admin.module';
+import { AdminService } from './admin/admin.service';
 
 
 @NgModule({
@@ -36,9 +39,10 @@ import { VirtualScrollModule } from 'angular2-virtual-scroll';
     CustomerModule,
     CheckoutModule,
     VirtualScrollModule,
+    AdminModule
   ],
   declarations: [AppComponent],
-  providers: [BackendService, GlobalService],
+  providers: [BackendService, GlobalService, AuthService, AdminService],
   bootstrap: [AppComponent]  
 })
 export class AppModule { }
