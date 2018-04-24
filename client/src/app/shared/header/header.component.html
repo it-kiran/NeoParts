@@ -28,7 +28,7 @@
                     </div>
                     <ul class="links">
                         <li class="first">
-                            <a href="" title="My Account">My Account</a>
+                            <a (click)="this.goToAdmin()" title="My Account">My Account</a>
                         </li>
                         <li>
                             <a href="" title="Broken Screen Buyback">Broken Screen Buyback</a>
@@ -42,7 +42,6 @@
                         <li class=" last">
                             <!-- <a routerLink="/customer/signup" routerLinkActive="active" title="Log In">Log In</a> -->
                             <a (click)="this.testLogin()" title="Log In">Log In</a>
-
                         </li>
                     </ul>
                 </div>

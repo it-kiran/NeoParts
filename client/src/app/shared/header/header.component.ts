@@ -147,9 +147,10 @@ constructor(private http:Http,public backendService:BackendService,private route
 }
 
 testLogin(){
-  
   this.authServcie.login();
-
+}
+goToAdmin(){
+  this.router.navigate(['/admin']);
 }
 
 goToViewCartPage(){
