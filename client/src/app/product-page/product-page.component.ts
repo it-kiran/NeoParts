@@ -17,7 +17,6 @@ export class ProductPageComponent implements OnInit {
   alok: Product[] = [];
 
   constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute) { 
-    
   }
   
     ngOnInit() {
@@ -34,8 +33,6 @@ export class ProductPageComponent implements OnInit {
         this.getMenuDetails();
 
       
-
-        
     }
 
     getProductByModelId(id: number){
