@@ -32,3 +32,12 @@ hr {
 em {
     color: red;
 }
+
+.vl {
+    border-left: 6px solid lightgray;
+    height: 83%;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    /* top: 0; */
+}

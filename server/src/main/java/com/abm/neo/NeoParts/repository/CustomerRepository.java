@@ -18,6 +18,8 @@ public interface CustomerRepository extends JpaRepository<CustomerDao, String> {
 
     CustomerDao findByPhoneNo(String phoneNo);
 
+    CustomerDao findByEmail(String email);
+
     CustomerDao findByEmailAndPassword(String email, String password);
 
     @Query(value = "SELECT distinct c.name,\n" +

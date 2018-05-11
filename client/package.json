@@ -26,7 +26,6 @@
         "@angular/router": "^5.2.9",
         "angular2-click-outside": "^0.1.0",
         "angular2-virtual-scroll": "^0.3.2",
-        "auth0-js": "^9.4.2",
         "bootstrap": "^4.0.0-beta.3",
         "core-js": "^2.4.1",
         "jquery": "^3.3.1",
