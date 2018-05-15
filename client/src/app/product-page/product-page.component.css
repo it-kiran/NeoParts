@@ -40,6 +40,12 @@ mat-card {
     vertical-align: middle;
     border: 0px;
 }
+.mat-card-image-test {
+    width: 136px;
+    vertical-align: middle;
+    border: 0px;
+    margin: 0 16px 16px -24px;
+}
 
 p {
     overflow: hidden;

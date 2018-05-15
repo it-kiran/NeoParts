@@ -53,7 +53,8 @@
     </div>
     <div class="col-md-10" *ngIf="true">
         <mat-card *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
-            <img mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="">
+            <img *ngIf="(product.image=='')" mat-card-image class="mat-card-image-test" src="assets/images/noImage.png">
+            <img *ngIf="product.image!=null" mat-card-image   src="data:image/png;base64,{{product.image}}" alt="">
             <mat-card-content>
                 <p style="height: 38px;">{{product.description}}</p>
                 <p style="font-weight: 650;">{{product.retail | currency:'USD':'true'}}</p>
