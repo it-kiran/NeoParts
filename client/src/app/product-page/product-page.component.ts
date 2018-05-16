@@ -45,6 +45,15 @@ export class ProductPageComponent implements OnInit {
         console.log('product list', this.productList);
       })
     }
+
+    getProductByCategoryId(id: number){
+      this.backendService.getProductByCategoryId(id)
+      .subscribe((product) =>{
+        this.productList = product;
+        this.productList = this.productList.slice();
+        console.log('product list', this.productList);
+      });
+    }
   
     getMenuDetails(){
   

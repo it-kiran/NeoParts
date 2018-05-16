@@ -46,8 +46,6 @@ noofshow = 5;
 values = '';
 
 
-
-
 inputOutsideClicked:boolean;
 characters = [
 'Finn the human11',
