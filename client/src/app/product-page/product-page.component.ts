@@ -25,9 +25,15 @@ export class ProductPageComponent implements OnInit {
         // PARAMS CHANGED .. TO SOMETHING REALLY COOL HERE ..
    
         // for example extract the id..
-        let id = +params['id']; // (+) converts string 'id' to a number
-        this.getProductByModelId(id);
-        
+
+        let id = +params['id'];
+        if(params['type']== 'model'){
+           // (+) converts string 'id' to a number
+          this.getProductByModelId(id);
+        }
+        else if(params['type']== 'category'){
+          this.getProductByCategoryId(id);
+        }   
       });
         // console.log(this.backendService.appleInfo);
         this.getMenuDetails();

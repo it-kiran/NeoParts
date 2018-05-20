@@ -14,7 +14,7 @@ import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'product/:id', component: ProductPageComponent},
+  { path: 'product/:type/:id', component: ProductPageComponent},
   { path: 'viewCart', component: CartComponent},
   { path: 'checkout', component: CheckoutComponent},
   { path: 'shipping', component: ShippingComponent},

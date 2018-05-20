@@ -37,6 +37,7 @@ mat-card {
 
 .mat-card-image {
     width: 136px;
+    height: 136px;
     vertical-align: middle;
     border: 0px;
 }

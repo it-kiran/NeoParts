@@ -215,7 +215,7 @@
                                                                 <div class="nav-sublist level1">
                                                                     <ul>
                                                                         <li class="menu-item " *ngFor="let item of appleDataIphone">
-                                                                            <a class="level2" routerLink="/product/{{item.modelId}}">
+                                                                            <a class="level2" routerLink="/product/model/{{item.modelId}}">
                                                                                 <span>
                                                                                     {{item.name}}
                                                                                 </span>
@@ -230,7 +230,7 @@
                                                                 <div class="nav-sublist level1">
                                                                     <ul>
                                                                         <li class="menu-item " *ngFor="let item of appleDataIpad">
-                                                                            <a class="level2" data-id="989" routerLink="/product/{{item.modelId}}">
+                                                                            <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
                                                                                 <span>
                                                                                     {{item.name}}
                                                                                 </span>
@@ -284,7 +284,7 @@
                                                                 <div class="nav-sublist level1">
                                                                     <ul>
                                                                         <li class="menu-item " *ngFor="let item of samsungS">
-                                                                            <a class="level2" data-id="989" routerLink="/product/{{item.modelId}}">
+                                                                            <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
                                                                                 <span>{{item.name}}</span>
                                                                             </a>
                                                                         </li>
@@ -296,7 +296,7 @@
                                                                 <div class="nav-sublist level1">
                                                                     <ul>
                                                                         <li class="menu-item " *ngFor="let item of samsungNote">
-                                                                            <a class="level2" data-id="989" routerLink="/product/{{item.modelId}}">
+                                                                            <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
                                                                                 <span>
                                                                                 {{item.name}}
                                                                             </span>
@@ -311,7 +311,7 @@
                                                                 <div class="nav-sublist level1">
                                                                     <ul>
                                                                         <li class="menu-item " *ngFor="let item of samsungOther">
-                                                                            <a class="level2" data-id="989" routerLink="/product/{{item.modelId}}"><span>{{item.name}}</span></a>
+                                                                            <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}"><span>{{item.name}}</span></a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -491,7 +491,7 @@
                                     </div>
                                 </li>
                                 <li class="menu-full-width">
-                                    <a href="#">Batteries</a>
+                                    <a routerLink="/product/category/29">Batteries</a>
                                 </li>
 
 

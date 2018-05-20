@@ -1,7 +1,6 @@
 package com.abm.neo.NeoParts.manager;
 
 import com.abm.neo.NeoParts.dto.ProductEcomerceDto;
-import com.abm.neo.NeoParts.entity.ProductDao;
 import com.abm.neo.NeoParts.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,9 +10,7 @@ import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Lob;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +73,7 @@ public class ProductManager {
             {
                 ProductEcomerceDto productEcomerceDto = new ProductEcomerceDto();
 
-                productEcomerceDto.setProductNo(j[0].toString());
+               // productEcomerceDto.setProductNo(j[0].toString());
                 productEcomerceDto.setDescription(j[1].toString());
                 productEcomerceDto.setCategoryId(j[2].toString());
                 productEcomerceDto.setBrandId(j[3].toString());
