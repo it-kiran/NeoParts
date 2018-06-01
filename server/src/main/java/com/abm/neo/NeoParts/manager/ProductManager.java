@@ -73,7 +73,7 @@ public class ProductManager {
             {
                 ProductEcomerceDto productEcomerceDto = new ProductEcomerceDto();
 
-               // productEcomerceDto.setProductNo(j[0].toString());
+//                productEcomerceDto.setProductNo(j[0].toString());
                 productEcomerceDto.setDescription(j[1].toString());
                 productEcomerceDto.setCategoryId(j[2].toString());
                 productEcomerceDto.setBrandId(j[3].toString());
