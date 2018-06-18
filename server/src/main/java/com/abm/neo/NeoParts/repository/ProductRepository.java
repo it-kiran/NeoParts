@@ -1,8 +1,6 @@
 package com.abm.neo.NeoParts.repository;
 
-import com.abm.neo.NeoParts.dto.ProductEcomerceDto;
 import com.abm.neo.NeoParts.entity.ProductDao;
-import javafx.beans.binding.ObjectExpression;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -42,7 +40,7 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "WHERE active = 1 AND ecommerce = 1 AND p.category_id = ?1", nativeQuery = true)
     List<Object[]> getEcommerceProductsByCategory(int category_id);
 
-    @Query(value = "SELECT p.product_no,p.description,p.category_id,p.brand_id,p.vendor_id,p.model_id,p.cost,p.retail,p.quantity, i.image FROM product p\n" +
+    @Query(value = "SELECT p.product_no,p.description,p.category_id,p.brand_id,p.vendor_id,p.model_id,i.image FROM product p\n" +
             "LEFT JOIN product_image i ON i.product_no = p.product_no\n" +
             "WHERE active = 1 AND ecommerce = 1 AND p.model_id = ?1", nativeQuery = true)
     List<Object[]> getEcommerceProductsByBrand(int modelId);

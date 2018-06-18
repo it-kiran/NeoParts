@@ -1,4 +1,4 @@
-package org.zerhusen.security.controller;
+package com.abm.neo.NeoParts.security.controller;
 
 public class AuthenticationException extends RuntimeException {
     public AuthenticationException(String message, Throwable cause) {

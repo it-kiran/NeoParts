@@ -40,12 +40,16 @@
                             <a href="" title="Blog" class="top-link-mpblog">Blog</a>
                         </li> -->
                         <li class=" last">
-                            <a routerLink="/customer/signup" routerLinkActive="active" title="Log In">Log In</a>
+                            <a *ngIf = "this.customerService.getLogedInUser() == '' " routerLink="/customer/signup" routerLinkActive="active" title="Log In">Log In</a>
+                            <a *ngIf = "this.customerService.getLogedInUser() != '' " routerLink="" (click) = "this.customerService.logout()" routerLinkActive="active" title="Log Out">Log Out</a>
+
                             <!-- <a (click)="this.testLogin()" title="Log In">Log In</a> -->
                         </li>
                     </ul>
                 </div>
-                <p class="welcome-msg"><strong>How can we help you grow your repair business today?</strong></p>
+                <p *ngIf = "this.customerService.getLogedInUser() == '' " class="welcome-msg"><strong>How can we help you grow your repair business today?</strong></p>
+                <p *ngIf = "this.customerService.getLogedInUser() != '' " class="welcome-msg"><strong>Welcome {{this.customerService.getLogedInUser()}}</strong></p>
+
                 <div class="clearer"></div>
             </div>
         </div>

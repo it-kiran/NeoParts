@@ -1,8 +1,9 @@
-package org.zerhusen.security.controller;
+package com.abm.neo.NeoParts.security.controller;
 
-import java.util.Objects;
-import javax.servlet.http.HttpServletRequest;
-
+import com.abm.neo.NeoParts.security.JwtAuthenticationRequest;
+import com.abm.neo.NeoParts.security.JwtTokenUtil;
+import com.abm.neo.NeoParts.security.JwtUser;
+import com.abm.neo.NeoParts.security.service.JwtAuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,17 +15,14 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.zerhusen.security.JwtAuthenticationRequest;
-import org.zerhusen.security.JwtTokenUtil;
-import org.zerhusen.security.JwtUser;
-import org.zerhusen.security.service.JwtAuthenticationResponse;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 @RestController
+@CrossOrigin(origins = {"*"})
 public class AuthenticationRestController {
 
     @Value("${jwt.header}")
@@ -35,6 +33,11 @@ public class AuthenticationRestController {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Autowired
     @Qualifier("jwtUserDetailsService")
@@ -60,7 +63,7 @@ public class AuthenticationRestController {
         String username = jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
 
-        if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
+        if (jwtTokenUtil.canTokenBeRefreshed(token)) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
             return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
         } else {

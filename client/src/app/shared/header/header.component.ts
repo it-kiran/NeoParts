@@ -6,6 +6,7 @@ import { BackendService } from '../../services/backend.service';
 import { GlobalService } from '../../global-service.service';
 import { Product } from '../../product-page/product-page.component';
 import { count } from 'rxjs/operator/count';
+import { CustomerService } from '../../customer/customer.service';
 
 @Component({
   selector: 'app-header',
@@ -23,11 +24,9 @@ totalAmount: number = 0.00;
 productList: Product[] = [];
 seletedProductForDelete: Product;
 
-  title = 'app';
+title = 'app';
 searchText: string;
-
 backendData : any=[];
-
 appleData =[];
 appleDataIphone :any=[];
 appleDataIpad :any=[];
@@ -59,11 +58,10 @@ characters = [
 ]
 
 ngOnInit() {
-
-    this.getPurchasedProductList();
+  this.getPurchasedProductList();
 }
 
-constructor(private http:Http,public backendService:BackendService,private route: ActivatedRoute, private router: Router, public globalService: GlobalService){
+constructor(private http:Http,public backendService:BackendService,private route: ActivatedRoute, private router: Router, public globalService: GlobalService, private customerService:CustomerService){
 //this.list = this.globalService.purchasedProductList;
 
 //console.log('lit after simple', this.list);

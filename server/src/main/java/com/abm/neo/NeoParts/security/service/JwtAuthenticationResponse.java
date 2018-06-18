@@ -1,4 +1,4 @@
-package org.zerhusen.security.service;
+package com.abm.neo.NeoParts.security.service;
 
 import java.io.Serializable;
 

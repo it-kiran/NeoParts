@@ -1,9 +1,9 @@
 package com.abm.neo.NeoParts.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import com.abm.neo.NeoParts.entity.Authority;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by apatel2 on 5/17/17.
@@ -32,7 +32,14 @@ public class CustomerDao {
     private String password;
     private String customerNote;
     private String keytag;
-    private String createdTimestamp;
+//    private String createdTimestamp;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = {@JoinColumn(name = "phoneNo", referencedColumnName = "phoneNo")},
+            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "id")})
+    private List<Authority> authorities;
 
     @Transient
     private boolean isValidUser;
@@ -177,13 +184,13 @@ public class CustomerDao {
         this.keytag = keytag;
     }
 
-    public String getCreatedTimestamp() {
-        return createdTimestamp;
-    }
-
-    public void setCreatedTimestamp(String createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
-    }
+//    public String getCreatedTimestamp() {
+//        return createdTimestamp;
+//    }
+//
+//    public void setCreatedTimestamp(String createdTimestamp) {
+//        this.createdTimestamp = createdTimestamp;
+//    }
 
     public boolean isValidUser() {
         return isValidUser;
@@ -191,5 +198,13 @@ public class CustomerDao {
 
     public void setValidUser(boolean validUser) {
         isValidUser = validUser;
+    }
+
+    public List<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
     }
 }

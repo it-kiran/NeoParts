@@ -1,12 +1,5 @@
-package org.zerhusen.security;
+package com.abm.neo.NeoParts.security;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Clock;
 import io.jsonwebtoken.Jwts;
@@ -16,13 +9,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
 @Component
 public class JwtTokenUtil implements Serializable {
 
     static final String CLAIM_KEY_USERNAME = "sub";
     static final String CLAIM_KEY_CREATED = "iat";
     private static final long serialVersionUID = -3301605591108950415L;
-    @SuppressFBWarnings(value = "SE_BAD_FIELD", justification = "It's okay here")
+//    @SuppressFBWarnings(value = "SE_BAD_FIELD", justification = "It's okay here")
     private Clock clock = DefaultClock.INSTANCE;
 
     @Value("${jwt.secret}")
@@ -60,8 +59,10 @@ public class JwtTokenUtil implements Serializable {
         return expiration.before(clock.now());
     }
 
-    private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {
-        return (lastPasswordReset != null && created.before(lastPasswordReset));
+    private Boolean isCreatedBeforeLastPasswordReset(Date created) {
+        //return (lastPasswordReset != null && created.before(lastPasswordReset));
+
+        return false;
     }
 
     private Boolean ignoreTokenExpiration(String token) {
@@ -87,9 +88,9 @@ public class JwtTokenUtil implements Serializable {
             .compact();
     }
 
-    public Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
+    public Boolean canTokenBeRefreshed(String token) {
         final Date created = getIssuedAtDateFromToken(token);
-        return !isCreatedBeforeLastPasswordReset(created, lastPasswordReset)
+        return !isCreatedBeforeLastPasswordReset(created)
             && (!isTokenExpired(token) || ignoreTokenExpiration(token));
     }
 
@@ -113,9 +114,8 @@ public class JwtTokenUtil implements Serializable {
         final Date created = getIssuedAtDateFromToken(token);
         //final Date expiration = getExpirationDateFromToken(token);
         return (
-            username.equals(user.getUsername())
+            username.equals(user.getEmail())
                 && !isTokenExpired(token)
-                && !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate())
         );
     }
 

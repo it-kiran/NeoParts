@@ -1,4 +1,4 @@
-package org.zerhusen.security.controller;
+package com.abm.neo.NeoParts.security.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

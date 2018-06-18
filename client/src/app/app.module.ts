@@ -21,6 +21,7 @@ import { CheckoutModule } from './checkout/checkout.module';
 import { VirtualScrollModule } from 'angular2-virtual-scroll';
 import { AdminModule } from './admin/admin.module';
 import { AdminService } from './admin/admin.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AdminService } from './admin/admin.service';
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     RouterModule,
     CartModule,
     ClickOutsideModule,
@@ -41,7 +43,7 @@ import { AdminService } from './admin/admin.service';
     AdminModule
   ],
   declarations: [AppComponent],
-  providers: [BackendService, GlobalService, AdminService],
+  providers: [BackendService, GlobalService, AdminService, ],
   bootstrap: [AppComponent]  
 })
 export class AppModule { }

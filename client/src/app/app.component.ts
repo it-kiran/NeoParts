@@ -23,12 +23,12 @@ export class AppComponent implements OnInit {
       this.test = this.globalService.purchasedProductList;
     }
     else {
-      this.globalService.getPurchasedProductListFromBackEnd()
-      .subscribe((test:Product[])=>{
-        this.test = test;
-        console.log('final test1', this.test);
+      // this.globalService.getPurchasedProductListFromBackEnd()
+      // .subscribe((test:Product[])=>{
+      //   this.test = test;
+      //   console.log('final test1', this.test);
 
-      })
+      // })
     }
   
     console.log('final test2', this.test);

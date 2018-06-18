@@ -3,6 +3,8 @@ import {Http, Response, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { FormControl } from '@angular/forms/forms';
 import { Customer } from './customer.component';
+import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 
 
@@ -12,51 +14,10 @@ private url: string;
 
  
 
-constructor(private http: Http) { 
- // this.url = environment.reportUrl;
+constructor(private http: Http,  private router: Router) { 
+ this.url = environment.productUrl;
   //this.getCustomerDetails();
 }
-
-// getCustomerDetails(): Customer[]
-// {
-//   if(this.customerList && this.customerList.length <= 0){
-//     this.getCustomerDetailsFromBackEnd()
-//     .subscribe((cust)=>{
-//       this.customerList = cust;
-//       this.customerListChange.next(this.customerList);
-//       return this.customerList;
-//     })
-//   }
-//   else {
-//     console.log('Customer List alredy exists', this.customerList)
-//     this.customerListChange.next(this.customerList);
-//     return this.customerList;
-//   }
-// }
-
-//     getCustomerDetailsFromBackEnd(): Observable<Customer[]> {
-//       return this.http.get(this.url+'/getCustomer')
-//       .map(this.extractData)
-//       .catch(this.handleError);
-//     }
-
-//     getCustomerDetailsByPhoneNo(phoneNo: any): Observable<Customer> {
-//       return this.http.get(this.url+'/getCustomerByPhoneNo?phoneNo='+phoneNo)
-//       .map(this.extractData)
-//       .catch(this.handleError);
-//     }
-
-//     getCustomerStoreCreditHistory(phoneNo: any): Observable<StoreCreditDto[]> {
-//       return this.http.get(this.url+'/getCustomerStoreCreditHistory?phoneNo='+phoneNo)
-//       .map(this.extractData)
-//       .catch(this.handleError);
-//     }
-
-//     getCustomerTransactionDetails()
-//     {
-      
-//     }
-
     addOrUpdateCustomer(customer: Customer)
     {
       this.http.post(this.url+'/addCustomer', customer)
@@ -72,9 +33,46 @@ constructor(private http: Http) {
     });
     }
 
-    getLoginDetails(username:string, password:string){
-      return this.http.get(this.url+'/validateUser?username='+username+'&password='+password);
+    login(username:string, password:string): Observable<boolean>{
+      let headers = new Headers({'Content-Type': 'application/json'});
+      return this.http.post(this.url+'/auth',JSON.stringify({username: username, password: password}),{headers: headers})
+      .map((response: Response) => {
+            // login successful if there's a jwt token in the response
+            let token = response.json() && response.json().token;
+
+            if (token) {
+              // store username and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+              // return true to indicate successful login
+              return true;
+          } else {
+              // return false to indicate failed login
+              return false;
+          }
+      })
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
+
+    public getToken(): String {
+      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+      var token = currentUser && currentUser.token;
+
+      console.log('token from service', token);
+      return token ? token : "";
+    }
+
+    public getLogedInUser(){
+      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      var user = currentUser && currentUser.username;
+      return user ? user : "";
+    }
+    logout(): void {
+      // clear token remove user from local storage to log user out
+      localStorage.removeItem('currentUser');
+      this.router.navigate(['']);
+      window.location.reload();
+  }
 
     private extractData(res: Response): Customer[] {
     let body = res.json();

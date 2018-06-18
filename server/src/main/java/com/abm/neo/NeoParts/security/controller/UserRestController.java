@@ -1,7 +1,7 @@
-package org.zerhusen.security.controller;
+package com.abm.neo.NeoParts.security.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.abm.neo.NeoParts.security.JwtTokenUtil;
+import com.abm.neo.NeoParts.security.JwtUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.zerhusen.security.JwtTokenUtil;
-import org.zerhusen.security.JwtUser;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class UserRestController {

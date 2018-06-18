@@ -109,28 +109,28 @@ export class GlobalService  {
 
     // if(this.purchasedProductList.length <= 0){
 
-      this.getPurchasedProductListFromBackEnd()
-      .subscribe((purchasedProduct)=>{
-        this.purchasedProductList = purchasedProduct;
-        this.purchasedProductList = this.purchasedProductList.slice();
-        console.log('purchased product list after service Call',this.purchasedProductList );
-        this.purchasedProductListChange.next(this.purchasedProductList);
-        let quantity = 0;
-        let totalAmount = 0;
+      // this.getPurchasedProductListFromBackEnd()
+      // .subscribe((purchasedProduct)=>{
+      //   this.purchasedProductList = purchasedProduct;
+      //   this.purchasedProductList = this.purchasedProductList.slice();
+      //   console.log('purchased product list after service Call',this.purchasedProductList );
+      //   this.purchasedProductListChange.next(this.purchasedProductList);
+      //   let quantity = 0;
+      //   let totalAmount = 0;
 
 
-        this.purchasedProductList.forEach((count)=>{
-          quantity = +quantity +count.saleQuantity;
-          totalAmount = +totalAmount +(count.saleQuantity * count.retail);
-        });
+      //   this.purchasedProductList.forEach((count)=>{
+      //     quantity = +quantity +count.saleQuantity;
+      //     totalAmount = +totalAmount +(count.saleQuantity * count.retail);
+      //   });
 
-        this.totalPurchasedProductCount = quantity;
-        this.totalPurchasedProductAmount = totalAmount;
+      //   this.totalPurchasedProductCount = quantity;
+      //   this.totalPurchasedProductAmount = totalAmount;
 
-        this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
-        this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+      //   this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
+      //   this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
         
-      }); 
+      // }); 
 
       return this.purchasedProductList;
     // }

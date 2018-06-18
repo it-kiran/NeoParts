@@ -4,6 +4,7 @@ import { CustomerService } from '../customer.service';
 import * as moment from 'moment';
 import { Customer } from '../customer.component';
 import { GlobalService } from '../../global-service.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class SignupComponent implements OnInit {
   loginForm: FormGroup;
   state:string[] = [];
 
-  constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private globalService: GlobalService) { }
+  constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private globalService: GlobalService, private router: Router) { }
 
   ngOnInit() {
     
@@ -49,32 +50,20 @@ export class SignupComponent implements OnInit {
   }
 
   login(){
-
-    console.log('inside login');
-
     let username = this.loginForm.get('email').value;
     let password = this.loginForm.get('password').value;
 
-    this.customerService.getLoginDetails(username, password)
-    .subscribe((data)=>{
-      if(data.status == 200) {
+    this.customerService.login(username, password)
+    .subscribe((response)=>{
+      
+      if(response){
+        this.router.navigate(['']);
+        window.location.reload();
 
-        if(data.json() && data.json().validUser) {
-          alert('Yes Valid user!!!');
-          this.globalService.setLoginedCustomer(data.json())
-        }
-        else {
-
-          alert('Can not varify username and password');
-
-        }
-    
-          }
-          else{
-            alert('Can not varify username and password');
-
-          }
-    })
+      }else {
+        alert("Wrong Username or password");
+      }
+    });
 }
 
 

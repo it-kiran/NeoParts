@@ -1,30 +1,22 @@
-package org.zerhusen.security;
+package com.abm.neo.NeoParts.security;
+
+import com.abm.neo.NeoParts.dto.CustomerDao;
+import com.abm.neo.NeoParts.entity.Authority;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.zerhusen.model.security.Authority;
-import org.zerhusen.model.security.User;
 
 public final class JwtUserFactory {
 
     private JwtUserFactory() {
     }
 
-    public static JwtUser create(User user) {
-        return new JwtUser(
-                user.getId(),
-                user.getUsername(),
-                user.getFirstname(),
-                user.getLastname(),
-                user.getEmail(),
-                user.getPassword(),
-                mapToGrantedAuthorities(user.getAuthorities()),
-                user.getEnabled(),
-                user.getLastPasswordResetDate()
-        );
+    public static JwtUser create(CustomerDao customerDao) {
+        return new JwtUser(0L, customerDao.getEmail(), customerDao.getName(), customerDao.getName(), customerDao.getEmail(), customerDao.getPassword(),
+                mapToGrantedAuthorities(customerDao.getAuthorities()), true, null);
     }
 
     private static List<GrantedAuthority> mapToGrantedAuthorities(List<Authority> authorities) {

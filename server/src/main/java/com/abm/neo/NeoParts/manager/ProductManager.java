@@ -82,11 +82,11 @@ public class ProductManager {
                     productEcomerceDto.setModelId(j[5].toString());
 
                 }
-                productEcomerceDto.setCost(Double.parseDouble(j[6].toString()));
-                productEcomerceDto.setRetail(Double.parseDouble(j[7].toString()));
-                productEcomerceDto.setQuantity(Integer.parseInt(j[8].toString()));
-                if(null != j[9]) {
-                    productEcomerceDto.setImage((byte[]) j[9]);
+                //productEcomerceDto.setCost(Double.parseDouble(j[6].toString()));
+                //productEcomerceDto.setRetail(Double.parseDouble(j[7].toString()));
+                //productEcomerceDto.setQuantity(Integer.parseInt(j[8].toString()));
+                if(null != j[6]) {
+                    productEcomerceDto.setImage((byte[]) j[6]);
                 }
 
                 productEcomerceDtoList.add(productEcomerceDto);
