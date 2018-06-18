@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { Customer } from '../customer.component';
 import { GlobalService } from '../../global-service.service';
 import { Router } from '@angular/router';
+import { ServicesService } from '../../shared/services.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class SignupComponent implements OnInit {
   loginForm: FormGroup;
   state:string[] = [];
 
-  constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private globalService: GlobalService, private router: Router) { }
+
+  constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private globalService: GlobalService, private router: Router, private percistance: ServicesService) { }
 
   ngOnInit() {
     
@@ -58,8 +60,7 @@ export class SignupComponent implements OnInit {
       
       if(response){
         this.router.navigate(['']);
-        window.location.reload();
-
+       // window.location.reload();
       }else {
         alert("Wrong Username or password");
       }

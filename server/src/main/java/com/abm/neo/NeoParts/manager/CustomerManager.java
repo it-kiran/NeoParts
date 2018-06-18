@@ -46,5 +46,12 @@ public class CustomerManager {
         return new CustomerDao();
     }
 
+    public CustomerDao getCustomerDetailsByEmail(String email) {
+
+        if(null != email){
+            return this.customerRepository.findByEmail(email);
+        }
+        return null;
+    }
 }
 

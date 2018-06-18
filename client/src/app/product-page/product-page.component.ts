@@ -3,6 +3,9 @@ import { Http } from '@angular/http';
 import { BackendService } from '../services/backend.service';
 import { Router, Route, Routes, ActivatedRoute } from '@angular/router';
 import { GlobalService } from '../global-service.service';
+import { CustomerService } from '../customer/customer.service';
+import { ServicesService } from '../shared/services.service';
+import { Customer } from '../customer/customer.component';
 
 @Component({
   selector: 'app-product-page',
@@ -16,7 +19,7 @@ export class ProductPageComponent implements OnInit {
   cartCount: number = 0;
   alok: Product[] = [];
 
-  constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute) { 
+  constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute, private customerService: CustomerService, private persistService: ServicesService) { 
   }
   
     ngOnInit() {
@@ -79,9 +82,10 @@ export class ProductPageComponent implements OnInit {
   
     addProductToCart(product: Product){
 
+      let selectedCustomer: Customer = this.persistService.getCustomerDetailsForSale();
 
      // console.log('product', product);
-      product.customerPhoneNo = '7707030801';
+      product.customerPhoneNo = selectedCustomer.phoneNo;
       product.status = 'Online';
       product.date = '2018-03-11 09:41:27';
 

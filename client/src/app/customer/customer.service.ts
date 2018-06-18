@@ -5,18 +5,22 @@ import { FormControl } from '@angular/forms/forms';
 import { Customer } from './customer.component';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { ServicesService } from '../shared/services.service';
 
 
 
 @Injectable()
 export class CustomerService {
-private url: string; 
+private url: string;
+private customerDetails: any;
+ 
 
  
 
-constructor(private http: Http,  private router: Router) { 
+constructor(private http: Http,  private router: Router, private persitService: ServicesService) { 
  this.url = environment.productUrl;
   //this.getCustomerDetails();
+  
 }
     addOrUpdateCustomer(customer: Customer)
     {
@@ -33,6 +37,28 @@ constructor(private http: Http,  private router: Router) {
     });
     }
 
+    getCustomerDetailsByEmail(email:string){
+      let headers = new Headers({
+        'Authorization': 'Bearer ' +this.getToken()
+        });
+
+      this.http.get(this.url+'/getCustomerDetailsByEmail?email='+email,{headers: headers})
+      .subscribe((response:Response)=>{
+        if(response){
+          console.log('response', response.json());
+          this.persitService.setCustomerDetailsForSale(response.json());
+          // localStorage.setItem('customerDetails', JSON.stringify(response.json()));
+
+          //this.setCustomerDetailsForSale(response.json());
+        }
+        // let body = response.json();
+        // console.log('body', body);
+      })
+
+    }
+
+    
+
     login(username:string, password:string): Observable<boolean>{
       let headers = new Headers({'Content-Type': 'application/json'});
       return this.http.post(this.url+'/auth',JSON.stringify({username: username, password: password}),{headers: headers})
@@ -44,6 +70,9 @@ constructor(private http: Http,  private router: Router) {
               // store username and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
               // return true to indicate successful login
+
+              // Now get complete customer details and stote in local
+              this.getCustomerDetailsByEmail(username);
               return true;
           } else {
               // return false to indicate failed login
@@ -70,6 +99,7 @@ constructor(private http: Http,  private router: Router) {
     logout(): void {
       // clear token remove user from local storage to log user out
       localStorage.removeItem('currentUser');
+      //this.clearCustomer();
       this.router.navigate(['']);
       window.location.reload();
   }

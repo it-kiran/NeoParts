@@ -22,6 +22,8 @@ export class CartComponent implements OnInit {
 
   constructor(public globalService: GlobalService) { 
     this.ngOnInit();
+    this.getPurchasedProductList();
+
   }
 
   ngOnInit() {
@@ -37,7 +39,9 @@ export class CartComponent implements OnInit {
   }
   getPurchasedProductList(){
 
-    //this.globalService.getPurchasedProductList();
+    console.log('purchaded product list at start', this.purchasedProductList)
+
+    this.globalService.getPurchasedProductList();
 
     this._subscription =  this.globalService.purchasedProductListChange.subscribe((products)=>{
       this.purchasedProductList = products;
@@ -53,6 +57,9 @@ export class CartComponent implements OnInit {
       this.totalQuantity = count;
       console.log('subject count', this.totalQuantity);
     });
+
+    console.log('purchaded product list at end', this.purchasedProductList)
+
 
   }
 

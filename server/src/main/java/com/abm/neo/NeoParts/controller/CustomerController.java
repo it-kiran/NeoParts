@@ -29,8 +29,13 @@ public class CustomerController {
 
     @RequestMapping(value = "/validateUser", method = RequestMethod.GET)
     public CustomerDao getUserLoginDetails(@RequestParam String username, @RequestParam String password) throws SQLException {
-
         return customerManager.getUserLoginDetails(username,password);
+
+    }
+
+    @RequestMapping(value = "/getCustomerDetailsByEmail", method = RequestMethod.GET, produces = "application/json")
+    public CustomerDao getCustomerDetailsByEmail(@RequestParam String email) throws SQLException {
+        return customerManager.getCustomerDetailsByEmail(email);
 
     }
 

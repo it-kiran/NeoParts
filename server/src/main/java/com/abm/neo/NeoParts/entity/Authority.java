@@ -1,11 +1,9 @@
 package com.abm.neo.NeoParts.entity;
 
 import com.abm.neo.NeoParts.dto.AuthorityName;
-import com.abm.neo.NeoParts.dto.CustomerDao;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table(name = "user_role")
@@ -21,9 +19,9 @@ public class Authority {
     @NotNull
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
-
-    @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
-    private List<CustomerDao> users;
+//
+//    @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
+//    private List<CustomerDao> users;
 
     public Long getId() {
         return id;
@@ -41,11 +39,11 @@ public class Authority {
         this.name = name;
     }
 
-    public List<CustomerDao> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<CustomerDao> users) {
-        this.users = users;
-    }
+//    public List<CustomerDao> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(List<CustomerDao> users) {
+//        this.users = users;
+//    }
 }

@@ -4,6 +4,7 @@ import { GlobalService } from '../../global-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from '../../customer/customer.component';
 import { Product } from '../../product-page/product-page.component';
+import { ServicesService } from '../../shared/services.service';
 
 @Component({
   selector: 'app-address',
@@ -23,7 +24,7 @@ export class AddressComponent implements OnInit {
   _totalAmountSubscription: any;
   _totalQuantitySubscription: any;
 
-  constructor(private globalService: GlobalService,private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) {
+  constructor(private globalService: GlobalService,private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private persistService: ServicesService) {
     this.globalService.getPurchasedProductList();
     this.getPurchasedProductList();
 
@@ -77,7 +78,7 @@ export class AddressComponent implements OnInit {
   }
 
   getCustomerDetails(){
-    this.loginedCustomer = this.globalService.getLoginedCustomer();
+    this.loginedCustomer = this.persistService.getCustomerDetailsForSale();
     console.log('Logined Customer', this.loginedCustomer);
   
   }

@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 import { Product } from './product-page/product-page.component';
 import { Customer } from './customer/customer.component';
 import { environment } from '../environments/environment';
+import { CustomerService } from './customer/customer.service';
 
 
 
@@ -23,7 +24,7 @@ export class GlobalService  {
   totalPurchasedProductCountChange: Subject<number> = new Subject<number>();
   totalPurchasedProductAmountChange: Subject<number> = new Subject<number>();
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private customerService: CustomerService) {
     this.url = environment.productUrl;
     this.getPurchasedProductList();
   }
@@ -31,7 +32,12 @@ export class GlobalService  {
   addProductToCart(webTransactionDao: Product) {
     console.log('sale quanity frist check', webTransactionDao.saleQuantity);
     console.log('before push to product list', this.purchasedProductList);
-    this.http.post(this.url+'/addCartItem', webTransactionDao)
+
+    let headers = new Headers({
+      'Authorization': 'Bearer ' +this.customerService.getToken()
+      });
+
+    this.http.post(this.url+'/addCartItem', webTransactionDao, {headers: headers})
       .subscribe(data => {
         if(data){
           console.log('sale quanity second check', data.json().saleQuantity);
@@ -68,7 +74,10 @@ export class GlobalService  {
   }
   updateProductFromCart(webTransactionDao: Product) {
 
-    this.http.post(this.url+'/addCartItem', webTransactionDao)
+    let headers = new Headers({
+      'Authorization': 'Bearer ' +this.customerService.getToken()
+      });
+    this.http.post(this.url+'/addCartItem', webTransactionDao, {headers: headers})
       .subscribe(data => {
         if(data){
           console.log('sale quanity second check', data.json().saleQuantity);
@@ -107,56 +116,58 @@ export class GlobalService  {
 
     console.log('first',this.purchasedProductList )
 
-    // if(this.purchasedProductList.length <= 0){
+    if(this.purchasedProductList.length <= 0){
 
-      // this.getPurchasedProductListFromBackEnd()
-      // .subscribe((purchasedProduct)=>{
-      //   this.purchasedProductList = purchasedProduct;
-      //   this.purchasedProductList = this.purchasedProductList.slice();
-      //   console.log('purchased product list after service Call',this.purchasedProductList );
-      //   this.purchasedProductListChange.next(this.purchasedProductList);
-      //   let quantity = 0;
-      //   let totalAmount = 0;
+      this.getPurchasedProductListFromBackEnd()
+      .subscribe((purchasedProduct)=>{
+        this.purchasedProductList = purchasedProduct;
+        this.purchasedProductList = this.purchasedProductList.slice();
+        console.log('purchased product list after service Call',this.purchasedProductList );
+        this.purchasedProductListChange.next(this.purchasedProductList);
+        let quantity = 0;
+        let totalAmount = 0;
 
 
-      //   this.purchasedProductList.forEach((count)=>{
-      //     quantity = +quantity +count.saleQuantity;
-      //     totalAmount = +totalAmount +(count.saleQuantity * count.retail);
-      //   });
+        this.purchasedProductList.forEach((count)=>{
+          quantity = +quantity +count.saleQuantity;
+          totalAmount = +totalAmount +(count.saleQuantity * count.retail);
+        });
 
-      //   this.totalPurchasedProductCount = quantity;
-      //   this.totalPurchasedProductAmount = totalAmount;
+        this.totalPurchasedProductCount = quantity;
+        this.totalPurchasedProductAmount = totalAmount;
 
-      //   this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
-      //   this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+        this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
+        this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
         
-      // }); 
+      }); 
 
       return this.purchasedProductList;
-    // }
-    // else {
-    //   // this is very important.
-    //   this.purchasedProductListChange.next(this.purchasedProductList);
-    //   let quantity = 0;
-    //   let totalAmount = 0;
-    //   this.purchasedProductList.forEach((count)=>{
-    //     quantity = +quantity +count.saleQuantity;
-    //     totalAmount = +totalAmount +(count.saleQuantity * count.retail);
-    //   });
-    //   this.totalPurchasedProductCount = quantity;
-    //   this.totalPurchasedProductAmount = totalAmount;
+    }
+    else {
+      // this is very important.
+      this.purchasedProductListChange.next(this.purchasedProductList);
+      let quantity = 0;
+      let totalAmount = 0;
+      this.purchasedProductList.forEach((count)=>{
+        quantity = +quantity +count.saleQuantity;
+        totalAmount = +totalAmount +(count.saleQuantity * count.retail);
+      });
+      this.totalPurchasedProductCount = quantity;
+      this.totalPurchasedProductAmount = totalAmount;
 
-    //   this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
-    //   this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+      this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
+      this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
       
-    //   return this.purchasedProductList;
-    // }
+      return this.purchasedProductList;
+    }
 
   }
 
   getPurchasedProductListFromBackEnd(): Observable<Product[]> {
-
-    return this.http.get(this.url+'/getCartItem?phoneNo=7707030801')
+    let headers = new Headers({
+      'Authorization': 'Bearer ' +this.customerService.getToken()
+      });
+    return this.http.get(this.url+'/getCartItem?phoneNo=7707030801',{headers:headers})
     .map(this.extractData)
     .catch(this.handleError);
   }

@@ -68,10 +68,12 @@ public class JwtUser implements UserDetails {
         return true;
     }
 
+    @JsonIgnore
     public String getFirstname() {
         return firstname;
     }
 
+    @JsonIgnore
     public String getLastname() {
         return lastname;
     }
@@ -86,11 +88,13 @@ public class JwtUser implements UserDetails {
         return password;
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return enabled;

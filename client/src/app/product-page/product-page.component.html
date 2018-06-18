@@ -52,20 +52,37 @@
         </mat-card>
     </div>
     <div class="col-md-10" *ngIf="true">
+
+
+            <!-- <mat-card class="example-card">
+                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                      <p>
+                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                        bred for hunting.
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-button>Add to Cart</button>
+                    </mat-card-actions>
+                  </mat-card> -->
+        
         <mat-card *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
-            <img *ngIf="(product.image=='')" mat-card-image class="mat-card-image-test" src="assets/images/noImage.png">
+
+            <img *ngIf="(product.image==null)" mat-card-image class="mat-card-image-test" src="assets/images/noImage.png">
             <img *ngIf="product.image!=null" mat-card-image   src="data:image/png;base64,{{product.image}}" alt="">
             <mat-card-content>
                 <p style="height: 38px;">{{product.description}}</p>
-                <p style="font-weight: 650;">{{product.retail | currency:'USD':'true'}}</p>
-                <div style="display: flex;">
+                <p *ngIf = "this.customerService.getLogedInUser() != '' " style="font-weight: 650;">{{product.retail | currency:'USD':'true'}}</p>
+                <div *ngIf = "this.customerService.getLogedInUser() != '' " style="display: flex;">
                     <input type="number" class="form-control" placeholder="Quantity" [(ngModel)]='product.saleQuantity' min="1">
                 </div>
-                <div>
+                <div *ngIf = "this.customerService.getLogedInUser() != '' ">
                     <button mat-button class="addToCartOnSalePage" (click)="this.addProductToCart(product)">
-                                  <i class="fa fa-cart-plus"></i>
-                                      Add to cart
-                                  </button>
+                        <i class="fa fa-cart-plus"></i>
+                        Add to Cart
+                        </button>
                 </div>
             </mat-card-content>
         </mat-card>

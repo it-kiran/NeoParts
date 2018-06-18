@@ -22,6 +22,7 @@ import { VirtualScrollModule } from 'angular2-virtual-scroll';
 import { AdminModule } from './admin/admin.module';
 import { AdminService } from './admin/admin.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ServicesService } from './shared/services.service';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     AdminModule
   ],
   declarations: [AppComponent],
-  providers: [BackendService, GlobalService, AdminService, ],
+  providers: [BackendService, GlobalService, AdminService,ServicesService ],
   bootstrap: [AppComponent]  
 })
 export class AppModule { }
