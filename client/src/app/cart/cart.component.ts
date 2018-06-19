@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../global-service.service';
 import { Product } from '../product-page/product-page.component';
+import { CustomerService } from '../customer/customer.service';
+import { ServicesService } from '../shared/services.service';
+import { Customer } from '../customer/customer.component';
 
 @Component({
   selector: 'app-cart',
@@ -20,18 +23,15 @@ export class CartComponent implements OnInit {
   _totalQuantitySubscription: any;
 
 
-  constructor(public globalService: GlobalService) { 
-    this.ngOnInit();
+  constructor(public globalService: GlobalService, private customerService: CustomerService, private persistService: ServicesService) { 
+    // this.ngOnInit();
     this.getPurchasedProductList();
 
   }
 
   ngOnInit() {
-    console.log('coming for ngOnit');
-    this.globalService.getPurchasedProductList();
+    // this.globalService.getPurchasedProductList();
     this.getPurchasedProductList();
-    console.log('Done for ngOnit');
-
   }
 
   trackByIndex(index: number, obj: any): any {
@@ -39,15 +39,16 @@ export class CartComponent implements OnInit {
   }
   getPurchasedProductList(){
 
-    console.log('purchaded product list at start', this.purchasedProductList)
-
-    this.globalService.getPurchasedProductList();
+    // let token = this.customerService.getToken();
+    // let selectedCustomer:Customer = this.persistService.getCustomerDetailsForSale();
+    // if(token && selectedCustomer){
+      this.globalService.getPurchasedProductList();
+    // }
 
     this._subscription =  this.globalService.purchasedProductListChange.subscribe((products)=>{
       this.purchasedProductList = products;
       console.log('Product on change by subject From Cart page', this.purchasedProductList);
     });
-
     this._totalAmountSubscription = this.globalService.totalPurchasedProductAmountChange.subscribe((totalAmount)=>{
       this.totalAmount = totalAmount;
       console.log('subject Total Amount', this.totalAmount);
@@ -58,9 +59,7 @@ export class CartComponent implements OnInit {
       console.log('subject count', this.totalQuantity);
     });
 
-    console.log('purchaded product list at end', this.purchasedProductList)
-
-
+    console.log('purchaded product list at end', this.purchasedProductList);
   }
 
   updateProductFromCart(product: Product){

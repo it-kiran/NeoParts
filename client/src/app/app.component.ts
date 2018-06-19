@@ -5,6 +5,9 @@ import 'rxjs/add/operator/map';
 import {BackendService} from './services/backend.service';
 import { GlobalService } from './global-service.service';
 import { Product } from './product-page/product-page.component';
+import { Customer } from './customer/customer.component';
+import { ServicesService } from './shared/services.service';
+import { CustomerService } from './customer/customer.service';
 
 @Component({
   selector: 'app-root',
@@ -14,25 +17,23 @@ import { Product } from './product-page/product-page.component';
 export class AppComponent implements OnInit {
 
   test: Product[] = []
-  constructor(private globalService: GlobalService){}
+  constructor(private globalService: GlobalService, private persistService: ServicesService, private customerService: CustomerService){}
 
   ngOnInit() {
-    // console.log('data from app component',this.globalService.getPurchasedProductList());
 
-    if(this.globalService.purchasedProductList.length > 0){
-      this.test = this.globalService.purchasedProductList;
-    }
-    else {
-      // this.globalService.getPurchasedProductListFromBackEnd()
-      // .subscribe((test:Product[])=>{
-      //   this.test = test;
-      //   console.log('final test1', this.test);
+    this.globalService.getPurchasedProductList();
 
-      // })
+    // this.purchasedProductList();
     }
-  
-    console.log('final test2', this.test);
-  }
+
+  // purchasedProductList(){
+
+  //   // let token = this.customerService.getToken();
+  //   // let selectedCustomer:Customer = this.persistService.getCustomerDetailsForSale();
+  //   // if(token && selectedCustomer){
+  //   // }
+
+  // }
 
 
 //   title = 'app';

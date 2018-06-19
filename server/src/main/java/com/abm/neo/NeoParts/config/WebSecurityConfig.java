@@ -76,6 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/getEcommerceProductsByModel/**").permitAll()
                 .antMatchers("/getWebMenu/**").permitAll()
+                .antMatchers("/getAllProductForSearch").permitAll()
 
 
 

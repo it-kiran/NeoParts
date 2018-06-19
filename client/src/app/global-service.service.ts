@@ -8,6 +8,8 @@ import { Product } from './product-page/product-page.component';
 import { Customer } from './customer/customer.component';
 import { environment } from '../environments/environment';
 import { CustomerService } from './customer/customer.service';
+import { ServicesService } from './shared/services.service';
+import { element } from 'protractor';
 
 
 
@@ -24,9 +26,9 @@ export class GlobalService  {
   totalPurchasedProductCountChange: Subject<number> = new Subject<number>();
   totalPurchasedProductAmountChange: Subject<number> = new Subject<number>();
 
-  constructor(private http: Http, private customerService: CustomerService) {
+  constructor(private http: Http, private customerService: CustomerService, private persistService: ServicesService) {
     this.url = environment.productUrl;
-    this.getPurchasedProductList();
+    //this.getPurchasedProductList();
   }
 
   addProductToCart(webTransactionDao: Product) {
@@ -167,9 +169,18 @@ export class GlobalService  {
     let headers = new Headers({
       'Authorization': 'Bearer ' +this.customerService.getToken()
       });
-    return this.http.get(this.url+'/getCartItem?phoneNo=7707030801',{headers:headers})
-    .map(this.extractData)
-    .catch(this.handleError);
+
+      let token = this.customerService.getToken();
+      let selectedCustomer:Customer = this.persistService.getCustomerDetailsForSale();
+      if(token && selectedCustomer){
+        return this.http.get(this.url+'/getCartItem?phoneNo='+selectedCustomer.phoneNo,{headers:headers})
+        .map(this.extractData)
+        .catch(this.handleError);
+      }
+      else{
+        return null;
+      }
+    
   }
 
   deleteProductFromCart(webTransactionDao: Product){

@@ -70,7 +70,7 @@
         
         <mat-card *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
 
-            <img *ngIf="(product.image==null)" mat-card-image class="mat-card-image-test" src="assets/images/noImage.png">
+            <img *ngIf="(product.image==null)" mat-card-image-test  mat-card-image class="mat-card-image-test" src="assets/images/noImage.png">
             <img *ngIf="product.image!=null" mat-card-image   src="data:image/png;base64,{{product.image}}" alt="">
             <mat-card-content>
                 <p style="height: 38px;">{{product.description}}</p>

@@ -42,24 +42,25 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr *ngFor="let prodcut of this.purchasedProductList; let index = index;" class="first last odd">
+                                    <tr *ngFor="let product of this.purchasedProductList; let index = index;" class="first last odd">
                                         <td class="action-td">
-                                            <a href="javascript:void(0)" (click)="this.setProductToDeleteFromCart(prodcut)" class="btn-remove btn-remove2" data-toggle="modal" data-target="#deleteProduct"></a>
+                                            <a href="javascript:void(0)" (click)="this.setProductToDeleteFromCart(product)" class="btn-remove btn-remove2" data-toggle="modal" data-target="#deleteProduct"></a>
                                         </td>
                                         <td class="pr-img-td">
                                             <a href="#" class="product-image">
-                                                <img src="data:image/png;base64,{{prodcut.image}}" alt={{prodcut.description}} width="80" height="80" alt="">
+                                                    <img *ngIf="(product.image==null)"  src="assets/images/noImage.png" width="80" height="80">
+                                                    <img *ngIf="(product.image!=null)" src="data:image/png;base64,{{product.image}}" width="80" height="80" alt="">
                                             </a>
                                         </td>
                                         <td class="product-name-td">
                                             <h2 class="product-name">
-                                                <a href="#" style="color:red; margin: 0px">{{prodcut.description}}</a>
-                                                <br>SKU: {{prodcut.productNo}}
+                                                <a href="#" style="color:red; margin: 0px">{{product.description}}</a>
+                                                <br>SKU: {{product.productNo}}
                                             </h2>
                                         </td>
                                         <td>
                                             <span class="cart-price">
-                                                <span class="price">{{prodcut.retail | currency:'USD':'true'}}</span>
+                                                <span class="price">{{product.retail | currency:'USD':'true'}}</span>
                                             </span>
                                         </td>
                                         <td>
@@ -69,7 +70,7 @@
                                                 <!-- This is very important to understand when you use ngModel with the ngFor, u must write name = a{{index}}
                                                 DO NOT DELETE THIS -->
                                                 <input name=a{{index}} [(ngModel)]="this.purchasedProductList[index].saleQuantity" size="4" title="Qty" class="form-control" maxlength="12" type="number">
-                                                <button type="button" title="Edit" class="button btn-continue" (click)="this.updateProductFromCart(prodcut)"><span><span>Edit</span></span></button>
+                                                <button type="button" title="Edit" class="button btn-continue" (click)="this.updateProductFromCart(product)"><span><span>Edit</span></span></button>
                                                 <!-- <a href="javascript:void(0)" class="table_qty_inc" data-increment="1">+</a> -->
                                                 <!-- <a class="edit-qty"><i class="icon-pencil"></i></a> -->
                                             </div>
@@ -78,7 +79,7 @@
                                         <td class="td-total last">
                                             <span class="cart-price">
         
-                                                <span class="price">{{prodcut.saleQuantity * prodcut.retail | currency:'USD':'true'}}</span>
+                                                <span class="price">{{product.saleQuantity * product.retail | currency:'USD':'true'}}</span>
                                             </span>
                                         </td>
                                     </tr>

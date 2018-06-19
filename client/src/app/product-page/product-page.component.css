@@ -39,13 +39,14 @@ mat-card {
     height: 136px;
     vertical-align: middle;
     border: 0px;
+    margin: 0 -24px 16px -24px;
 }
 
 .mat-card-image-test {
     width: 136px;
     vertical-align: middle;
     border: 0px;
-    margin: 0 16px 16px -24px;
+    /* margin: 0 16px 16px -24px; */
 }
 
 p {

@@ -32,6 +32,7 @@ public class CustomerDao {
     private String password;
     private String customerNote;
     private String keytag;
+    private int tier;
 //    private String createdTimestamp;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -206,5 +207,13 @@ public class CustomerDao {
 
     public void setAuthorities(List<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public int getTier() {
+        return tier;
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
     }
 }

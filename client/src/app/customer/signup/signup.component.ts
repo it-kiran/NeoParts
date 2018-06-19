@@ -57,9 +57,9 @@ export class SignupComponent implements OnInit {
 
     this.customerService.login(username, password)
     .subscribe((response)=>{
-      
       if(response){
         this.router.navigate(['']);
+        this.globalService.getPurchasedProductList();
        // window.location.reload();
       }else {
         alert("Wrong Username or password");

@@ -35,5 +35,6 @@ export class Customer {
   password: any;
   createdTimestamp: any;
   validUser: boolean;
+  tier: number;
   // customerNote: any;
 }
