@@ -33,6 +33,7 @@ public class CustomerDao {
     private String customerNote;
     private String keytag;
     private int tier;
+    private String createdTimestamp;
 //    private String createdTimestamp;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -44,6 +45,9 @@ public class CustomerDao {
 
     @Transient
     private boolean isValidUser;
+
+    @Transient
+    private String operationType;
 
     public String getPhoneNo() {
         return phoneNo;
@@ -215,5 +219,21 @@ public class CustomerDao {
 
     public void setTier(int tier) {
         this.tier = tier;
+    }
+
+    public String getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(String createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getOperationType() {
+        return operationType;
+    }
+
+    public void setOperationType(String operationType) {
+        this.operationType = operationType;
     }
 }

@@ -23,11 +23,15 @@ import { AdminModule } from './admin/admin.module';
 import { AdminService } from './admin/admin.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServicesService } from './shared/services.service';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
   imports: [
     AppRoutingModule,
+    BrowserAnimationsModule,
     ProductPageModule,
     HomeModule,
     SharedModule,
@@ -41,10 +45,12 @@ import { ServicesService } from './shared/services.service';
     CustomerModule,
     CheckoutModule,
     VirtualScrollModule,
-    AdminModule
+    AdminModule,
+    ToastModule.forRoot()
+
   ],
   declarations: [AppComponent],
-  providers: [BackendService, GlobalService, AdminService,ServicesService ],
+  providers: [BackendService, GlobalService, AdminService,ServicesService,BrowserAnimationsModule ],
   bootstrap: [AppComponent]  
 })
 export class AppModule { }

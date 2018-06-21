@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from '../customer.service';
 import * as moment from 'moment';
@@ -6,6 +6,7 @@ import { Customer } from '../customer.component';
 import { GlobalService } from '../../global-service.service';
 import { Router } from '@angular/router';
 import { ServicesService } from '../../shared/services.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 
 @Component({
@@ -19,7 +20,9 @@ export class SignupComponent implements OnInit {
   state:string[] = [];
 
 
-  constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private globalService: GlobalService, private router: Router, private percistance: ServicesService) { }
+  constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private globalService: GlobalService, private router: Router, private percistance: ServicesService, private toastr: ToastsManager) { 
+
+  }
 
   ngOnInit() {
     
@@ -36,7 +39,9 @@ export class SignupComponent implements OnInit {
         'country':[''],
         'companyName': ['',Validators.required],
         'name': [''],
-        'createdTimestamp': ['']
+        'createdTimestamp': [''],
+        'tier':[''],
+        'operationType':['']
       }
     );
 
@@ -58,11 +63,12 @@ export class SignupComponent implements OnInit {
     this.customerService.login(username, password)
     .subscribe((response)=>{
       if(response){
+        this.toastr.success('Wel-Come, Login Successfully!!', null, {positionClass: "toast-top-center"});
         this.router.navigate(['']);
         this.globalService.getPurchasedProductList();
        // window.location.reload();
       }else {
-        alert("Wrong Username or password");
+        this.toastr.success('Wrong Username Or Password', null, {positionClass: "toast-top-center"});
       }
     });
 }
@@ -75,9 +81,20 @@ export class SignupComponent implements OnInit {
 
     this.customerForm.get('name').setValue(this.customerForm.get('firstName').value + ' '+this.customerForm.get('lastName').value);
     this.customerForm.get('createdTimestamp').setValue(moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'));
-    this.customerService.addOrUpdateCustomer(this.customerForm.value);
+    this.customerForm.get('tier').setValue(3);
+    this.customerForm.get('operationType').setValue('Add');
+  
+    this.customerService.addOrUpdateCustomer(this.customerForm.value)
+    .subscribe(data => {
+      if(data.status == 200 || data.status == 201){
+        this.toastr.success('Wel-Come'+name+' Please check your email for login details', 'Registered Successfully!!');
+        this.router.navigate(['']);
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error.json()));
+  });
     this.customerForm.reset();
-    console.log('inside register');
 
   }
 }

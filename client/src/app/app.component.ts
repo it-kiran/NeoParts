@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Http,Response } from '@angular/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
@@ -8,6 +8,7 @@ import { Product } from './product-page/product-page.component';
 import { Customer } from './customer/customer.component';
 import { ServicesService } from './shared/services.service';
 import { CustomerService } from './customer/customer.service';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,13 @@ import { CustomerService } from './customer/customer.service';
 export class AppComponent implements OnInit {
 
   test: Product[] = []
-  constructor(private globalService: GlobalService, private persistService: ServicesService, private customerService: CustomerService){}
+  constructor(private globalService: GlobalService, private persistService: ServicesService, private customerService: CustomerService,public toastr: ToastsManager, vcr: ViewContainerRef){
+    this.toastr.setRootViewContainerRef(vcr);
+
+  }
 
   ngOnInit() {
+    // this.toastr.success("App initiated", "Yay!");
 
     this.globalService.getPurchasedProductList();
 

@@ -24,17 +24,9 @@ constructor(private http: Http,  private router: Router, private persitService: 
 }
     addOrUpdateCustomer(customer: Customer)
     {
-      this.http.post(this.url+'/addCustomer', customer)
-      .subscribe(data => {
-        if(data.status == 200 || data.status == 201){
-
-          alert('Customer Added Successfully');
-          console.log("registered customer successfully!!!")
-        }
-      },
-        error => {
-          console.log(JSON.stringify(error.json()));
-    });
+      return this.http.post(this.url+'/addCustomer', customer);
+      // .map(this.extractData)
+      // .catch(this.handleError);
     }
 
     getCustomerDetailsByEmail(email:string){

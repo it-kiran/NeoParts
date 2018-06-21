@@ -20,6 +20,10 @@ public class CustomerManager {
 
     public void addCustomer(CustomerDao customerDao) {
 
+        if(null != customerDao && customerDao.getOperationType().equalsIgnoreCase("Add")){
+            // neo@123
+            customerDao.setPassword("$2a$04$.hCVRkdlT1dAUljOrS9IyeUaeVxz/NEy9xFGGTcRy9PTqr.aCWboG");
+        }
         customerRepository.save(customerDao);
     }
 

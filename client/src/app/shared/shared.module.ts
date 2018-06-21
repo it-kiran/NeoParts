@@ -6,6 +6,8 @@ import { FilterPipe } from '../filter.pipe';
 import {MatCardModule, MatButtonModule} from  "@angular/material";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+
 
 @NgModule({
   imports: [
