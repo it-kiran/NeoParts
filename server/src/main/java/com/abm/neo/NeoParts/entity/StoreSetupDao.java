@@ -26,6 +26,8 @@ public class StoreSetupDao {
     private Integer receiptType;
     private boolean loyaltyEnabled;
     private double loyaltyAmountForDollar;
+    private String emailPassword;
+
 
 
     public Integer getId() {
@@ -139,5 +141,13 @@ public class StoreSetupDao {
 
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
+    }
+
+    public String getEmailPassword() {
+        return emailPassword;
+    }
+
+    public void setEmailPassword(String emailPassword) {
+        this.emailPassword = emailPassword;
     }
 }

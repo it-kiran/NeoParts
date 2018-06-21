@@ -33,9 +33,10 @@
             </li>
         </ul>
     </div>
-    <div class="col-md-10" *ngIf="false">
+    <div class="col-md-10" *ngIf="true">
         <mat-card *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
-            <img mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="">
+                <img *ngIf="(product.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png">
+                <img *ngIf="(product.image!=null)" mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="">
             <mat-card-content>
                 <p style="height: 38px;">{{product.description}}</p>
                 <p style="font-weight: 650;">{{product.retail | currency:'USD':'true'}}</p>
@@ -51,7 +52,7 @@
             </mat-card-content>
         </mat-card>
     </div>
-    <div class="col-md-10" *ngIf="true">
+    <!-- <div class="col-md-10" *ngIf="true"> -->
 
 
             <!-- <mat-card class="example-card">
@@ -68,7 +69,7 @@
                     </mat-card-actions>
                   </mat-card> -->
         
-        <mat-card *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
+        <!-- <mat-card *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
 
             <img *ngIf="(product.image==null)" mat-card-image-test  mat-card-image class="mat-card-image-test" src="assets/images/noImage.png">
             <img *ngIf="product.image!=null" mat-card-image   src="data:image/png;base64,{{product.image}}" alt="">
@@ -86,7 +87,7 @@
                 </div>
             </mat-card-content>
         </mat-card>
-    </div>
+    </div> -->
 
 
 

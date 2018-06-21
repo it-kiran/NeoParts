@@ -1,6 +1,6 @@
-package com.abm.pos.ABMPos.repository;
+package com.abm.neo.NeoParts.repository;
 
-import com.abm.pos.ABMPos.dao.StoreSetupDao;
+import com.abm.neo.NeoParts.entity.StoreSetupDao;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.transaction.Transactional;
