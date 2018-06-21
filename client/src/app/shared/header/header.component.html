@@ -98,7 +98,7 @@
                                         <p class="qty-price">
                                             {{product.saleQuantity}} X
                                             <span class="price">{{product.retail | currency:'USD':'true'}}</span> </p>
-                                        <a href="javascript:void(0)" (click)="this.setProductToDeleteFromCart(prodcut)" title="Remove This Item" class="btn-remove" data-toggle="modal" data-target="#deleteProduct"><i class="icon-cancel"></i></a>
+                                        <a href="javascript:void(0)" (click)="this.setProductToDeleteFromCart(product)" title="Remove This Item" class="btn-remove" data-toggle="modal" data-target="#deleteProduct"><i class="icon-cancel"></i></a>
                                     </div>
                                     <div class="clearer"></div>
                                 </li>
@@ -166,7 +166,7 @@
                     </div>
                 </form> -->
                 <form id="search_mini_form" class="searchautocomplete UI-SEARCHAUTOCOMPLETE">
-                    <div class="form-search" style="padding: 0;" (clickOutside)="onClickedOutside($event)">
+                    <div class="form-search" style="padding: 1px;" (clickOutside)="onClickedOutside($event)">
                         <label for="search">Search:</label>
                         <input [(ngModel)]="searchText" placeholder="search here" name="searchText" style="padding: 10px;width: 100%;border-radius: 6px;border: 0;" (keyup)="onKey($event)">
                         <ul style="overflow: scroll;max-height: 30em;overflow-x: auto;overflow-y: auto; margin-bottom:0;" *ngIf="!inputOutsideClicked">

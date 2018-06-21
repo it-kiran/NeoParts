@@ -4,6 +4,7 @@ import { Product } from '../product-page/product-page.component';
 import { CustomerService } from '../customer/customer.service';
 import { ServicesService } from '../shared/services.service';
 import { Customer } from '../customer/customer.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -89,7 +90,9 @@ export class CartComponent implements OnInit {
     }
 
     clearShopingCart(){
-      this.globalService.clearCart('7707030801');
+      let customer: Customer = this.persistService.getCustomerDetailsForSale();
+      // TODO Need to fix this from customer to email address.
+      this.globalService.clearCart(customer.phoneNo);
     }
 
   ngOnDestroy() {

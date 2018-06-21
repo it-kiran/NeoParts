@@ -33,64 +33,62 @@
             </li>
         </ul>
     </div>
-    <div class="col-md-10" *ngIf="true">
+    <div class="col-md-10" *ngIf="this.customerService.getLogedInUser() != '' ">
         <mat-card *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
-                <img *ngIf="(product.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png">
-                <img *ngIf="(product.image!=null)" mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="">
+        
+            <!-- Dont delete this will help to show tags. -->
+            <!-- <p class="tag">
+                <span>
+                    Sale
+                </span>
+            </p> -->
+            <img *ngIf="(product.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png">
+            <img *ngIf="(product.image!=null)" mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="">
+            <img *ngIf = "product.quantity <= 0" class="outofstock-image mat-card-image" src="assets/images/sold-out.png">
             <mat-card-content>
                 <p style="height: 38px;">{{product.description}}</p>
                 <p style="font-weight: 650;">{{product.retail | currency:'USD':'true'}}</p>
-                <div style="display: flex;">
+                <!-- <div style="display: flex;">
                     <input type="number" class="form-control" placeholder="Quantity" [(ngModel)]='product.saleQuantity' min="1">
-                </div>
-                <div>
+                </div> -->
+                <div *ngIf = "product.quantity > 0">
+                    <div style="display: flex;">
+                        <input type="number" class="form-control" placeholder="Quantity" [(ngModel)]='product.saleQuantity' min="1">
+                    </div>
                     <button mat-button class="addToCartOnSalePage" (click)="this.addProductToCart(product)">
-                              <i class="fa fa-cart-plus"></i>
-                                  Add to cart
-                              </button>
+                        <i class="fa fa-cart-plus"></i>
+                        Add to cart
+                    </button>
+                </div>
+
+                <div  *ngIf = "product.quantity <= 0">
+                        <button mat-button class="notify-me-button">
+                                <i class="fa fa-bell"></i>
+                                Notify When Available
+                            </button>
                 </div>
             </mat-card-content>
         </mat-card>
     </div>
-    <!-- <div class="col-md-10" *ngIf="true"> -->
 
-
-            <!-- <mat-card class="example-card">
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                    <mat-card-content>
-                      <p>
-                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                        bred for hunting.
-                      </p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                      <button mat-button>Add to Cart</button>
-                    </mat-card-actions>
-                  </mat-card> -->
-        
-        <!-- <mat-card *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
-
-            <img *ngIf="(product.image==null)" mat-card-image-test  mat-card-image class="mat-card-image-test" src="assets/images/noImage.png">
-            <img *ngIf="product.image!=null" mat-card-image   src="data:image/png;base64,{{product.image}}" alt="">
+    <div class="col-md-10" *ngIf="this.customerService.getLogedInUser() == '' ">
+        <mat-card style="height: 215px;;" *ngFor="let product of this.productList; let i = index" [attr.data-index]="i">
+            <img *ngIf="(product.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png">
+            <img *ngIf="(product.image!=null)" mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="">
             <mat-card-content>
                 <p style="height: 38px;">{{product.description}}</p>
-                <p *ngIf = "this.customerService.getLogedInUser() != '' " style="font-weight: 650;">{{product.retail | currency:'USD':'true'}}</p>
-                <div *ngIf = "this.customerService.getLogedInUser() != '' " style="display: flex;">
-                    <input type="number" class="form-control" placeholder="Quantity" [(ngModel)]='product.saleQuantity' min="1">
-                </div>
-                <div *ngIf = "this.customerService.getLogedInUser() != '' ">
-                    <button mat-button class="addToCartOnSalePage" (click)="this.addProductToCart(product)">
-                        <i class="fa fa-cart-plus"></i>
-                        Add to Cart
-                        </button>
-                </div>
+                <!-- <p style="font-weight: 650;">{{product.retail | currency:'USD':'true'}}</p> -->
+                <!-- <div style="display: flex;">
+                        <input type="number" class="form-control" placeholder="Quantity" [(ngModel)]='product.saleQuantity' min="1">
+                    </div> -->
+                <!-- <div>
+                        <button mat-button class="addToCartOnSalePage" (click)="this.addProductToCart(product)">
+                                  <i class="fa fa-cart-plus"></i>
+                                      Add to cart
+                                  </button>
+                    </div> -->
             </mat-card-content>
         </mat-card>
-    </div> -->
-
-
-
-
+    </div>
 
 </div>

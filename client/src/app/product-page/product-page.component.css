@@ -49,6 +49,17 @@ mat-card {
     /* margin: 0 16px 16px -24px; */
 }
 
+.outofstock-image{
+    width: 95px;
+    vertical-align: middle;
+    border: 0;
+    height: 90px;
+    z-index: 3;
+    position: absolute;
+    top: 0px;
+    left: 25px;
+}
+
 p {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -61,6 +72,12 @@ p {
     background: red;
     color: white;
     margin-top: 5px;
+    width: 100%
+}
+.notify-me-button {
+    background: red;
+    color: white;
+    margin-top: 39px;
     width: 100%
 }
 
@@ -100,4 +117,10 @@ a-left {
     margin-top: 5px;
     border-top: 1px dashed #ddd;
     cursor: pointer;
+}
+
+ .tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }

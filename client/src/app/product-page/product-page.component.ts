@@ -99,7 +99,6 @@ export class ProductPageComponent implements OnInit {
     }
   
     addProductToCart(product: Product){
-
       let selectedCustomer: Customer = this.persistService.getCustomerDetailsForSale();
 
      // console.log('product', product);
