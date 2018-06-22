@@ -1,4 +1,4 @@
-package com.abm.pos.ABMPos.dao;
+package com.abm.neo.NeoParts.entity;
 
 import javax.persistence.*;
 

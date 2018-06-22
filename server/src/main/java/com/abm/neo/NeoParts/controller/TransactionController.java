@@ -1,7 +1,9 @@
 package com.abm.neo.NeoParts.controller;
 
+import com.abm.neo.NeoParts.entity.TransactionDao;
 import com.abm.neo.NeoParts.entity.WebTransactionDao;
 import com.abm.neo.NeoParts.entity.WebTransactionLineItemDao;
+import com.abm.neo.NeoParts.manager.TransactionsManager;
 import com.abm.neo.NeoParts.manager.WebTransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ public class TransactionController {
 
     @Autowired
     private WebTransactionManager webTransactionManager;
+
+    @Autowired
+    private TransactionsManager transactionManager;
 
     @RequestMapping(value = "/addToCart", method = RequestMethod.POST, consumes = "application/json")
     public WebTransactionDao addTransactionToDB(@RequestBody WebTransactionDao webTransactionDao)
@@ -40,6 +45,14 @@ public class TransactionController {
     public void clearCart(String username)
     {
         webTransactionManager.clearCart(username);
+    }
+
+    @RequestMapping(value = "/addTransaction", method = RequestMethod.POST, consumes = "application/json")
+    public TransactionDao addTransaction(@RequestBody TransactionDao transactionDao)
+    {
+         transactionManager.addTransaction();
+         return null;
+//        return new ResponseEntity(HttpStatus.CREATED);
     }
 
 //    @RequestMapping(value = "/getCartDetails", method = RequestMethod.GET, produces = "application/json")

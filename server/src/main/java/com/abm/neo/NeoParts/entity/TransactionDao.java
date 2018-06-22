@@ -1,6 +1,4 @@
-package com.abm.pos.ABMPos.dao;
-
-import com.abm.pos.ABMPos.dto.PaymentDetails;
+package com.abm.neo.NeoParts.entity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -50,8 +48,8 @@ public class TransactionDao {
     @JoinColumn(name = "transaction_com_id")
     private List<TransactionLineItemDao> transactionLineItemDaoList;
 
-    @Transient
-    private List<PaymentDao> paymentDao;
+//    @Transient
+//    private List<PaymentDao> paymentDao;
 
 //    @Transient
 //    private List<PaymentDetails> paymentDetails;
@@ -192,14 +190,14 @@ public class TransactionDao {
         this.transactionLineItemDaoList = transactionLineItemDaoList;
     }
 
-
-    public List<PaymentDao> getPaymentDao() {
-        return paymentDao;
-    }
-
-    public void setPaymentDao(List<PaymentDao> paymentDao) {
-        this.paymentDao = paymentDao;
-    }
+//
+//    public List<PaymentDao> getPaymentDao() {
+//        return paymentDao;
+//    }
+//
+//    public void setPaymentDao(List<PaymentDao> paymentDao) {
+//        this.paymentDao = paymentDao;
+//    }
 
     public int getPreviousTransactionId() {
         return previousTransactionId;
