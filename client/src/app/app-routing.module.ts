@@ -11,6 +11,7 @@ import { ShippingComponent } from './checkout/shipping/shipping.component';
 import { PaymentComponent } from './checkout/payment/payment.component';
 import { AddressComponent } from './checkout/address/address.component';
 import { AdminComponent } from './admin/admin.component';
+import { ThankyouComponent } from './checkout/thankyou/thankyou.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: 'address', component: AddressComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'customer/signup', component: SignupComponent},
+  { path: 'thankyou', component: ThankyouComponent},
+
 
 
 
