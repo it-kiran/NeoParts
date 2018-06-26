@@ -33,7 +33,11 @@ export class BackendService {
 
   getAllProducts(){
 
-    return this.http.get(this.url+'/getAllProduct')
+    let headers = new Headers({
+      'Authorization': 'Bearer ' +this.customerService.getToken()
+      });
+
+    return this.http.get(this.url+'/getAllProduct', {headers:headers})
     .map(this.extractData)
     .catch(this.handleError);
   }
@@ -83,8 +87,13 @@ export class BackendService {
       
   }
   addImage(productNo: string, image: any) {
+
+    let headers = new Headers({
+      'Authorization': 'Bearer ' +this.customerService.getToken()
+      });
+
     console.log('Customer to be Added' + image);
-     this.http.post(this.url+'/insertProductImage?productNo=' + productNo, image)
+     this.http.post(this.url+'/insertProductImage?productNo=' + productNo, image, {headers:headers})
      .subscribe(data => {
        console.log('Response From Add Customer call' + data);
      },

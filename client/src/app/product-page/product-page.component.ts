@@ -79,20 +79,27 @@ export class ProductPageComponent implements OnInit {
         this.productList = this.productList.slice();
         console.log('product list', this.productList);
 
-        this.loadingService.loading = false;
+       this.loadingService.loading = false;
       })
     }
 
     getProductByCategoryId(id: number){
+      this.loadingService.loading = true;
+
       this.backendService.getProductByCategoryId(id)
       .subscribe((product) =>{
         this.productList = product;
         this.productList = this.productList.slice();
         console.log('product list', this.productList);
+        this.loadingService.loading = false;
+
       });
     }
   
     getMenuDetails(){
+
+      this.loadingService.loading = true;
+
   
       this.backendService.getData()
       .subscribe((data)=>{
@@ -105,10 +112,14 @@ export class ProductPageComponent implements OnInit {
           this.categoryList.push(data.categoryDtoList[i]);
         }
         this.categoryList = this.categoryList.slice();
-  })
+        this.loadingService.loading = false;
+
+  });
     }
   
     addProductToCart(product: Product){
+      this.loadingService.loading = true;
+
       let selectedCustomer: Customer = this.persistService.getCustomerDetailsForSale();
 
      // console.log('product', product);
@@ -120,11 +131,13 @@ export class ProductPageComponent implements OnInit {
 
       if(product.saleQuantity > 0){
         this.globalService.addProductToCart(product);
-
       }
       else {
         alert("Please Enter Valid Quantity");
       }
+
+      this.loadingService.loading = false;
+
         
       //console.log('added cart product List', this.backendService.productList);
     }

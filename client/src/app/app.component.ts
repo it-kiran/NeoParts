@@ -25,6 +25,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    //this.loadingService.loading = true;
     // this.toastr.success("App initiated", "Yay!");
 
     this.globalService.getPurchasedProductList();

@@ -28,7 +28,7 @@
                     </div>
                     <ul class="links">
                         <li class="first">
-                            <a (click)="this.goToAdmin()" title="My Account">My Account</a>
+                            <a title="My Account">My Account</a>
                         </li>
                         <li>
                             <a href="" title="Broken Screen Buyback">Broken Screen Buyback</a>
@@ -247,10 +247,10 @@
                                                                     <span>iPhone</span>
                                                                 </a>
                                                                 <div class="nav-sublist level1">
-                                                                    <ul (click) = "this.hideNavMenu()">
+                                                                    <ul>
                                                                         <li class="menu-item " *ngFor="let item of appleDataIphone">
                                                                             <a class="level2" routerLink="/product/model/{{item.modelId}}">
-                                                                                <span>
+                                                                                <span (click) = "this.test()">
                                                                                     {{item.name}}
                                                                                 </span>
                                                                             </a>

@@ -7,6 +7,7 @@
     <app-footer></app-footer>
 
     <div *ngIf="this.loadingService.loading" >
-         <img src="assets/images/spinner.gif" style="z-index:100;position:fixed;top:50%;right:50%">  
+            <i class="fa fa-spinner fa-pulse fa-5x fa-fw"  style="z-index:100;position:fixed;top:50%;right:50%"></i>
+            <span class="sr-only">Loading...</span> 
     </div>
 </div>

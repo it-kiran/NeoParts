@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Testability } from '@angular/core';
 import { Http,Response } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/map';
@@ -8,6 +8,10 @@ import { Product } from '../../product-page/product-page.component';
 import { count } from 'rxjs/operator/count';
 import { CustomerService } from '../../customer/customer.service';
 import { LoadingService } from '../../loading.service';
+declare var jquery: any;
+// declare var $: any;
+declare var $: JQueryStatic;
+
 
 
 @Component({
@@ -67,6 +71,7 @@ constructor(private http:Http,public backendService:BackendService,private route
 //this.list = this.globalService.purchasedProductList;
 
 //console.log('lit after simple', this.list);
+
 
    this.backendService.getData()
     .subscribe(data=>{
@@ -151,6 +156,12 @@ constructor(private http:Http,public backendService:BackendService,private route
 //   $('#mainDiv').hide();
 
 // }
+
+test(){
+  console.log('inside the test');
+  $('#mainDiv').hide();
+
+}
 goToAdmin(){
   this.router.navigate(['/admin']);
 }
