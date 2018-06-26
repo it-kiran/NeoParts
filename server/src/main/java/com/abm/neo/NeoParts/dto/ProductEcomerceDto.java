@@ -8,6 +8,7 @@ package com.abm.neo.NeoParts.dto;
 public class ProductEcomerceDto {
 
 
+    private int productId;
     private String productNo;
     private String description;
     private String categoryId;
@@ -23,6 +24,14 @@ public class ProductEcomerceDto {
     private boolean ecommerce;
     private boolean tax;
     private byte[] image;
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
 
     public String getProductNo() {
         return productNo;

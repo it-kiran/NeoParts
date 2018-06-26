@@ -25,6 +25,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServicesService } from './shared/services.service';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingService } from './loading.service';
+// import { InfiniteScrollerDirective } from './infinite-scroller.directive';
 
 
 
@@ -46,11 +48,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CheckoutModule,
     VirtualScrollModule,
     AdminModule,
+    // InfiniteScrollerDirective,
     ToastModule.forRoot()
 
   ],
   declarations: [AppComponent],
-  providers: [BackendService, GlobalService, AdminService,ServicesService,BrowserAnimationsModule ],
+  providers: [BackendService, LoadingService,GlobalService, AdminService,ServicesService,BrowserAnimationsModule ],
   bootstrap: [AppComponent]  
 })
 export class AppModule { }

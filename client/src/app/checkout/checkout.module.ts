@@ -6,12 +6,14 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AddressComponent } from './address/address.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
+import { CheckoutService } from './checkout.service';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule
   ],
-  declarations: [CheckoutComponent, ShippingComponent, PaymentComponent, AddressComponent, ThankyouComponent]
+  declarations: [CheckoutComponent, ShippingComponent, PaymentComponent, AddressComponent, ThankyouComponent],
+  providers:[CheckoutService]
 })
 export class CheckoutModule { }

@@ -73,22 +73,23 @@ public class ProductManager {
             {
                 ProductEcomerceDto productEcomerceDto = new ProductEcomerceDto();
 
-                productEcomerceDto.setProductNo(j[0].toString());
-                productEcomerceDto.setDescription(j[1].toString());
-                productEcomerceDto.setCategoryId(j[2].toString());
-                productEcomerceDto.setBrandId(j[3].toString());
-                productEcomerceDto.setVendorId(j[4].toString());
-                if(null != j[5]){
-                    productEcomerceDto.setModelId(j[5].toString());
+                productEcomerceDto.setProductId(Integer.parseInt(j[0].toString()));
+                productEcomerceDto.setProductNo(j[1].toString());
+                productEcomerceDto.setDescription(j[2].toString());
+                productEcomerceDto.setCategoryId(j[3].toString());
+                productEcomerceDto.setBrandId(j[4].toString());
+                productEcomerceDto.setVendorId(j[5].toString());
+                if(null != j[6]){
+                    productEcomerceDto.setModelId(j[6].toString());
 
                 }
-                if(null != j[6]) {
-                    productEcomerceDto.setImage((byte[]) j[6]);
+                if(null != j[7]) {
+                    productEcomerceDto.setImage((byte[]) j[7]);
                 }
-                productEcomerceDto.setTier1(Double.parseDouble(j[7].toString()));
-                productEcomerceDto.setTier2(Double.parseDouble(j[8].toString()));
-                productEcomerceDto.setTier3(Double.parseDouble(j[9].toString()));
-                productEcomerceDto.setQuantity(Integer.parseInt(j[10].toString()));
+                productEcomerceDto.setTier1(Double.parseDouble(j[8].toString()));
+                productEcomerceDto.setTier2(Double.parseDouble(j[9].toString()));
+                productEcomerceDto.setTier3(Double.parseDouble(j[10].toString()));
+                productEcomerceDto.setQuantity(Integer.parseInt(j[11].toString()));
 
 
 

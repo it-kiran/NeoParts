@@ -6,6 +6,9 @@ import { GlobalService } from '../global-service.service';
 import { CustomerService } from '../customer/customer.service';
 import { ServicesService } from '../shared/services.service';
 import { Customer } from '../customer/customer.component';
+import { LoadingService } from '../loading.service';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-product-page',
@@ -19,7 +22,7 @@ export class ProductPageComponent implements OnInit {
   cartCount: number = 0;
   alok: Product[] = [];
 
-  constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute, private customerService: CustomerService, private persistService: ServicesService) { 
+  constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute, private customerService: CustomerService, private persistService: ServicesService,private loadingService: LoadingService) { 
   }
   
     ngOnInit() {
@@ -44,8 +47,13 @@ export class ProductPageComponent implements OnInit {
       
     }
 
+    trackByFn(index, product){
+      return index;
+    }
     getProductByModelId(id: number){
       //let id = +this.route.snapshot.paramMap.get('id');
+
+      this.loadingService.loading = true;
       console.log("model id", id);
       this.backendService.getProductByModelId(id)
       .subscribe((product) =>{
@@ -70,6 +78,8 @@ export class ProductPageComponent implements OnInit {
         this.productList = product;
         this.productList = this.productList.slice();
         console.log('product list', this.productList);
+
+        this.loadingService.loading = false;
       })
     }
 
@@ -104,7 +114,7 @@ export class ProductPageComponent implements OnInit {
      // console.log('product', product);
       product.customerPhoneNo = selectedCustomer.phoneNo;
       product.status = 'Online';
-      product.date = '2018-03-11 09:41:27';
+      product.date = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 
       console.log('Product Quanity to add from ui', product.saleQuantity);
 

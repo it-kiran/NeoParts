@@ -13,6 +13,7 @@ import javax.persistence.*;
         private String date;
         private String status;
         private String productNo;
+        private int productId;
 //        private int productVariantNo;
         private int saleQuantity;
         private double cost;
@@ -139,5 +140,13 @@ import javax.persistence.*;
 
         public void setImage(byte[] image) {
             this.image = image;
+        }
+
+        public int getProductId() {
+            return productId;
+        }
+
+        public void setProductId(int productId) {
+            this.productId = productId;
         }
     }

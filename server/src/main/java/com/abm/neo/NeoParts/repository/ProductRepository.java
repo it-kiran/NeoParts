@@ -62,12 +62,13 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
     @Query("SELECT p.productNo, p.description FROM ProductDao p WHERE p.active = true AND p.ecommerce = true ORDER BY p.productNo ASC")
     List<Object[]> getProductForSearchBar();
 
-    @Query(value = "SELECT p.product_no,p.description,p.category_id,p.brand_id,p.vendor_id,p.model_id,p.cost,p.retail,p.quantity, i.image FROM product p\n" +
+    @Query(value = "SELECT p.product_id,p.product_no,p.description,p.category_id,p.brand_id,p.vendor_id,p.model_id,p.cost,p.retail,p.quantity, i.image FROM product p\n" +
             "LEFT JOIN product_image i ON i.product_no = p.product_no\n" +
             "WHERE active = 1 AND ecommerce = 1 AND p.category_id = ?1", nativeQuery = true)
     List<Object[]> getEcommerceProductsByCategory(int category_id);
 
     @Query(value = "SELECT\n" +
+            "p.product_id,\n" +
             "p.product_no,\n" +
             "p.description,\n" +
             "p.category_id,\n" +
@@ -99,7 +100,7 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "i.tier3", nativeQuery = true)
     List<Object[]> getEcommerceProductsByBrand(int modelId);
 
-    @Query(value = "SELECT p.product_no,p.description,p.category_id,p.brand_id,p.vendor_id,p.model_id,p.cost,p.retail,p.quantity, i.image FROM product p\n" +
+    @Query(value = "SELECT p.product_id, p.product_no,p.description,p.category_id,p.brand_id,p.vendor_id,p.model_id,p.cost,p.retail,p.quantity, i.image FROM product p\n" +
             "            LEFT JOIN product_image i ON i.product_no = p.product_no\n" +
             "            WHERE active = 1 AND ecommerce = 1", nativeQuery = true)
     List<Object[]> getAllActiveProducts();

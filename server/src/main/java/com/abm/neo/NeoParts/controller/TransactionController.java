@@ -48,10 +48,9 @@ public class TransactionController {
     }
 
     @RequestMapping(value = "/addTransaction", method = RequestMethod.POST, consumes = "application/json")
-    public TransactionDao addTransaction(@RequestBody TransactionDao transactionDao)
+    public TransactionDao addTransaction(@RequestBody List<WebTransactionLineItemDao> webTransactionLineItemDaos)
     {
-         transactionManager.addTransaction();
-         return null;
+        return transactionManager.addTransaction(webTransactionLineItemDaos);
 //        return new ResponseEntity(HttpStatus.CREATED);
     }
 

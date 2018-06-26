@@ -4,6 +4,7 @@ import { Customer } from '../customer/customer.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../product-page/product-page.component';
+import { CheckoutService } from './checkout.service';
 
 @Component({
   selector: 'app-checkout',
@@ -24,7 +25,7 @@ export class CheckoutComponent implements OnInit {
   _totalAmountSubscription: any;
   _totalQuantitySubscription: any;
 
-  constructor(private globalService: GlobalService,private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) {
+  constructor(private globalService: GlobalService,private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private checkoutService: CheckoutService) {
     this.globalService.getPurchasedProductList();
     this.getPurchasedProductList();
 
@@ -52,17 +53,17 @@ export class CheckoutComponent implements OnInit {
       this.totalQuantity = count;
       console.log('subject count', this.totalQuantity);
     });
-
-    
-
   }
 
+  submitOrder(){
+    this.checkoutService.placeFinalOrder(this.purchasedProductList);
+  }
   goToPaymentPage(){
     this.router.navigate(['/payment']);
   }
-  goCompleteOrder(){
-    this.router.navigate(['/completeOrder']);
-   }
+  // goCompleteOrder(){
+  //   this.router.navigate(['/completeOrder']);
+  //  }
    goViewCart(){
     this.router.navigate(['/viewCart']);
   }

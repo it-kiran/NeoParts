@@ -7,6 +7,8 @@ import { GlobalService } from '../../global-service.service';
 import { Product } from '../../product-page/product-page.component';
 import { count } from 'rxjs/operator/count';
 import { CustomerService } from '../../customer/customer.service';
+import { LoadingService } from '../../loading.service';
+
 
 @Component({
   selector: 'app-header',
@@ -61,13 +63,15 @@ ngOnInit() {
   this.getPurchasedProductList();
 }
 
-constructor(private http:Http,public backendService:BackendService,private route: ActivatedRoute, private router: Router, public globalService: GlobalService, private customerService:CustomerService){
+constructor(private http:Http,public backendService:BackendService,private route: ActivatedRoute, private router: Router, public globalService: GlobalService, private customerService:CustomerService, private loadingService:LoadingService){
 //this.list = this.globalService.purchasedProductList;
 
 //console.log('lit after simple', this.list);
 
    this.backendService.getData()
     .subscribe(data=>{
+      this.loadingService.loading = true;
+
       console.log(data)
       for(var i =0;i<data.webBrandDtoList.length;i++){
         var str = data.webBrandDtoList[i].brandName;
@@ -133,21 +137,25 @@ constructor(private http:Http,public backendService:BackendService,private route
         }
       }
 
+      this.loadingService.loading = false;
 
 
     });
 
 
 
+
 }
 
+// hideNavMenu(){
+//   $('#mainDiv').hide();
 
+// }
 goToAdmin(){
   this.router.navigate(['/admin']);
 }
 
 goToViewCartPage(){
-
   console.log("OKEY ROUTER");
   this.router.navigate(['/viewCart']);
 }
@@ -157,7 +165,8 @@ goToViewCartPage(){
   //   this.purchasedProductList = products;
   //   console.log('Product on change by subject', this.purchasedProductList);
   // });
-  
+  this.loadingService.loading = true;
+
   this._subscription =  this.globalService.purchasedProductListChange.subscribe((products)=>{
     this.purchasedProductList = products;
     console.log('Product on change by subject From Cart page', this.purchasedProductList);
@@ -172,6 +181,7 @@ this._totalAmountSubscription = this.globalService.totalPurchasedProductAmountCh
   this.totalAmount = totalAmount;
   console.log('subject Total Amount', this.totalAmount);
 });
+this.loadingService.loading = false;
 
 
 }

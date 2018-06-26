@@ -9,6 +9,7 @@ import { Customer } from './customer/customer.component';
 import { ServicesService } from './shared/services.service';
 import { CustomerService } from './customer/customer.service';
 import { ToastsManager } from 'ng2-toastr';
+import { LoadingService } from './loading.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ import { ToastsManager } from 'ng2-toastr';
 export class AppComponent implements OnInit {
 
   test: Product[] = []
-  constructor(private globalService: GlobalService, private persistService: ServicesService, private customerService: CustomerService,public toastr: ToastsManager, vcr: ViewContainerRef){
+  constructor(private globalService: GlobalService, private persistService: ServicesService, private customerService: CustomerService,public toastr: ToastsManager, vcr: ViewContainerRef, private loadingService: LoadingService){
     this.toastr.setRootViewContainerRef(vcr);
 
   }
