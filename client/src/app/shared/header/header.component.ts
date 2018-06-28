@@ -1,5 +1,5 @@
 import { Component, OnInit, Testability } from '@angular/core';
-import { Http,Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/map';
 import { BackendService } from '../../services/backend.service';
@@ -10,7 +10,7 @@ import { CustomerService } from '../../customer/customer.service';
 import { LoadingService } from '../../loading.service';
 declare var jquery: any;
 // declare var $: any;
-declare var $: JQueryStatic;
+// declare var $: JQueryStatic;
 
 
 
@@ -19,225 +19,228 @@ declare var $: JQueryStatic;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent  implements OnInit {
-purchasedProductList :Product[] = [];
-_subscription: any;
-_countSubscription: any;
-_totalAmountSubscription: any;
-sum =  0;
-totalQuantity: number = 0;
-totalAmount: number = 0.00;
-productList: Product[] = [];
-seletedProductForDelete: Product;
+export class HeaderComponent implements OnInit {
+  purchasedProductList: Product[] = [];
+  _subscription: any;
+  _countSubscription: any;
+  _totalAmountSubscription: any;
+  sum = 0;
+  totalQuantity: number = 0;
+  totalAmount: number = 0.00;
+  productList: Product[] = [];
+  seletedProductForDelete: Product;
 
-title = 'app';
-searchText: string;
-backendData : any=[];
-appleData =[];
-appleDataIphone :any=[];
-appleDataIpad :any=[];
+  title = 'app';
+  searchText: string;
+  backendData: any = [];
+  appleData = [];
+  appleDataIphone: any = [];
+  appleDataIpad: any = [];
 
-samsungData :any=[];
-samsungNote :any=[];
-samsungS :any=[];
-samsungOther :any=[];
+  samsungData: any = [];
+  samsungNote: any = [];
+  samsungS: any = [];
+  samsungOther: any = [];
 
-searchData:any=[];
-sss=false;
-otherData=[];
-aaa=[0,1,2,3,4];
+  searchData: any = [];
+  sss = false;
+  otherData = [];
+  aaa = [0, 1, 2, 3, 4];
 
-noofshow = 5;
-values = '';
-
-
-inputOutsideClicked:boolean;
-characters = [
-'Finn the human11',
-'Finn the human1111',
-'Finn the human1111111',
-'Jake the dog11',
-'Princess bubblegum12',
-'Lumpy Space Princess123',
-'Beemo1',
-'Beemo2'
-]
-
-ngOnInit() {
-  this.getPurchasedProductList();
-}
-
-constructor(private http:Http,public backendService:BackendService,private route: ActivatedRoute, private router: Router, public globalService: GlobalService, private customerService:CustomerService, private loadingService:LoadingService){
-//this.list = this.globalService.purchasedProductList;
-
-//console.log('lit after simple', this.list);
+  noofshow = 5;
+  values = '';
 
 
-   this.backendService.getData()
-    .subscribe(data=>{
-      this.loadingService.loading = true;
+  inputOutsideClicked: boolean;
+  characters = [
+    'Finn the human11',
+    'Finn the human1111',
+    'Finn the human1111111',
+    'Jake the dog11',
+    'Princess bubblegum12',
+    'Lumpy Space Princess123',
+    'Beemo1',
+    'Beemo2'
+  ]
 
-      console.log(data)
-      for(var i =0;i<data.webBrandDtoList.length;i++){
-        var str = data.webBrandDtoList[i].brandName;
-        var mm = str.includes("APPLE");
-        var nm = str.includes("SAMSUNG");
+  ngOnInit() {
+    this.getPurchasedProductList();
+  }
 
-        if(mm){
-          this.appleData.push(data.webBrandDtoList[i]);
+  constructor(private http: Http, public backendService: BackendService, private route: ActivatedRoute, private router: Router, public globalService: GlobalService, public customerService: CustomerService, private loadingService: LoadingService) {
+    //this.list = this.globalService.purchasedProductList;
 
-          this.backendService.appleInfo.push(
-            {brandId:this.appleData[0].brandId ,
-            brandName:this.appleData[0].brandName
-             }
-          );
-        }
-        else if(nm){
-          this.samsungData.push(data.webBrandDtoList[i]);}
-        else{
-          if( data.webBrandDtoList[i].modelDtoList.length){
-            if(data.webBrandDtoList[i].modelDtoList.length > this.noofshow){
-              var cntiteration = new Array( );
-              for(var k = 0 ; k <= Math.floor((data.webBrandDtoList[i].modelDtoList.length - this.noofshow)/this.noofshow); k ++){
-                cntiteration[k] = new Array( );
+    //console.log('lit after simple', this.list);
+
+
+    this.backendService.getData()
+      .subscribe(data => {
+        this.loadingService.loading = true;
+
+        console.log(data)
+        for (var i = 0; i < data.webBrandDtoList.length; i++) {
+          var str = data.webBrandDtoList[i].brandName;
+          var mm = str.includes("APPLE");
+          var nm = str.includes("SAMSUNG");
+
+          if (mm) {
+            this.appleData.push(data.webBrandDtoList[i]);
+
+            this.backendService.appleInfo.push(
+              {
+                brandId: this.appleData[0].brandId,
+                brandName: this.appleData[0].brandName
               }
-              for(var j = this.noofshow ; j < data.webBrandDtoList[i].modelDtoList.length ; j ++){
-                cntiteration[Math.floor((j-this.noofshow)/5)].push(j);
+            );
+          }
+          else if (nm) {
+            this.samsungData.push(data.webBrandDtoList[i]);
+          }
+          else {
+            if (data.webBrandDtoList[i].modelDtoList.length) {
+              if (data.webBrandDtoList[i].modelDtoList.length > this.noofshow) {
+                var cntiteration = new Array();
+                for (var k = 0; k <= Math.floor((data.webBrandDtoList[i].modelDtoList.length - this.noofshow) / this.noofshow); k++) {
+                  cntiteration[k] = new Array();
+                }
+                for (var j = this.noofshow; j < data.webBrandDtoList[i].modelDtoList.length; j++) {
+                  cntiteration[Math.floor((j - this.noofshow) / 5)].push(j);
+                }
+                data.webBrandDtoList[i]['cntiteration'] = cntiteration;
               }
-              data.webBrandDtoList[i]['cntiteration'] = cntiteration;
+              this.otherData.push(data.webBrandDtoList[i]);
             }
-            this.otherData.push(data.webBrandDtoList[i]);
           }
         }
-      }
-      // console.log(this.otherData)
-      for(var i = 0;i<this.appleData[0].modelDtoList.length;i++){
-        var str = this.appleData[0].modelDtoList[i];
-        var m = str.name.includes("iPhone");
-        var n = str.name.includes("iPad");
+        // console.log(this.otherData)
+        for (var i = 0; i < this.appleData[0].modelDtoList.length; i++) {
+          var str = this.appleData[0].modelDtoList[i];
+          var m = str.name.includes("iPhone");
+          var n = str.name.includes("iPad");
 
-        if(m){
-          this.appleDataIphone.push(str)
-          // console.log(this.appleDataIphone);
+          if (m) {
+            this.appleDataIphone.push(str)
+            // console.log(this.appleDataIphone);
+          }
+          if (n) {
+            this.appleDataIpad.push(str)
+          }
+          else { }
         }
-        if(n){
-          this.appleDataIpad.push(str)
+
+        for (var i = 0; i < this.samsungData[0].modelDtoList.length; i++) {
+          var str = this.samsungData[0].modelDtoList[i];
+          var note = str.name.includes("Galaxy Note");
+          var s = str.name.includes("Galaxy S");
+
+          if (note) {
+            this.samsungNote.push(str)
+          }
+          else if (s) {
+            this.samsungS.push(str)
+          }
+          else {
+            this.samsungOther.push(str)
+          }
         }
-        else{}
-      }
 
-      for(var i = 0;i<this.samsungData[0].modelDtoList.length;i++){
-        var str = this.samsungData[0].modelDtoList[i];
-        var note = str.name.includes("Galaxy Note");
-        var s = str.name.includes("Galaxy S");
-
-        if(note){
-          this.samsungNote.push(str)
-        }
-        else if(s){
-          this.samsungS.push(str)
-        }
-        else{
-          this.samsungOther.push(str)
-        }
-      }
-
-      this.loadingService.loading = false;
+        this.loadingService.loading = false;
 
 
+      });
+
+
+
+
+  }
+
+  // hideNavMenu(){
+  //   $('#mainDiv').hide();
+
+  // }
+
+  test() {
+    console.log('inside the test');
+    // $('#mainDiv').hide();
+
+  }
+  goToAdmin() {
+    this.router.navigate(['/admin']);
+  }
+
+  goToViewCartPage() {
+    console.log("OKEY ROUTER");
+    this.router.navigate(['/viewCart']);
+  }
+  getPurchasedProductList() {
+
+    // this._subscription =  this.globalService.purchasedProductListChange.subscribe((products)=>{
+    //   this.purchasedProductList = products;
+    //   console.log('Product on change by subject', this.purchasedProductList);
+    // });
+    this.loadingService.loading = true;
+
+    this._subscription = this.globalService.purchasedProductListChange.subscribe((products) => {
+      this.purchasedProductList = products;
+      console.log('Product on change by subject From Cart page', this.purchasedProductList);
     });
 
+    this._countSubscription = this.globalService.totalPurchasedProductCountChange.subscribe((count) => {
+      this.totalQuantity = count;
+      console.log('subject count', this.totalQuantity);
+    });
+
+    this._totalAmountSubscription = this.globalService.totalPurchasedProductAmountChange.subscribe((totalAmount) => {
+      this.totalAmount = totalAmount;
+      console.log('subject Total Amount', this.totalAmount);
+    });
+    this.loadingService.loading = false;
 
 
+  }
 
-}
-
-// hideNavMenu(){
-//   $('#mainDiv').hide();
-
-// }
-
-test(){
-  console.log('inside the test');
-  $('#mainDiv').hide();
-
-}
-goToAdmin(){
-  this.router.navigate(['/admin']);
-}
-
-goToViewCartPage(){
-  console.log("OKEY ROUTER");
-  this.router.navigate(['/viewCart']);
-}
- getPurchasedProductList(){
-
-  // this._subscription =  this.globalService.purchasedProductListChange.subscribe((products)=>{
-  //   this.purchasedProductList = products;
-  //   console.log('Product on change by subject', this.purchasedProductList);
-  // });
-  this.loadingService.loading = true;
-
-  this._subscription =  this.globalService.purchasedProductListChange.subscribe((products)=>{
-    this.purchasedProductList = products;
-    console.log('Product on change by subject From Cart page', this.purchasedProductList);
-  });
-
-this._countSubscription = this.globalService.totalPurchasedProductCountChange.subscribe((count)=>{
-  this.totalQuantity = count;
-  console.log('subject count', this.totalQuantity);
-});
-
-this._totalAmountSubscription = this.globalService.totalPurchasedProductAmountChange.subscribe((totalAmount)=>{
-  this.totalAmount = totalAmount;
-  console.log('subject Total Amount', this.totalAmount);
-});
-this.loadingService.loading = false;
+  setProductToDeleteFromCart(product: Product) {
+    this.seletedProductForDelete = product;
+  }
+  deleteProduct() {
+    this.globalService.deleteProductFromCart(this.seletedProductForDelete);
+  }
 
 
-}
+  onKey(event: any) { // without type info
+    this.values = '';
+    this.values = event.target.value;
+    this.backendService.getFilterSearch(this.values)
+      .subscribe(data => {
+        for (var i = 0; i < data.length; i++) {
+          var str = data[i].description;
+          var mm = str.includes(this.values);
+          if (mm) {
+            this.searchData.push(
+              data[i]
+            )
+          }
+        }
+        // console.log(this.searchData)
+      })
+  }
 
-setProductToDeleteFromCart(product: Product){
-this.seletedProductForDelete = product;
-}
-deleteProduct(){
-  this.globalService.deleteProductFromCart(this.seletedProductForDelete);
-}
-
-
-onKey(event: any) { // without type info
-  this.values='';
-  this.values = event.target.value ;
-  this.backendService.getFilterSearch(this.values)
-  .subscribe(data=>{
-    for(var i = 0; i <data.length;i++){
-      var str = data[i].description;
-        var mm = str.includes(this.values);
-        if(mm){
-          this.searchData.push(
-            data[i]
-          )}
+  onClickedOutside(e: Event) {
+    if (e.isTrusted) {
+      this.inputOutsideClicked = true;
     }
-    // console.log(this.searchData)
-  })
-}
+    else {
+      this.inputOutsideClicked = false;
+    }
+    // console.log('Clicked outside:', e);
+  }
+  ngOnDestroy() {
+    //prevent memory leak when component destroyed
+    this._subscription.unsubscribe();
+    this._countSubscription.unsubscribe();
+    this._totalAmountSubscription.unsubscribe();
 
-onClickedOutside(e: Event) {
-  if(e.isTrusted){
-    this.inputOutsideClicked = true;
   }
-  else{
-    this.inputOutsideClicked = false;
-  }
-  // console.log('Clicked outside:', e);
-}
-ngOnDestroy() {
-  //prevent memory leak when component destroyed
-   this._subscription.unsubscribe();
-   this._countSubscription.unsubscribe();
-   this._totalAmountSubscription.unsubscribe();
-   
- }
 
 
 }

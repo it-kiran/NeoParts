@@ -3,6 +3,7 @@ package com.abm.neo.NeoParts.manager;
 import com.abm.neo.NeoParts.dto.ProductEcomerceDto;
 import com.abm.neo.NeoParts.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.SqlLobValue;
 import org.springframework.jdbc.support.lob.DefaultLobHandler;
@@ -118,6 +119,6 @@ public class ProductManager {
 
     public List<ProductEcomerceDto> getAllProduct() {
 
-        return  setEcomerceDto(productRepository.getAllActiveProducts());
+        return  setEcomerceDto(productRepository.getAllActiveProducts(new PageRequest(0, 1)));
     }
 }

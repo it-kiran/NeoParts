@@ -1,6 +1,7 @@
 package com.abm.neo.NeoParts.repository;
 
 import com.abm.neo.NeoParts.entity.ProductDao;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -128,6 +129,8 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "im.image,\n" +
             "i.tier1,\n" +
             "i.tier2,\n" +
-            "i.tier3", nativeQuery = true)
-    List<Object[]> getAllActiveProducts();
+            "i.tier3 ORDER BY ?#{#pageable}",
+            countQuery = "select count(*) from product ORDER BY ?#{#pageable}",
+            nativeQuery = true)
+    List<Object[]> getAllActiveProducts(Pageable pageable);
 }
