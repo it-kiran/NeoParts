@@ -19,7 +19,7 @@ import { LoadingService } from './loading.service';
 export class AppComponent implements OnInit {
 
   test: Product[] = []
-  constructor(private globalService: GlobalService, private persistService: ServicesService, private customerService: CustomerService,public toastr: ToastsManager, vcr: ViewContainerRef, private loadingService: LoadingService){
+  constructor(private globalService: GlobalService, private persistService: ServicesService, private customerService: CustomerService,public toastr: ToastsManager, vcr: ViewContainerRef, public loadingService: LoadingService){
     this.toastr.setRootViewContainerRef(vcr);
 
   }

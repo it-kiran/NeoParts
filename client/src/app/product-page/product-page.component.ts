@@ -22,7 +22,7 @@ export class ProductPageComponent implements OnInit {
   cartCount: number = 0;
   alok: Product[] = [];
 
-  constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute, private customerService: CustomerService, private persistService: ServicesService,private loadingService: LoadingService) { 
+  constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute, public customerService: CustomerService, private persistService: ServicesService,public loadingService: LoadingService) { 
   }
   
     ngOnInit() {
