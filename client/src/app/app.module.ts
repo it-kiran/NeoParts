@@ -26,7 +26,6 @@ import { ServicesService } from './shared/services.service';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingService } from './loading.service';
-// import { InfiniteScrollerDirective } from './infinite-scroller.directive';
 
 
 
@@ -48,7 +47,6 @@ import { LoadingService } from './loading.service';
     CheckoutModule,
     VirtualScrollModule,
     AdminModule,
-    // InfiniteScrollerDirective,
     ToastModule.forRoot()
 
   ],
