@@ -41,3 +41,14 @@ em {
     margin-left: -3px;
     /* top: 0; */
 }
+
+.messages {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.error-msg {
+    border-color: #ebccd1;
+    background-color: #f2dede;
+    color: #a94442;
+}

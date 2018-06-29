@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   customerForm: FormGroup;
   loginForm: FormGroup;
   state:string[] = [];
+  loginSuccess: boolean = true;
 
 
   constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private globalService: GlobalService, private router: Router, private percistance: ServicesService, private toastr: ToastsManager) { 
@@ -62,15 +63,25 @@ export class SignupComponent implements OnInit {
 
     this.customerService.login(username, password)
     .subscribe((response)=>{
+
+      console.log('response', response);
       if(response){
         this.toastr.success('Wel-Come, Login Successfully!!', null, {positionClass: "toast-top-center"});
         this.router.navigate(['']);
         this.globalService.getPurchasedProductList();
        // window.location.reload();
       }else {
+        this.loginSuccess = false;
         this.toastr.success('Wrong Username Or Password', null, {positionClass: "toast-top-center"});
       }
-    });
+    }
+    ,
+      (err) => {
+        if(err == 'Unauthorized'){
+          this.loginSuccess = false;
+        }
+      }
+  );
 }
 
 

@@ -9,6 +9,18 @@
                 <h4>LOGIN HERE</h4>
                 <p>FOR EXISTING CUSTOMER</p>
                 <hr>
+
+                <ul *ngIf = "!this.loginSuccess" class="messages">
+                    <li class="error-msg">
+                        <ul>
+                            <li>
+                                <span>
+                                    Invalid Login or Password.
+                                </span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
                 <ul>
                     <li style="margin:5px;">
                         <label>Email Address
