@@ -12,6 +12,7 @@ import { PaymentComponent } from './checkout/payment/payment.component';
 import { AddressComponent } from './checkout/address/address.component';
 import { AdminComponent } from './admin/admin.component';
 import { ThankyouComponent } from './checkout/thankyou/thankyou.component';
+import { ShippingPageComponent } from './shared/shipping-page/shipping-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -24,6 +25,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent},
   { path: 'customer/signup', component: SignupComponent},
   { path: 'thankyou', component: ThankyouComponent},
+  { path: 'shipping-info', component: ShippingPageComponent}
+
 
 
 

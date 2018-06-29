@@ -7,6 +7,7 @@ import {MatCardModule, MatButtonModule} from  "@angular/material";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { ShippingPageComponent } from './shipping-page/shipping-page.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     RouterModule
 
   ],
-  declarations: [HeaderComponent, FooterComponent,FilterPipe],
+  declarations: [HeaderComponent, FooterComponent,FilterPipe, ShippingPageComponent],
   providers:[],
   bootstrap: [HeaderComponent,FooterComponent],
   exports: [
@@ -29,6 +30,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     MatButtonModule,
     HeaderComponent, 
     FooterComponent,
+    ShippingPageComponent,
     RouterModule
   ],
 

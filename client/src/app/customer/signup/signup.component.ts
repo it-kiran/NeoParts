@@ -84,7 +84,6 @@ export class SignupComponent implements OnInit {
   );
 }
 
-
   register(){
 
     let name:string = this.customerForm.get('firstName').value;

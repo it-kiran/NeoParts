@@ -1,0 +1,39 @@
+p {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+mat-card {
+    margin-bottom: 15px;
+}
+
+.p-price {
+
+    font-weight: 1000;
+    font-family: 'Montserrat';
+    margin-top: 5px;
+    color: #e21f24;
+    font-size: 90px;
+}
+
+h1, h3, h5 {
+    text-align: center;
+}
+
+.learn-more-btn {
+    background: red;
+    color: white;
+    width: 50%;
+}
+.title {
+    font-size: 25px !important;
+    font-weight: 800 !important;
+    weight: 800 !important;
+    color: #e21f24;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
