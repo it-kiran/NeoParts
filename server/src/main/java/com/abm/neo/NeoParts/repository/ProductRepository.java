@@ -32,7 +32,7 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "FROM product p\n" +
             "LEFT JOIN product_image im \n" +
             "ON im.product_no = p.product_no\n" +
-            "left outer join product_inventory i\n" +
+            "inner join product_inventory i\n" +
             "on i.product_no = p.product_no\n" +
             "WHERE p.active = 1 \n" +
             "AND p.ecommerce = 1 \n" +
@@ -63,9 +63,36 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
     @Query("SELECT p.productNo, p.description FROM ProductDao p WHERE p.active = true AND p.ecommerce = true ORDER BY p.productNo ASC")
     List<Object[]> getProductForSearchBar();
 
-    @Query(value = "SELECT p.product_id,p.product_no,p.description,p.category_id,p.brand_id,p.vendor_id,p.model_id,p.cost,p.retail,p.quantity, i.image FROM product p\n" +
-            "LEFT JOIN product_image i ON i.product_no = p.product_no\n" +
-            "WHERE active = 1 AND ecommerce = 1 AND p.category_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT p.product_id,\n" +
+            "p.product_no,\n" +
+            "p.description,\n" +
+            "p.category_id,\n" +
+            "p.brand_id,\n" +
+            "p.vendor_id,\n" +
+            "p.model_id,\n" +
+            "im.image,\n" +
+            "i.tier1,\n" +
+            "i.tier2,\n" +
+            "i.tier3,\n" +
+            "sum(i.quantity)\n" +
+            "FROM product p\n" +
+            "LEFT JOIN product_image im\n" +
+            "ON im.product_no = p.product_no\n" +
+            "inner join product_inventory i\n" +
+            "on i.product_no = p.product_no\n" +
+            "WHERE active = 1\n" +
+            "AND ecommerce = 1\n" +
+            "AND p.category_id = ?1\n" +
+            "group by p.product_no,\n" +
+            "p.description,\n" +
+            "p.category_id,\n" +
+            "p.brand_id,\n" +
+            "p.vendor_id,\n" +
+            "p.model_id,\n" +
+            "im.image,\n" +
+            "i.tier1,\n" +
+            "i.tier2,\n" +
+            "i.tier3", nativeQuery = true)
     List<Object[]> getEcommerceProductsByCategory(int category_id);
 
     @Query(value = "SELECT\n" +
@@ -84,7 +111,7 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "FROM product p\n" +
             "LEFT JOIN product_image im \n" +
             "ON im.product_no = p.product_no\n" +
-            "left outer join product_inventory i\n" +
+            "inner join product_inventory i\n" +
             "on i.product_no = p.product_no\n" +
             "WHERE active = 1 \n" +
             "AND ecommerce = 1 \n" +

@@ -43,7 +43,7 @@
                 </span>
             </p> -->
             <img *ngIf="(product.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png">
-            <img *ngIf="(product.image!=null)" mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="">
+            <img *ngIf="(product.image!=null)" mat-card-image class="productIMG" src="data:image/png;base64,{{product.image}}" alt="NEO">
             <img *ngIf = "product.quantity <= 0" class="outofstock-image mat-card-image" src="assets/images/sold-out.png">
             <mat-card-content>
                 <p style="height: 38px;">{{product.description}}</p>

@@ -85,8 +85,16 @@ public class ProductManager {
 
                 }
                 if(null != j[7]) {
+
                     productEcomerceDto.setImage((byte[]) j[7]);
+
+                    // This is helpful to send null on ui so i can show no image found image, otherwise its sending [] this ui and only description is showing on product grid.
+                    if(productEcomerceDto.getImage().length < 1)
+                    {
+                        productEcomerceDto.setImage(null);
+                    }
                 }
+
                 productEcomerceDto.setTier1(Double.parseDouble(j[8].toString()));
                 productEcomerceDto.setTier2(Double.parseDouble(j[9].toString()));
                 productEcomerceDto.setTier3(Double.parseDouble(j[10].toString()));

@@ -91,6 +91,7 @@ export class ProductPageComponent implements OnInit {
         this.productList = product;
         this.productList = this.productList.slice();
         console.log('product list', this.productList);
+
         this.loadingService.loading = false;
 
       });
