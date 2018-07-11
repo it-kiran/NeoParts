@@ -26,6 +26,7 @@
         "scripts": [
             "../src/assets/js/jquery.js",
             "../src/assets/js/slide.js",
+            "../src/assets/js/megamenu.js",
             "../node_modules/jquery/dist/jquery.min.js",
             "../node_modules/popper.js/dist/umd/popper.min.js",
             "../node_modules/bootstrap/dist/js/bootstrap.min.js"

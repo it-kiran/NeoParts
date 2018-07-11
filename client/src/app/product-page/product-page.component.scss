@@ -114,13 +114,30 @@ a-left {
 }
 
 .test {
-    margin-top: 5px;
-    border-top: 1px dashed #ddd;
+    // margin-top: 5px;
+    border-bottom: 1px dashed #ddd;
     cursor: pointer;
+}
+
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: .65rem;
 }
 
  .tag {
     position: absolute;
     top: 10px;
     left: 10px;
+}
+
+.card-header{
+  padding-left: 0px;
+  text-align: left !important;
+}
+
+.btn-link {
+  font-weight: 800;
+   color: red;
+  background-color: transparent;
 }

@@ -13,7 +13,7 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
-  styleUrls: ['./product-page.component.css']
+  styleUrls: ['./product-page.component.scss']
 })
 export class ProductPageComponent implements OnInit {
   productList: Product[] = [];
