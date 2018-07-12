@@ -43,6 +43,9 @@ export class GlobalService {
     this.http.post(this.url + '/addCartItem', webTransactionDao, { headers: headers })
       .subscribe(data => {
         if (data) {
+
+          webTransactionDao = data.json();
+          console.log('response', webTransactionDao);
           this.purchasedProductList = this.purchasedProductList.slice();
           console.log('just after data check and slice.', this.purchasedProductList);
 
