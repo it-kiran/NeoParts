@@ -158,6 +158,7 @@ export class ProductPageComponent implements OnInit {
     tier1:number;
     tier2:number;
     tier3:number;
+    quantity: number;
     saleQuantity: number;
     ecommerce: boolean;
     tax:boolean

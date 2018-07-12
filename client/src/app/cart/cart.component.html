@@ -44,7 +44,7 @@
                                 <tbody>
                                     <tr *ngFor="let product of this.purchasedProductList; let index = index;" class="first last odd">
                                         <td class="action-td">
-                                            <a href="javascript:void(0)" (click)="this.setProductToDeleteFromCart(product)" class="btn-remove btn-remove2" data-toggle="modal" data-target="#deleteProduct"></a>
+                                            <a href="javascript:void(0)" (click)="this.setProductToDeleteFromCart(product)" class="btn-remove btn-remove2" data-toggle="modal" data-target="#deleteProductFromCartPage"></a>
                                         </td>
                                         <td class="pr-img-td">
                                             <a href="#" class="product-image">
@@ -259,7 +259,7 @@
 </div>
 
 <!-- Product Delete From Cart Modal -->
-<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="deleteProductFromCartPage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -272,7 +272,7 @@
                 Are You Sure You Want To Remove This Product From The Cart ?? </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="this.deleteProduct(this.seletedProductForDelete)">Yes</button>
+                <button type="button" class="btn btn-primary" (click)="this.deleteProduct()" data-dismiss="modal">Yes</button>
             </div>
         </div>
     </div>

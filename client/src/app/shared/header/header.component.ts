@@ -202,7 +202,7 @@ export class HeaderComponent implements OnInit {
   setProductToDeleteFromCart(product: Product) {
     this.seletedProductForDelete = product;
   }
-  deleteProduct() {
+  deleteProductFromHeader() {
     this.globalService.deleteProductFromCart(this.seletedProductForDelete);
   }
 
