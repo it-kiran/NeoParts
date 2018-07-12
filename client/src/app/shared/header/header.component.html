@@ -111,7 +111,7 @@
                                             <span class="price">{{product.retail | currency:'USD':'true'}}</span>
                                         </p>
                                         <a href="javascript:void(0)" (click)="this.setProductToDeleteFromCart(product)" title="Remove This Item" class="btn-remove"
-                                            data-toggle="modal" data-target="#deleteProduct">
+                                            data-toggle="modal" data-target="#deleteProductFromHeader">
                                             <i class="icon-cancel"></i>
                                         </a>
                                     </div>
@@ -1056,7 +1056,7 @@
 </div>
 
 <!-- Product Delete From Cart Modal -->
-<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="deleteProductFromHeader" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

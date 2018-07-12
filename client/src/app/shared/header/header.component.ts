@@ -201,8 +201,11 @@ export class HeaderComponent implements OnInit {
 
   setProductToDeleteFromCart(product: Product) {
     this.seletedProductForDelete = product;
+    console.log('product for delete', this.seletedProductForDelete);
+
   }
   deleteProductFromHeader() {
+    console.log('product for delete in real delete method.', this.seletedProductForDelete);
     this.globalService.deleteProductFromCart(this.seletedProductForDelete);
   }
 
