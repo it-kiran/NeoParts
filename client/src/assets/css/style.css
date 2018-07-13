@@ -11108,13 +11108,13 @@ p .alternative-font{
 .btn:hover{
     text-decoration:none
 }
-hr.tall{
+/* hr.tall{
     margin:30px 0;
     background-image:-webkit-linear-gradient(left,transparent,rgba(0,0,0,.2),transparent);
     background-image:linear-gradient(left,transparent,rgba(0,0,0,.2),transparent);
     border:0;
     height:1px
-}
+} */
 .entry-content h3{
     font-size:1.7em;
     font-weight:normal;
