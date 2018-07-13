@@ -2,7 +2,6 @@ package com.abm.neo.NeoParts.controller;
 
 
 import com.abm.neo.NeoParts.dto.ProductEcomerceDto;
-import com.abm.neo.NeoParts.entity.ProductDao;
 import com.abm.neo.NeoParts.manager.ProductManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,13 +22,11 @@ public class ProductController {
 
     @RequestMapping(value = "/getAllProduct", method = RequestMethod.GET)
     public List<ProductEcomerceDto> getAllProduct() {
-
         return productManager.getAllProduct();
     }
 
     @RequestMapping(value = "/getAllProductForSearch", method = RequestMethod.GET)
     public List<ProductEcomerceDto> getProduct() {
-
         return productManager.getProductDetails();
     }
 
@@ -44,11 +41,21 @@ public class ProductController {
         return productManager.getEcommerceProductsByCategory(categoryId);
     }
 
+    @RequestMapping(value = "/getFeaturedProducts", method = RequestMethod.GET)
+    public List<ProductEcomerceDto> getFeaturedProducts() {
+        return productManager.getFeaturedProducts();
+    }
+
+    @RequestMapping(value = "/getNewProducts", method = RequestMethod.GET)
+    public List<ProductEcomerceDto> getNewProducts() {
+        return productManager.getNewProducts();
+    }
     @RequestMapping(value = "/getEcommerceProductsByModel", method = RequestMethod.GET)
     public List<ProductEcomerceDto> getEcommerceProductsByModel(@RequestParam int modelId) {
 
         return productManager.getEcommerceProductsByModel(modelId);
     }
+
     @RequestMapping(value = "/insertProductImage", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void insertProductImage(@RequestParam String productNo, @RequestParam("file") MultipartFile file) throws IOException {
 

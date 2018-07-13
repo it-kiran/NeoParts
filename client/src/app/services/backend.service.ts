@@ -12,102 +12,114 @@ import { CustomerService } from '../customer/customer.service';
 export class BackendService {
   private url: string;
 
-  productList: Product [] = [];
+  productList: Product[] = [];
   cartCount: number = 0;
 
   //private apiURL = this.url+'/getWebMenu';
   //private searchURL = this.url+'/getAllProductForSearch';
 
-  data:any = {};
+  data: any = {};
 
 
-  appleInfo:any=[];
+  appleInfo: any = [];
 
   private headers = new Headers({
-    'Authorization': 'Bearer ' +this.customerService.getToken()
-    });
+    'Authorization': 'Bearer ' + this.customerService.getToken()
+  });
 
-  constructor(private http:Http, private customerService: CustomerService) {
+  constructor(private http: Http, private customerService: CustomerService) {
     this.url = environment.productUrl;
   }
 
-  getAllProducts(){
+  getAllProducts() {
 
     let headers = new Headers({
-      'Authorization': 'Bearer ' +this.customerService.getToken()
-      });
+      'Authorization': 'Bearer ' + this.customerService.getToken()
+    });
 
-    return this.http.get(this.url+'/getAllProduct', {headers:headers})
-    .map(this.extractData)
-    .catch(this.handleError);
+    return this.http.get(this.url + '/getAllProduct', { headers: headers })
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
-  getData(){
-    return this.http.get(this.url+'/getWebMenu',{headers :this.headers})
-    .map((res:Response)=>res.json());
+  getData() {
+    return this.http.get(this.url + '/getWebMenu', { headers: this.headers })
+      .map((res: Response) => res.json());
   }
-  
 
-  getFilterSearch(value){
-    return this.http.get(this.url+'/getAllProductForSearch',{headers :this.headers} )
-    .map((res:Response)=>res.json());
+
+  getFilterSearch(value) {
+    return this.http.get(this.url + '/getAllProductForSearch', { headers: this.headers })
+      .map((res: Response) => res.json());
   }
 
   getProductByModelId(modelId: number): Observable<Product[]> {
-    return this.http.get(this.url+'/getEcommerceProductsByModel?modelId='+modelId,{headers :this.headers})
-    .map(this.extractData)
-    .catch(this.handleError);
+    return this.http.get(this.url + '/getEcommerceProductsByModel?modelId=' + modelId, { headers: this.headers })
+      .map(this.extractData)
+      .catch(this.handleError);
   }
   getProductByCategoryId(categoryId: number): Observable<Product[]> {
-    return this.http.get(this.url+'/getProductsByCategory?categoryId='+categoryId,{headers :this.headers})
-    .map(this.extractData)
-    .catch(this.handleError);
+    return this.http.get(this.url + '/getProductsByCategory?categoryId=' + categoryId, { headers: this.headers })
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   addProductToCart(webTransactionDao: Product) {
-    console.log("Transaction Amount",webTransactionDao);
-    this.http.post(this.url+'/addCartItem', webTransactionDao)
+    console.log("Transaction Amount", webTransactionDao);
+    this.http.post(this.url + '/addCartItem', webTransactionDao)
       .subscribe(data => {
         alert('ok');
         console.log(data);
 
-        if(data){
+        if (data) {
           this.productList.push(webTransactionDao);
         }
       },
-      error => {
-        console.log(JSON.stringify(error.json()));
-      });
+        error => {
+          console.log(JSON.stringify(error.json()));
+        });
 
-      this.productList = this.productList.slice();
+    this.productList = this.productList.slice();
 
-      this.productList.forEach((list)=>{
-        this.cartCount = +this.cartCount+list.saleQuantity;
-      })
-      
+    this.productList.forEach((list) => {
+      this.cartCount = +this.cartCount + list.saleQuantity;
+    })
+
   }
   addImage(productNo: string, image: any) {
 
     let headers = new Headers({
-      'Authorization': 'Bearer ' +this.customerService.getToken()
-      });
+      'Authorization': 'Bearer ' + this.customerService.getToken()
+    });
 
     console.log('Customer to be Added' + image);
-     this.http.post(this.url+'/insertProductImage?productNo=' + productNo, image, {headers:headers})
-     .subscribe(data => {
-       console.log('Response From Add Customer call' + data);
-     },
-       error => {
-     console.log(JSON.stringify(error.json()));
-   });
-       }
+    this.http.post(this.url + '/insertProductImage?productNo=' + productNo, image, { headers: headers })
+      .subscribe(data => {
+        console.log('Response From Add Customer call' + data);
+      },
+        error => {
+          console.log(JSON.stringify(error.json()));
+        });
+  }
+
+  getFeaturedProduct(): Observable<Product[]>{
+    return this.http.get(this.url + '/getFeaturedProducts')
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
+  
+  getNewProducts(){
+    return this.http.get(this.url + '/getNewProducts')
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
 
   private extractData(res: Response): Product[] {
     let body = res.json();
     // console.log(body);
     return body || {};
   }
-  
+
   private handleError(error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;

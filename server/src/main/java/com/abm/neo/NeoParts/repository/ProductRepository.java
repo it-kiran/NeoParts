@@ -160,4 +160,68 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             countQuery = "select count(*) from product ORDER BY ?#{#pageable}",
             nativeQuery = true)
     List<Object[]> getAllActiveProducts(Pageable pageable);
+
+    @Query(value = "SELECT p.product_id,\n" +
+            "p.product_no,\n" +
+            "p.description,\n" +
+            "p.category_id,\n" +
+            "p.brand_id,\n" +
+            "p.vendor_id,\n" +
+            "p.model_id,\n" +
+            "im.image,\n" +
+            "i.tier1,\n" +
+            "i.tier2,\n" +
+            "i.tier3,\n" +
+            "sum(i.quantity)\n" +
+            "FROM product p\n" +
+            "LEFT JOIN product_image im\n" +
+            "ON im.product_no = p.product_no\n" +
+            "inner join product_inventory i\n" +
+            "on i.product_no = p.product_no\n" +
+            "WHERE active = 1\n" +
+            "AND ecommerce = 1\n" +
+            "AND p.featured = 1\n" +
+            "group by p.product_no,\n" +
+            "p.description,\n" +
+            "p.category_id,\n" +
+            "p.brand_id,\n" +
+            "p.vendor_id,\n" +
+            "p.model_id,\n" +
+            "im.image,\n" +
+            "i.tier1,\n" +
+            "i.tier2,\n" +
+            "i.tier3", nativeQuery = true)
+    List<Object[]> getAllFeaturedProducts();
+
+    @Query(value = "SELECT p.product_id,\n" +
+            "p.product_no,\n" +
+            "p.description,\n" +
+            "p.category_id,\n" +
+            "p.brand_id,\n" +
+            "p.vendor_id,\n" +
+            "p.model_id,\n" +
+            "im.image,\n" +
+            "i.tier1,\n" +
+            "i.tier2,\n" +
+            "i.tier3,\n" +
+            "sum(i.quantity)\n" +
+            "FROM product p\n" +
+            "LEFT JOIN product_image im\n" +
+            "ON im.product_no = p.product_no\n" +
+            "inner join product_inventory i\n" +
+            "on i.product_no = p.product_no\n" +
+            "WHERE active = 1\n" +
+            "AND ecommerce = 1\n" +
+            "AND p.new_product = 1\n" +
+            "group by p.product_no,\n" +
+            "p.description,\n" +
+            "p.category_id,\n" +
+            "p.brand_id,\n" +
+            "p.vendor_id,\n" +
+            "p.model_id,\n" +
+            "im.image,\n" +
+            "i.tier1,\n" +
+            "i.tier2,\n" +
+            "i.tier3", nativeQuery = true)
+    List<Object[]> getAllNewProducts();
 }

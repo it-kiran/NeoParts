@@ -129,4 +129,13 @@ public class ProductManager {
 
         return  setEcomerceDto(productRepository.getAllActiveProducts(new PageRequest(0, 1)));
     }
+
+    public List<ProductEcomerceDto> getFeaturedProducts() {
+        return setEcomerceDto(productRepository.getAllFeaturedProducts());
+    }
+
+    public List<ProductEcomerceDto> getNewProducts() {
+        return setEcomerceDto(productRepository.getAllNewProducts());
+
+    }
 }

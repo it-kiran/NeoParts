@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BackendService } from '../services/backend.service';
+import { Product, ProductPageComponent } from '../product-page/product-page.component';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,28 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  featuredProductDto: Product[] = [];
+  newProductDto: Product[] = [];
+  constructor(private router: Router, private route: ActivatedRoute, private backEndService: BackendService) { }
 
   ngOnInit() {
+
+    this.getAllFeaturedProducts();
+    this.getAllNewProducts();
+  }
+
+  getAllFeaturedProducts(){
+    this.backEndService.getFeaturedProduct()
+    .subscribe((prodcut)=>{
+      this.featuredProductDto = prodcut;
+    });
+  }
+
+  getAllNewProducts(){
+    this.backEndService.getNewProducts()
+    .subscribe((prodcut)=>{
+      this.newProductDto = prodcut;
+    });
   }
 
 }
