@@ -1,0 +1,142 @@
+.label1 {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+
+.input1 {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin: 0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+    margin: -3px 7px 0 0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-evenly; */
+}
+
+mat-card {
+    list-style-type: none;
+    float: left;
+    width: 217px;
+    font-size: 13px;
+    height: 315px;
+    margin: 3px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.mat-card-image {
+    width: 136px;
+    height: 136px;
+    vertical-align: middle;
+    border: 0px;
+    margin: 0 -24px 16px -24px;
+}
+
+.mat-card-image-test {
+    width: 136px;
+    vertical-align: middle;
+    border: 0;
+    /* margin: 0 16px 16px -24px; */
+}
+
+.outofstock-image{
+    width: 95px;
+    vertical-align: middle;
+    border: 0;
+    height: 90px;
+    z-index: 3;
+    position: absolute;
+    top: 0px;
+    left: 25px;
+}
+
+p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.addToCartOnSalePage {
+    background: red;
+    color: white;
+    margin-top: 5px;
+    width: 100%
+}
+.notify-me-button {
+    background: red;
+    color: white;
+    margin-top: 39px;
+    width: 100%
+}
+
+.top-container>.breadcrumbs {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 13px;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 10px;
+    /* background-color: #d6cfcf; */
+}
+
+.top-container>.breadcrumbs {
+    background-color: #f5f5f5;
+}
+
+a-left {
+    text-align: left!important;
+}
+
+.breadcrumbs li {
+    display: inline;
+    vertical-align: top;
+    color: #777;
+}
+
+.breadcrumbs span.breadcrumbs-split {
+    vertical-align: middle;
+    margin: 0 2px;
+    font-size: 12px;
+}
+
+.test {
+    border-bottom: 1px dashed #ddd;
+    cursor: pointer;
+}
+
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: .65rem;
+}
+
+ .tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.card-header{
+  padding-left: 0px;
+  text-align: left !important;
+}
+
+.btn-link {
+  font-weight: 800;
+   color: red;
+  background-color: transparent;
+}
