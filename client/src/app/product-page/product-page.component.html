@@ -23,16 +23,7 @@
 </div>
 
 <div class="container">
-    <div class="col-md-2">
-
-            <!-- <div style="font-size: 19px;font-weight:600;">Category</div>
-
-            <ul>
-                <li *ngFor="let cat of this.categoryList" class="test">
-                    {{cat.name}}
-                </li>
-            </ul> -->
-
+    <!-- <div class="col-md-2">
         <div id="accordion">
             <div class="card">
               <div class="card-header" id="headingOne">
@@ -65,43 +56,49 @@
                       </div>
                     </div>
                   </div>
-            <!-- <div class="card">
-              <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Collapsible Group Item #2
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            
                 </div>
-              </div>
-            </div> -->
-            <!-- <div class="card">
-              <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Collapsible Group Item #3
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </div>
-              </div>
-            </div> -->
-          </div>
-        <!-- <div style="font-size: 19px;font-weight:600;">Category</div>
+    </div> -->
 
-        <ul>
-            <li *ngFor="let cat of this.categoryList" class="test">
-                {{cat.name}}
-            </li>
-        </ul> -->
-    </div>
+    <div class="col-md-2 col-sm-12 col-xs-12">
+        <div class="categories_slidebar">
+          <h4 class="widget-title">Categories</h4>
+          <!--Accordion wrapper-->
+          <div class="accordion" id="products-tab" role="tablist" aria-multiselectable="true">
+            <!-- Bags -->
+            <div class="card">            
+              <div class="card-header" role="tab" id="bags">
+                  <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="">
+                      Bags <i class="fa fa-angle-up"></i></a>
+              </div>
+              <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="bags">
+                  <ul class="card-body">
+                    <li><a href="javascript:;">Bags-1</a></li>
+                    <li><a href="javascript:;">Bags-2</a></li>
+                    <li><a href="javascript:;">Bags-3</a></li>
+                  </ul>
+              </div>
+            </div>
+            <!-- End Bags -->
+            <!-- Sunglass -->
+            <div class="card">            
+              <div class="card-header" role="tab" id="sunglass">
+                  <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Sunglass <i class="fa fa-angle-up"></i></a>
+              </div>
+              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="sunglass" data-parent="#accordionEx">
+                  <ul class="card-body">
+                    <li><a href="javascript:;">Sunglass-1</a></li>
+                    <li><a href="javascript:;">Sunglass-2</a></li>
+                    <li><a href="javascript:;">Sunglass-3</a></li>
+                  </ul>
+              </div>
+            </div>
+            <!-- End Sunglass -->
+          </div>
+          </div>
+          </div>
+
     <div class="col-md-10" *ngIf="this.customerService.getLogedInUser() != '' ">
         <mat-card *ngFor="let product of this.productList; let index = index; trackBy: trackByFn">
         

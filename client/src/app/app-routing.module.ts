@@ -13,6 +13,9 @@ import { AddressComponent } from './checkout/address/address.component';
 import { AdminComponent } from './admin/admin.component';
 import { ThankyouComponent } from './checkout/thankyou/thankyou.component';
 import { ShippingPageComponent } from './shared/shipping-page/shipping-page.component';
+import { ForgotPasswordComponent } from './customer/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './customer/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './customer/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -24,8 +27,12 @@ const routes: Routes = [
   { path: 'address', component: AddressComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'customer/signup', component: SignupComponent},
+  { path: 'customer/forgot-password', component: ForgotPasswordComponent},
+  { path: 'customer/reset-password', component: ResetPasswordComponent},
+  { path: 'customer/change-password', component: ChangePasswordComponent},
   { path: 'thankyou', component: ThankyouComponent},
-  { path: 'shipping-info', component: ShippingPageComponent}
+  { path: 'shipping-info', component: ShippingPageComponent},
+
 
 
 

@@ -1,3 +1,20 @@
+.categories_slidebar {
+    width: 100%;
+    float: left;
+    border: 1px solid #dfe5e8;
+  }
+  
+  .categories_slidebar .widget-title {
+    width: 100%;
+    float: left;
+    text-transform: uppercase;
+    color: #ff3427;
+    font-weight: bold;
+    padding: 12px;
+    margin: 0;
+    border-bottom: 1px solid #dfe5e8;
+  }
+
 .label1 {
     display: block;
     padding-left: 15px;
