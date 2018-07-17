@@ -318,7 +318,7 @@
                         <div class="block1 col-sm-8">
                           <div class="row">
                             <ul>
-                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-4  ">
+                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-3  ">
                                 <a class="level1" data-id="1127" href="">
                                   <span>Galaxy S Series</span>
                                 </a>
@@ -332,7 +332,7 @@
                                   </ul>
                                 </div>
                               </li>
-                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-4  ">
+                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-3  ">
                                 <a class="level1" data-id="1128" href="">
                                   <span>Galaxy Note Series</span>
                                 </a>
@@ -349,9 +349,9 @@
                                   </ul>
                                 </div>
                               </li>
-                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-4  ">
+                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-3  ">
                                 <a class="level1" data-id="1130" href="">
-                                  <span>See More Samsung Devices</span>
+                                  <span>Other Samsung Devices</span>
                                 </a>
                                 <div class="nav-sublist level1">
                                   <ul>
@@ -385,7 +385,128 @@
                     </div>
                   </div>
                 </li>
-                <li class="menu-full-width  ">
+
+
+                <li class="menu-full-width">
+                  <a href="">LG
+                    <span class="cat-label cat-label-label1">New</span>
+                  </a>
+                  <div class="nav-sublist-dropdown" style="display: none;">
+                    <div class="container">
+                      <div class="top-mega-block">
+                        <div style="margin: 0 20px;padding: 10px 0 15px;border-bottom: 1px solid #eee;width: 63%;color: #000;">
+                          <b style="margin-right: 15px;">SUGGESTIONS:</b>
+                          <a href="" style="margin-right: 15px;color:#000">LG V20</a>
+                          <a href="" style="margin-right: 15px;color:#000">LG Stylo 3 Plus</a>
+                          <a href="" style="margin-right: 15px;color:#000">LG G Stylo LS770</a>
+                          <a href="" style="margin-right: 15px;color:#000">LG G4</a>
+
+                        </div>
+                      </div>
+                      <div class="mega-columns row">
+                        <div class="block1 col-sm-8">
+                          <div class="row">
+                            <ul>
+                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-5  ">
+                                <a class="level1" data-id="1127" href="">
+                                  <span>G Series</span>
+                                </a>
+                                <div class="nav-sublist level1">
+                                  <ul>
+                                    <li class="menu-item " *ngFor="let item of lgGSeries">
+                                      <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
+                                        <span>{{item.name}}</span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </li>
+
+                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-5  ">
+                                <a class="level1" data-id="1130" href="">
+                                  <span>K Series</span>
+                                </a>
+                                <div class="nav-sublist level1">
+                                  <ul>
+                                    <li class="menu-item " *ngFor="let item of lgKSeries">
+                                      <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
+                                        <span>{{item.name}}</span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </li>
+
+                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-5  ">
+                                <a class="level1" data-id="1128" href="">
+                                  <span>V Series</span>
+                                </a>
+                                <div class="nav-sublist level1">
+                                  <ul>
+                                    <li class="menu-item " *ngFor="let item of lgVSeries">
+                                      <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
+                                        <span>
+                                          {{item.name}}
+                                        </span>
+                                      </a>
+                                    </li>
+
+                                  </ul>
+                                </div>
+                              </li>
+                        
+                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-5 ">
+                                <a class="level1" data-id="1130" href="">
+                                  <span>STYLO SERIES</span>
+                                </a>
+                                <div class="nav-sublist level1">
+                                  <ul>
+                                    <li class="menu-item " *ngFor="let item of lgStyloSeries">
+                                      <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
+                                        <span>{{item.name}}</span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </li>
+                              <li class="menu-item menu-item-has-children menu-parent-item col-sw-5  ">
+                                <a class="level1" data-id="1130" href="">
+                                  <span>OTHER SERIES</span>
+                                </a>
+                                <div class="nav-sublist level1">
+                                  <ul>
+                                    <li class="menu-item " *ngFor="let item of lgOtherSeries">
+                                      <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
+                                        <span>{{item.name}}</span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="right-mega-block col-sm-4">
+                          <div class="menu-right-block" style="position: relative;text-align:center;margin-top:34px;">
+                            <a href="">
+                              <img src="assets/images/menu/samsung-menu-image.jpg" alt="" style="margin-top:10px">
+                            </a>
+                            <div style="position: absolute;top: -35px;left: -15px;text-align: left;">
+                              <h2 style="font-size: 23px;font-weight: 600;color: #fff;background-color: #2e2e2e;line-height: 1;padding: 6px 50px 6px 8px;">
+                                <strong style="font-weight: 700;color:#fff">Note 8 Screen Assemblies</strong>
+                              </h2>
+                              <a class="btn btn-default" style="padding: 5px 7px 5px 15px;color: #fff; border: 0;font-size:13px; float: right;" href="">SHOP NOW
+                                <em class="icon-right-dir"></em>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="menu-full-width">
                   <a href="">Other Parts</a>
                   <div class="nav-sublist-dropdown" style="display: none;">
                     <div class="container">
@@ -808,68 +929,73 @@
                   <span>G Series</span>
                 </a>
                 <ul>
-                  <li class="menu-item ">
-                    <a class="level2" data-id="2331" href="#">
-                      <span>G7 ThinQ</span>
+                  <li class="menu-item" *ngFor="let item of lgGSeries">
+                    <a class="level2" data-id="2331" routerLink="/product/model/{{item.modelId}}">
+                      <span>{{item.name}}</span>
                     </a>
                   </li>
     
                 </ul>
               </li>
-              <li class="menu-item menu-item-has-children menu-parent-item  ">
-                <a class="level1" data-id="2171" href="#">
-                  <span>V Series</span>
-                </a>
-                <ul>
 
-                  <li class="menu-item ">
-                    <a class="level2" data-id="2177" href="#">
-                      <span>V30</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
               <li class="menu-item menu-item-has-children menu-parent-item">
                 <a class="level1" data-id="2173" href="#">
                   <span>K Series</span>
                 </a>
 
                 <ul>
-                  <li class="menu-item ">
-                    <a class="level2" data-id="2181" href="#">
-                      <span>K20 Plus</span>
+                  <li class="menu-item" *ngFor="let item of lgKSeries">
+                    <a class="level2" data-id="2331" routerLink="/product/model/{{item.modelId}}">
+                      <span>{{item.name}}</span>
                     </a>
                   </li>
                 </ul>
               </li>
+              
+              <li class="menu-item menu-item-has-children menu-parent-item  ">
+                <a class="level1" data-id="2171" href="#">
+                  <span>V Series</span>
+                </a>
+                <ul>
+
+                  <li class="menu-item" *ngFor="let item of lgVSeries">
+                    <a class="level2" data-id="2331" routerLink="/product/model/{{item.modelId}}">
+                      <span>{{item.name}}</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            
               <li class="menu-item menu-item-has-children menu-parent-item  ">
                 <a class="level1" data-id="2174" href="#">
                   <span>Stylo Series</span>
                 </a>
                 <ul>
 
-                  <li class="menu-item ">
-                    <a class="level2" data-id="2179" href="#">
-                      <span>Stylo 3 Plus</span>
+                  <li class="menu-item" *ngFor="let item of lgStyloSeries">
+                    <a class="level2" data-id="2331" routerLink="/product/model/{{item.modelId}}">
+                      <span>{{item.name}}</span>
                     </a>
                   </li>
                 
                 </ul>
               </li>
+
               <li class="menu-item menu-item-has-children menu-parent-item  ">
-                <a class="level1" data-id="2183" href="#">
-                  <span>Other LG</span>
+                <a class="level1" data-id="2174" href="#">
+                  <span>Other LG Series</span>
                 </a>
                 <ul>
 
-                  <li class="menu-item ">
-                    <a class="level2" data-id="2185" href="#">
-                      <span>X Charge</span>
+                  <li class="menu-item" *ngFor="let item of lgOtherSeries">
+                    <a class="level2" data-id="2331" routerLink="/product/model/{{item.modelId}}">
+                      <span>{{item.name}}</span>
                     </a>
                   </li>
-                  
+                
                 </ul>
               </li>
+
             </ul>
           </li>
           <li class="menu-item menu-item-has-children menu-parent-item  ">

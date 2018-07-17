@@ -42,6 +42,14 @@ export class HeaderComponent implements OnInit {
   samsungS: any = [];
   samsungOther: any = [];
 
+  lgData: any = [];
+  lgGSeries: any = [];
+  lgVSeries:any = [];
+  lgKSeries:any = [];
+  lgStyloSeries:any = [];
+  lgOtherSeries: any = [];
+
+
   searchData: any = [];
   sss = false;
   otherData = [];
@@ -84,6 +92,7 @@ export class HeaderComponent implements OnInit {
           var str = data.webBrandDtoList[i].brandName;
           var mm = str.includes("APPLE");
           var nm = str.includes("SAMSUNG");
+          var lg = str.includes("LG");
 
           if (mm) {
             this.appleData.push(data.webBrandDtoList[i]);
@@ -97,6 +106,9 @@ export class HeaderComponent implements OnInit {
           }
           else if (nm) {
             this.samsungData.push(data.webBrandDtoList[i]);
+          }
+          else if(lg){
+            this.lgData.push(data.webBrandDtoList[i]);
           }
           else {
             if (data.webBrandDtoList[i].modelDtoList.length) {
@@ -143,6 +155,32 @@ export class HeaderComponent implements OnInit {
           }
           else {
             this.samsungOther.push(str)
+          }
+        }
+
+        for (var i = 0; i < this.lgData[0].modelDtoList.length; i++) {
+
+          var str = this.lgData[0].modelDtoList[i];
+          var g = str.name.includes("LG G");
+          var v = str.name.includes("LG V");
+          var ks = str.name.includes("LG K");
+          var stylo = str.name.includes("LG Stylo");
+
+          if (g) {
+            this.lgGSeries.push(str)
+          }
+          else if (v) {
+            this.lgVSeries.push(str)
+          }
+          else if (ks){
+            this.lgKSeries.push(str);
+          }
+          else if(stylo)
+          {
+            this.lgStyloSeries.push(str);
+          }
+          else {
+            this.lgOtherSeries.push(str)
           }
         }
 
