@@ -59,7 +59,6 @@ export class ProductPageComponent implements OnInit {
       .subscribe((product) =>{
         //this.productList = product;
         let selectedCustomer:Customer = this.persistService.getCustomerDetailsForSale();
-        console.log('selected customer', selectedCustomer);
 
         if(selectedCustomer){
 
@@ -77,7 +76,6 @@ export class ProductPageComponent implements OnInit {
         }
         this.productList = product;
         this.productList = this.productList.slice();
-        console.log('product list', this.productList);
 
        this.loadingService.loading = false;
       })
@@ -90,7 +88,6 @@ export class ProductPageComponent implements OnInit {
       .subscribe((product) =>{
         this.productList = product;
         this.productList = this.productList.slice();
-        console.log('product list', this.productList);
 
         this.loadingService.loading = false;
 

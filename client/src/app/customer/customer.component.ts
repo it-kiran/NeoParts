@@ -20,7 +20,7 @@ export class Customer {
   name: string;
   companyName: string;
   email: any;
-  // taxId: any;
+  taxId: any;
   // dateOfBirth: any;
   // type: any;
   // gender: any;

@@ -5,7 +5,7 @@
     </mat-card-title>
     <mat-card-content>
         <form [formGroup]="loginForm">
-            <div class="col-md-6">
+            <div class="col-md-6" style="border: 1px dotted gray;">
                 <h4>LOGIN HERE</h4>
                 <p>FOR EXISTING CUSTOMER</p>
                 <hr>
@@ -59,11 +59,11 @@
             </div>
         </form>
 
-        <div class="vl"></div>
+        <!-- <div class="vl"></div> -->
 
 
         <form [formGroup]="customerForm">
-            <div class="col-md-6">
+            <div class="col-md-6" style="border: 1px dotted gray;">
                 <h4>NEW CUSTOMER</h4>
                 <p>PERSONAL INFORMATION</p>
                 <hr>
@@ -149,9 +149,19 @@
 
                     </li>
                     <li class="signup-li">
+                        <label>Sales Tax Id
+                    </label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="taxId">
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="signup-ul">
+                    <li class="signup-li" style="width: 100%">
                         <label>Street Address
                         <em>*</em>
-
+    
                     </label>
                         <div>
                             <input type="text" class="form-control" formControlName="street">
@@ -164,6 +174,7 @@
                         </div>
                     </li>
                 </ul>
+
                 <ul class="signup-ul">
                     <li class="signup-li">
                         <label>City

@@ -42,7 +42,8 @@ export class SignupComponent implements OnInit {
         'name': [''],
         'createdTimestamp': [''],
         'tier':[''],
-        'operationType':['']
+        'operationType':[''],
+        'taxId':['']
       }
     );
 

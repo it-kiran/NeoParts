@@ -72,12 +72,14 @@ export class HeaderComponent implements OnInit {
 
     //console.log('lit after simple', this.list);
 
+    this.loadingService.loading = true;
 
     this.backendService.getData()
       .subscribe(data => {
+
+        console.log('response from Server',data);
         this.loadingService.loading = true;
 
-        console.log(data)
         for (var i = 0; i < data.webBrandDtoList.length; i++) {
           var str = data.webBrandDtoList[i].brandName;
           var mm = str.includes("APPLE");
@@ -178,7 +180,6 @@ export class HeaderComponent implements OnInit {
     //   this.purchasedProductList = products;
     //   console.log('Product on change by subject', this.purchasedProductList);
     // });
-    this.loadingService.loading = true;
 
     this._subscription = this.globalService.purchasedProductListChange.subscribe((products) => {
       this.purchasedProductList = products;
@@ -194,7 +195,6 @@ export class HeaderComponent implements OnInit {
       this.totalAmount = totalAmount;
       console.log('subject Total Amount', this.totalAmount);
     });
-    this.loadingService.loading = false;
 
 
   }
