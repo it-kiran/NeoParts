@@ -243,14 +243,14 @@
                           <div class="row">
                             <ul>
                               <li class="menu-item menu-item-has-children menu-parent-item col-sw-2 ">
-                                <a class="level1" data-id="782" href="">
+                                <a class="level1" data-id="782" href="javascript:void(0);">
                                   <span>iPhone</span>
                                 </a>
                                 <div class="nav-sublist level1">
                                   <ul>
                                     <li class="menu-item " *ngFor="let item of appleDataIphone">
-                                      <a class="level2" routerLink="/product/model/{{item.modelId}}">
-                                        <span (click)="this.test()">
+                                      <a class="level2" routerLink="/product/model/{{item.modelId}}" href="javascript:void(0);">
+                                        <span (click)="this.hideMenu()">
                                           {{item.name}}
                                         </span>
                                       </a>
@@ -267,7 +267,7 @@
                                   <ul>
                                     <li class="menu-item " *ngFor="let item of appleDataIpad">
                                       <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
-                                        <span>
+                                        <span (click)="this.hideMenu()">
                                           {{item.name}}
                                         </span>
                                       </a>
@@ -326,7 +326,7 @@
                                   <ul>
                                     <li class="menu-item " *ngFor="let item of samsungS">
                                       <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
-                                        <span>{{item.name}}</span>
+                                        <span (click)="this.hideMenu()">{{item.name}}</span>
                                       </a>
                                     </li>
                                   </ul>
@@ -340,7 +340,7 @@
                                   <ul>
                                     <li class="menu-item " *ngFor="let item of samsungNote">
                                       <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
-                                        <span>
+                                        <span (click)="this.hideMenu()">
                                           {{item.name}}
                                         </span>
                                       </a>
@@ -357,7 +357,7 @@
                                   <ul>
                                     <li class="menu-item " *ngFor="let item of samsungOther">
                                       <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
-                                        <span>{{item.name}}</span>
+                                        <span (click)="this.hideMenu()">{{item.name}}</span>
                                       </a>
                                     </li>
                                   </ul>
@@ -415,7 +415,7 @@
                                   <ul>
                                     <li class="menu-item " *ngFor="let item of lgGSeries">
                                       <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
-                                        <span>{{item.name}}</span>
+                                        <span (click)="this.hideMenu()">{{item.name}}</span>
                                       </a>
                                     </li>
                                   </ul>
@@ -430,7 +430,7 @@
                                   <ul>
                                     <li class="menu-item " *ngFor="let item of lgKSeries">
                                       <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
-                                        <span>{{item.name}}</span>
+                                        <span (click)="this.hideMenu()">{{item.name}}</span>
                                       </a>
                                     </li>
                                   </ul>
@@ -445,7 +445,7 @@
                                   <ul>
                                     <li class="menu-item " *ngFor="let item of lgVSeries">
                                       <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
-                                        <span>
+                                        <span (click)="this.hideMenu()">
                                           {{item.name}}
                                         </span>
                                       </a>
@@ -463,7 +463,7 @@
                                   <ul>
                                     <li class="menu-item " *ngFor="let item of lgStyloSeries">
                                       <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
-                                        <span>{{item.name}}</span>
+                                        <span (click)="this.hideMenu()">{{item.name}}</span>
                                       </a>
                                     </li>
                                   </ul>
@@ -477,7 +477,7 @@
                                   <ul>
                                     <li class="menu-item " *ngFor="let item of lgOtherSeries">
                                       <a class="level2" data-id="989" routerLink="/product/model/{{item.modelId}}">
-                                        <span>{{item.name}}</span>
+                                        <span (click)="this.hideMenu()">{{item.name}}</span>
                                       </a>
                                     </li>
                                   </ul>
@@ -534,7 +534,7 @@
                                       <ul>
                                         <li class="menu-item " *ngFor="let model of brand.modelDtoList">
                                           <a class="level2" data-id="1870" href="#">
-                                            <span>{{model.name}}</span>
+                                            <span (click)="this.hideMenu()">{{model.name}}</span>
                                           </a>
                                         </li>
                                       </ul>
@@ -568,7 +568,7 @@
                                       <ul>
                                         <li class="menu-item" *ngFor='let k of j'>
                                           <a class="level2" data-id="1870" href="#">
-                                            <span>{{brand.modelDtoList[k].name}}</span>
+                                            <span (click)="this.hideMenu()">{{brand.modelDtoList[k].name}}</span>
                                           </a>
                                         </li>
                                       </ul>

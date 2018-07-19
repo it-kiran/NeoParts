@@ -9,7 +9,7 @@ import { count } from 'rxjs/operator/count';
 import { CustomerService } from '../../customer/customer.service';
 import { LoadingService } from '../../loading.service';
 declare var jquery: any;
-// declare var $: any;
+declare var $: any;
 // declare var $: JQueryStatic;
 
 
@@ -199,10 +199,8 @@ export class HeaderComponent implements OnInit {
 
   // }
 
-  test() {
-    console.log('inside the test');
-    // $('#mainDiv').hide();
-
+  hideMenu() {
+    $(".nav-sublist-dropdown").fadeOut("slow");
   }
   goToAdmin() {
     this.router.navigate(['/admin']);

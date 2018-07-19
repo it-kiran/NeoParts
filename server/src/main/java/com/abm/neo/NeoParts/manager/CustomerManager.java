@@ -17,6 +17,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.ByteArrayOutputStream;
+import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -115,6 +117,7 @@ public class CustomerManager {
 
 
                     String subject = " Welcome " + customerDao.getName();
+
                     final String password = storeSetupDao.getEmailPassword();
 
                     Properties props = new Properties();
@@ -202,6 +205,113 @@ public class CustomerManager {
 //        mail.setText("Dear :" + customerDto.getFirstName() + "We have received your request for joining Excel-Wireless," +
 //                " We will get back to you with in 24 hours. ");
 //        javaMailSender.send(mail);
+    }
+
+    public boolean sendEmailToResetPassword(String email) {
+
+        boolean response = false;
+        CustomerDao customerDao = customerRepository.findByEmail(email);
+        StoreSetupDao storeSetupDao = storeSetupRepository.findOne(1);
+
+        if(null !=storeSetupDao && null != customerDao && null != customerDao.getEmail())
+        {
+
+            // Now First I need to generate the token and set the expiry date for the token for to reset password link.
+
+            SecureRandom random = new SecureRandom();
+            byte bytes[] = new byte[20];
+            random.nextBytes(bytes);
+            String token = Arrays.toString(bytes);
+
+
+
+
+            String from = storeSetupDao.getEmail();
+            String to = customerDao.getEmail();
+            String newline = System.getProperty("line.separator");
+
+
+            String content = "Dear " + customerDao.getName()
+                    + newline
+                    + newline
+                    + newline
+                    + "We have received your request to reset password for your account."
+                    + newline
+                    + "If you requested this password change, please click on link below to reset your password here:"
+                    + newline
+                    + newline
+                    + newline
+                    +"http://neocellularparts.com/#/";
+
+
+
+        String subject = " Reset Password Conformation For " + customerDao.getName();
+
+        final String password = storeSetupDao.getEmailPassword();
+
+        Properties props = new Properties();
+        props.setProperty("mail.transport.protocol", "smtp");
+        props.setProperty("mail.host", "smtp.gmail.com");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+        props.put("mail.debug", "true");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.socketFactory.fallback", "false");
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(from, password);
+                    }
+                });
+        ByteArrayOutputStream outputStream = null;
+
+
+        try {
+            //construct the text body part
+            MimeBodyPart textBodyPart = new MimeBodyPart();
+            textBodyPart.setText(content);
+
+            //construct the mime multi part
+            MimeMultipart mimeMultipart = new MimeMultipart();
+            mimeMultipart.addBodyPart(textBodyPart);
+
+            Transport transport = session.getTransport();
+            InternetAddress addressFrom = new InternetAddress(from);
+
+            MimeMessage message = new MimeMessage(session);
+
+            message.setSender(addressFrom);
+            message.setSubject(subject);
+            message.setContent(mimeMultipart);
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            transport.connect();
+            Transport.send(message);
+            transport.close();
+            response = true;
+
+            System.out.println("sent from " + to +
+                    ", to " + to +
+                    "; server = " + from + ", port = " + from);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response = false;
+        } finally {
+            //clean off
+            if (null != outputStream) {
+                try {
+                    outputStream.close();
+                    outputStream = null;
+                } catch (Exception ex) {
+                    response = false;
+                }
+            }
+        }
+    }
+
+
+return response;
     }
 //    private void sendEmailToAdmin(CustomerDto customerDto) throws MailException {
 //
