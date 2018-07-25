@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { ShippingPageComponent } from './shipping-page/shipping-page.component';
+import { BuyBackComponent } from './buy-back/buy-back.component';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { ShippingPageComponent } from './shipping-page/shipping-page.component';
     RouterModule
 
   ],
-  declarations: [HeaderComponent, FooterComponent,FilterPipe, ShippingPageComponent],
+  declarations: [HeaderComponent, FooterComponent,FilterPipe, ShippingPageComponent, BuyBackComponent],
   providers:[],
   bootstrap: [HeaderComponent,FooterComponent],
   exports: [

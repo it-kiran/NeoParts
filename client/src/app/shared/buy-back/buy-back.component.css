@@ -1,0 +1,23 @@
+.section-header {
+    font-weight: bold;
+    color: #ed2024;
+    font-size: 30px;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+span{
+    font-weight: 1000; 
+    color: #e21f24;
+    font-size: 28px; 
+    text-align: center;
+}
+
+.col-md-6 {
+    padding: 0px;
+}
+.mat-card {
+    height: 100%;
+}

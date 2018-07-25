@@ -16,6 +16,7 @@ import { ShippingPageComponent } from './shared/shipping-page/shipping-page.comp
 import { ForgotPasswordComponent } from './customer/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './customer/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './customer/change-password/change-password.component';
+import { BuyBackComponent } from './shared/buy-back/buy-back.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -32,6 +33,8 @@ const routes: Routes = [
   { path: 'customer/change-password', component: ChangePasswordComponent},
   { path: 'thankyou', component: ThankyouComponent},
   { path: 'shipping-info', component: ShippingPageComponent},
+  { path: 'buy-back', component: BuyBackComponent},
+
 
 
 
