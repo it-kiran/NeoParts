@@ -21,3 +21,21 @@ span{
 .mat-card {
     height: 100%;
 }
+
+.p-left {
+    text-align: left;
+}
+
+h1 {
+    font-size: 20px;
+    color: red;
+}
+
+.li-flex {
+    display: flex;
+}
+
+td:first-child{
+    color: red;
+    font-size: 18px;
+}
