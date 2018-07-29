@@ -163,6 +163,9 @@ export class ProductPageComponent implements OnInit {
     customerPhoneNo: string;
     date: any;
     status: any;
+    featured:boolean;
+    onSale: boolean;
+    newProduct:boolean;
   }
   
   

@@ -43,6 +43,9 @@ public class ProductDao implements Serializable {
     private boolean active;
     private boolean ecommerce;
     private boolean relatedProduct;
+    private boolean newProduct;
+    private boolean onSale;
+    private boolean featured;
 
 
     private String returnRule;
@@ -324,5 +327,29 @@ public class ProductDao implements Serializable {
 
     public void setOperationType(String operationType) {
         this.operationType = operationType;
+    }
+
+    public boolean isNewProduct() {
+        return newProduct;
+    }
+
+    public void setNewProduct(boolean newProduct) {
+        this.newProduct = newProduct;
+    }
+
+    public boolean isOnSale() {
+        return onSale;
+    }
+
+    public void setOnSale(boolean onSale) {
+        this.onSale = onSale;
+    }
+
+    public boolean isFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(boolean featured) {
+        this.featured = featured;
     }
 }

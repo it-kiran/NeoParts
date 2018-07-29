@@ -174,16 +174,17 @@
 
 .products .product-info .product-title {
     margin-bottom: 0;    
-    color: #5f727f;
+    color: black;
         line-height: 16px;
         font-size: 12px;
 }
 .products .product-info .price ins, .products .product-info .price .amount {
-    color: #00bcd4;    
+    color: black;    
         line-height: 18px;
         font-size: 13px;
-            margin: 3px 0;
-    display: block;
+        font-weight: 650;
+        margin: 3px 0;
+        display: block;
 }
 .products .product-inner:hover {
     border-color: #f4f6f7;
@@ -251,17 +252,19 @@
 //     /* justify-content: space-evenly; */
 // }
 
-// mat-card {
-//     list-style-type: none;
-//     float: left;
-//     width: 217px;
-//     font-size: 13px;
-//     height: 315px;
-//     margin: 3px;
-//     text-align: center;
-//     padding-left: 5px;
-//     padding-right: 5px;
-// }
+.mat-card {
+    list-style-type: none;
+    float: left;
+    width: 217px;
+    font-size: 13px;
+    height: 315px;
+    margin: 3px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: white;
+    background: red;
+}
 
 // .mat-card-image {
 //     width: 136px;
@@ -289,26 +292,30 @@
 //     left: 25px;
 // }
 
-// p {
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//     -webkit-line-clamp: 2;
-//     display: -webkit-box;
-//     -webkit-box-orient: vertical;
-// }
+p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-align: left;
+}
 
-// .addToCartOnSalePage {
-//     background: red;
-//     color: white;
-//     margin-top: 5px;
-//     width: 100%
-// }
-// .notify-me-button {
-//     background: red;
-//     color: white;
-//     margin-top: 39px;
-//     width: 100%
-// }
+.addToCartOnSalePage {
+    background: red;
+    color: white;
+    margin-top: 5px;
+    width: 100%;
+    line-height: 32px;
+}
+.notify-me-button {
+    background: red;
+    color: white;
+    margin-top: 35px;
+    width: 100%;
+    line-height: 32px;
+
+}
 
 // .top-container>.breadcrumbs {
 //     display: flex;

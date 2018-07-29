@@ -70,6 +70,9 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "p.brand_id,\n" +
             "p.vendor_id,\n" +
             "p.model_id,\n" +
+            "p.new_product," +
+            "p.on_sale," +
+            "p.featured,\n" +
             "im.image,\n" +
             "i.tier1,\n" +
             "i.tier2,\n" +
@@ -92,7 +95,10 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "im.image,\n" +
             "i.tier1,\n" +
             "i.tier2,\n" +
-            "i.tier3", nativeQuery = true)
+            "i.tier3," +
+            "p.new_product," +
+            "p.on_sale," +
+            "p.featured", nativeQuery = true)
     List<Object[]> getEcommerceProductsByCategory(int category_id);
 
     @Query(value = "SELECT\n" +
@@ -102,7 +108,10 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "p.category_id,\n" +
             "p.brand_id,\n" +
             "p.vendor_id,\n" +
-            "p.model_id,\n" +
+            "p.model_id," +
+            "p.new_product," +
+            "p.on_sale," +
+            "p.featured,\n" +
             "im.image,\n" +
             "i.tier1, \n" +
             "i.tier2,\n" +
@@ -125,7 +134,10 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "im.image,\n" +
             "i.tier1, \n" +
             "i.tier2,\n" +
-            "i.tier3", nativeQuery = true)
+            "i.tier3," +
+            "p.new_product," +
+            "p.on_sale," +
+            "p.featured", nativeQuery = true)
     List<Object[]> getEcommerceProductsByBrand(int modelId);
 
     @Query(value = "SELECT p.product_id,\n" +
@@ -135,6 +147,9 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "p.brand_id,\n" +
             "p.vendor_id,\n" +
             "p.model_id,\n" +
+            "p.new_product," +
+            "p.on_sale," +
+            "p.featured,\n" +
             "im.image,\n" +
             "i.tier1,\n" +
             "i.tier2,\n" +
@@ -156,7 +171,7 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "im.image,\n" +
             "i.tier1,\n" +
             "i.tier2,\n" +
-            "i.tier3 ORDER BY ?#{#pageable}",
+            "i.tier3,p.new_product,p.on_sale,p.featured ORDER BY ?#{#pageable}",
             countQuery = "select count(*) from product ORDER BY ?#{#pageable}",
             nativeQuery = true)
     List<Object[]> getAllActiveProducts(Pageable pageable);
@@ -168,6 +183,9 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "p.brand_id,\n" +
             "p.vendor_id,\n" +
             "p.model_id,\n" +
+            "p.new_product," +
+            "p.on_sale," +
+            "p.featured,\n" +
             "im.image,\n" +
             "i.tier1,\n" +
             "i.tier2,\n" +
@@ -190,7 +208,7 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "im.image,\n" +
             "i.tier1,\n" +
             "i.tier2,\n" +
-            "i.tier3", nativeQuery = true)
+            "i.tier3,p.new_product,p.on_sale,p.featured", nativeQuery = true)
     List<Object[]> getAllFeaturedProducts();
 
     @Query(value = "SELECT p.product_id,\n" +
@@ -200,6 +218,9 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "p.brand_id,\n" +
             "p.vendor_id,\n" +
             "p.model_id,\n" +
+            "p.new_product," +
+            "p.on_sale," +
+            "p.featured,\n" +
             "im.image,\n" +
             "i.tier1,\n" +
             "i.tier2,\n" +
@@ -222,6 +243,6 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
             "im.image,\n" +
             "i.tier1,\n" +
             "i.tier2,\n" +
-            "i.tier3", nativeQuery = true)
+            "i.tier3,p.new_product,p.on_sale,p.featured", nativeQuery = true)
     List<Object[]> getAllNewProducts();
 }

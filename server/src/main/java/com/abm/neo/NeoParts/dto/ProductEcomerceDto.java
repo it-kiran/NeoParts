@@ -25,6 +25,12 @@ public class ProductEcomerceDto {
     private boolean tax;
     private byte[] image;
 
+    private boolean newProduct;
+    private boolean onSale;
+    private boolean featured;
+
+
+
     public int getProductId() {
         return productId;
     }
@@ -151,5 +157,29 @@ public class ProductEcomerceDto {
 
     public void setTier3(double tier3) {
         this.tier3 = tier3;
+    }
+
+    public boolean isNewProduct() {
+        return newProduct;
+    }
+
+    public void setNewProduct(boolean newProduct) {
+        this.newProduct = newProduct;
+    }
+
+    public boolean isOnSale() {
+        return onSale;
+    }
+
+    public void setOnSale(boolean onSale) {
+        this.onSale = onSale;
+    }
+
+    public boolean isFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(boolean featured) {
+        this.featured = featured;
     }
 }

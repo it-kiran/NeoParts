@@ -82,11 +82,15 @@ public class ProductManager {
                 productEcomerceDto.setVendorId(j[5].toString());
                 if(null != j[6]){
                     productEcomerceDto.setModelId(j[6].toString());
-
                 }
-                if(null != j[7]) {
 
-                    productEcomerceDto.setImage((byte[]) j[7]);
+                productEcomerceDto.setNewProduct(Integer.parseInt(j[7].toString()) > 0);
+                productEcomerceDto.setOnSale(Integer.parseInt(j[8].toString()) > 0);
+                productEcomerceDto.setFeatured(Integer.parseInt(j[9].toString()) > 0);
+
+                if(null != j[10]) {
+
+                    productEcomerceDto.setImage((byte[]) j[10]);
 
                     // This is helpful to send null on ui so i can show no image found image, otherwise its sending [] this ui and only description is showing on product grid.
                     if(productEcomerceDto.getImage().length < 1)
@@ -95,10 +99,10 @@ public class ProductManager {
                     }
                 }
 
-                productEcomerceDto.setTier1(Double.parseDouble(j[8].toString()));
-                productEcomerceDto.setTier2(Double.parseDouble(j[9].toString()));
-                productEcomerceDto.setTier3(Double.parseDouble(j[10].toString()));
-                productEcomerceDto.setQuantity(Integer.parseInt(j[11].toString()));
+                productEcomerceDto.setTier1(Double.parseDouble(j[11].toString()));
+                productEcomerceDto.setTier2(Double.parseDouble(j[12].toString()));
+                productEcomerceDto.setTier3(Double.parseDouble(j[13].toString()));
+                productEcomerceDto.setQuantity(Integer.parseInt(j[14].toString()));
 
 
 
