@@ -1,8 +1,10 @@
 package com.abm.neo.NeoParts.manager;
 
 import com.abm.neo.NeoParts.dto.CustomerDao;
+import com.abm.neo.NeoParts.entity.ResetPasswordToken;
 import com.abm.neo.NeoParts.entity.StoreSetupDao;
 import com.abm.neo.NeoParts.repository.CustomerRepository;
+import com.abm.neo.NeoParts.repository.ResetPasswordRepository;
 import com.abm.neo.NeoParts.repository.StoreSetupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -17,10 +19,12 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.ByteArrayOutputStream;
-import java.security.SecureRandom;
-import java.util.Arrays;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 /**
  * Created by apatel2 on 5/17/17.
@@ -34,6 +38,9 @@ public class CustomerManager {
 
     @Autowired
     private StoreSetupRepository storeSetupRepository;
+
+    @Autowired
+    private ResetPasswordRepository resetPasswordRepository;
 
 
     public void addCustomer(CustomerDao customerDao) {
@@ -215,19 +222,22 @@ public class CustomerManager {
 
         if(null !=storeSetupDao && null != customerDao && null != customerDao.getEmail())
         {
-
             // Now First I need to generate the token and set the expiry date for the token for to reset password link.
+            String token = generateRandomToken();
+            ResetPasswordToken resetPasswordToken = new ResetPasswordToken();
 
-            SecureRandom random = new SecureRandom();
-            byte bytes[] = new byte[20];
-            random.nextBytes(bytes);
-            String token = Arrays.toString(bytes);
+            String currentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            resetPasswordToken.setEmail(customerDao.getEmail());
+            resetPasswordToken.setCreatedDate(currentDate);
+            //resetPasswordToken.setExpiryDate();
+            resetPasswordToken.setToken(token);
 
-
-
+            resetPasswordRepository.save(resetPasswordToken);
 
             String from = storeSetupDao.getEmail();
             String to = customerDao.getEmail();
+//             String to = "";
+
             String newline = System.getProperty("line.separator");
 
 
@@ -241,7 +251,7 @@ public class CustomerManager {
                     + newline
                     + newline
                     + newline
-                    +"http://neocellularparts.com/#/";
+                    +"http://neocellularparts.com/#/customer/reset-password?email="+customerDao.getEmail()+"&token="+token;
 
 
 
@@ -312,6 +322,63 @@ public class CustomerManager {
 
 
 return response;
+    }
+
+    private String generateRandomToken() {
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        return buffer.toString();
+    }
+
+    public void resetPassword(CustomerDao customerDao) throws ParseException {
+
+        if(null != customerDao){
+
+            //First Validate the token and experation date and email address.
+            boolean isValidToken =  validateToken(customerDao);
+
+            if(isValidToken && customerDao.getPassword().equals(customerDao.getConfirmPassword())){
+                customerRepository.changePassword(customerDao.getPassword(), customerDao.getEmail());
+            }
+        }
+
+    }
+
+    private boolean validateToken(CustomerDao customerDao) throws ParseException {
+
+        boolean response = false;
+        ResetPasswordToken resetPasswordToken = resetPasswordRepository.findFirstByEmailOrderByCreatedDateDesc(customerDao.getEmail());
+
+        if(null != resetPasswordToken)
+        {
+            // first check the token Expiration date-- > here i am making link active for 10 min only.
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            String currentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            Date date1 = format.parse(resetPasswordToken.getCreatedDate());
+            Date currentDate1 = format.parse(currentDate);
+
+            long difference = currentDate1.getTime() - date1.getTime();
+
+            // Which is 10 min--> link will expired after 10 min
+            if(difference <= 600000) {
+
+                if (resetPasswordToken.getEmail().equalsIgnoreCase(customerDao.getEmail())
+                        && resetPasswordToken.getToken().equals(customerDao.getToken())) {
+                    response = true;
+                }
+            }
+        }
+
+        return response;
     }
 //    private void sendEmailToAdmin(CustomerDto customerDto) throws MailException {
 //

@@ -96,6 +96,31 @@ constructor(private http: Http,  private router: Router, private persitService: 
       window.location.reload();
   }
 
+  sendResetPasswordLink(email: string){
+    let headers = new Headers({
+      'Authorization': 'Bearer ' +this.getToken(),
+      'content-type': 'application/json'
+      });
+
+     this.http.post(this.url+'/sendEmailToResetPassword',email, {headers: headers})
+     .subscribe((test) =>{
+       console.log('test', test);
+     })
+  }
+
+  resetPassword(customerDao: Customer){
+    let headers = new Headers({
+      'content-type': 'application/json'
+      });
+
+      this.http.post(this.url+'/resetPassword',customerDao, {headers: headers})
+      .subscribe((test) =>{
+        console.log('Reset password', test);
+      })
+
+
+  }
+
     private extractData(res: Response): Customer[] {
     let body = res.json();
     // console.log(body);

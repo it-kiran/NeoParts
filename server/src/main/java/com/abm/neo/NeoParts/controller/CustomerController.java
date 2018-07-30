@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 
 @RestController
 @RequestMapping("*")
@@ -35,13 +36,17 @@ public class CustomerController {
     @RequestMapping(value = "/getCustomerDetailsByEmail", method = RequestMethod.GET, produces = "application/json")
     public CustomerDao getCustomerDetailsByEmail(@RequestParam String email) throws SQLException {
         return customerManager.getCustomerDetailsByEmail(email);
-
     }
 
     @RequestMapping(value = "/sendEmailToResetPassword", method = RequestMethod.POST, consumes = "application/json")
-    public void sendEmailToResetPassword(@RequestParam String email)
+    public void sendEmailToResetPassword(@RequestBody String email)
     {
         customerManager.sendEmailToResetPassword(email);
+    }
+
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST, consumes = "application/json")
+    public void resetPassword(@RequestBody CustomerDao customerDao) throws ParseException {
+        customerManager.resetPassword(customerDao);
     }
 
 

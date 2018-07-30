@@ -87,6 +87,10 @@ export class SignupComponent implements OnInit {
 
   register(){
 
+    if(!this.customerForm.valid){
+      alert('Please fill all required fields');
+    }
+
     let name:string = this.customerForm.get('firstName').value;
     let a = this.customerForm.get('lastName');
 

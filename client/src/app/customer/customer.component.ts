@@ -36,5 +36,7 @@ export class Customer {
   createdTimestamp: any;
   validUser: boolean;
   tier: number;
+  confirmPassword?:string;
+  token?:string;
   // customerNote: any;
 }

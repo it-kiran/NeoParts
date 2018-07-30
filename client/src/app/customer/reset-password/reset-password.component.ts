@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { CustomerService } from '../customer.service';
+import { Customer } from '../customer.component';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -8,8 +11,10 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
+  email: string;
+  token:string;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -18,9 +23,21 @@ export class ResetPasswordComponent implements OnInit {
         'password': ['', Validators.required],
         'confirmPassword': ['', Validators.required]
       });
+
+      // Here I am getting email address and token from the form the url
+      this.email = this.activatedRoute.snapshot.queryParams["email"];
+      this.token = this.activatedRoute.snapshot.queryParams["token"];
   }
 
-  sendResetLink(){
+  resetPassword(){
+
+    let customerDao = new Customer();
+    customerDao.email = this.email;
+    customerDao.password = this.resetPasswordForm.get('password').value;
+    customerDao.confirmPassword = this.resetPasswordForm.get('confirmPassword').value;
+    customerDao.token = this.token;
+
+   this.customerService.resetPassword(customerDao);
     
   }
 }

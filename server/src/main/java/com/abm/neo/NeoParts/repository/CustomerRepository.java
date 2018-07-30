@@ -2,6 +2,7 @@ package com.abm.neo.NeoParts.repository;
 
 import com.abm.neo.NeoParts.dto.CustomerDao;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
@@ -21,6 +22,10 @@ public interface CustomerRepository extends JpaRepository<CustomerDao, String> {
     CustomerDao findByEmail(String email);
 
     CustomerDao findByEmailAndPassword(String email, String password);
+
+    @Modifying
+    @Query(value = "UPDATE customer set password = ?1 where email = ?2", nativeQuery = true)
+    void changePassword(String password, String email);
 
     @Query(value = "SELECT distinct c.name,\n" +
             "SUM(l.sale_quantity) quantity, \n" +

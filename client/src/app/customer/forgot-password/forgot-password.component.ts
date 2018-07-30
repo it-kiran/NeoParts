@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomerService } from '../customer.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,7 +11,7 @@ export class ForgotPasswordComponent implements OnInit {
   
   forgotPasswordForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private customerService: CustomerService) { }
 
   ngOnInit() {
 
@@ -22,6 +23,8 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   sendResetLink(){
+    console.log('in side rest')
+    this.customerService.sendResetPasswordLink(this.forgotPasswordForm.get('email').value);
     
   }
 

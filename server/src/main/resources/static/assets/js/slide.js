@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    $('.top-links-icon').on('click', () => {
+        $('.links').toggle();
+    });
+
     $('.tp-leftarrow').click(function() {
         var state = 0;
         $('.tp-revslider-mainul').children('.tp-revslider-slidesli').each(function(index) {
@@ -205,4 +209,6 @@ $(document).ready(function() {
         $(this).children('.topCartContent').fadeOut(200);
         return false;
     });
+
+
 });

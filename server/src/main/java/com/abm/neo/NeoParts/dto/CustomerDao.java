@@ -49,6 +49,12 @@ public class CustomerDao {
     @Transient
     private String operationType;
 
+    @Transient
+    private  String confirmPassword;
+
+    @Transient
+    private String token;
+
     public String getPhoneNo() {
         return phoneNo;
     }
@@ -235,5 +241,21 @@ public class CustomerDao {
 
     public void setOperationType(String operationType) {
         this.operationType = operationType;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
