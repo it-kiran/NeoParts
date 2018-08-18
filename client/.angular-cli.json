@@ -20,16 +20,16 @@
         "styles": [
             "../src/assets/css/A_002.css",
             "../src/assets/css/A_003.css",
+            "../src/assets/css/owl.carousel.css",
             "styles.css",
             "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-
-         
         ],
         "scripts": [
             "../src/assets/js/jquery.js",
+            "../node_modules/jquery/dist/jquery.min.js",
+            "../src/assets/js/owl.carousel.js",
             "../src/assets/js/slide.js",
             "../src/assets/js/megamenu.js",
-            "../node_modules/jquery/dist/jquery.min.js",
             "../node_modules/bootstrap/dist/js/bootstrap.min.js",
             "../node_modules/popper.js/dist/umd/popper.min.js"
         ],

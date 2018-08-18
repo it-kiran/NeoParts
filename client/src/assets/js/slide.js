@@ -1,8 +1,54 @@
 $(document).ready(function() {
 
+
+
     $('.top-links-icon').on('click', () => {
         $('.links').toggle();
     });
+
+    // $('.owl-carousel').owlCarousel({
+    //     rtl:true,
+    //     loop:true,
+    //     margin:10,
+    //     nav:true,
+    //     responsive:{
+    //         0:{
+    //             items:1
+    //         },
+    //         600:{
+    //             items:3
+    //         },
+    //         1000:{
+    //             items:5
+    //         }
+    //     }
+    // });
+
+    $(".product-slider").owlCarousel(
+        {
+            items : 6,
+            loop: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+          autoplayHoverPause: false,
+          responsive:
+          {
+              0:{
+                  items:1,
+                dots: false,
+              },
+              600:{
+                  items:3,
+              },
+              1000:{
+                  items:5,
+              },
+              1400:{
+                  items:6,
+                  loop:true
+              }
+          }
+        });
 
     $('.tp-leftarrow').click(function() {
         var state = 0;
