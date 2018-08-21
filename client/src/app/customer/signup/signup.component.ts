@@ -73,7 +73,7 @@ export class SignupComponent implements OnInit {
        // window.location.reload();
       }else {
         this.loginSuccess = false;
-        this.toastr.success('Wrong Username Or Password', null, {positionClass: "toast-top-center"});
+        this.toastr.error('Wrong Username Or Password', null, {positionClass: "toast-top-center"});
       }
     }
     ,

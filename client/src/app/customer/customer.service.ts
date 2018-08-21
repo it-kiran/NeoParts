@@ -6,6 +6,7 @@ import { Customer } from './customer.component';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { ServicesService } from '../shared/services.service';
+import { ToastsManager } from 'ng2-toastr';
 
 
 
@@ -17,7 +18,7 @@ private customerDetails: any;
 
  
 
-constructor(private http: Http,  private router: Router, private persitService: ServicesService) { 
+constructor(private http: Http,  private router: Router, private persitService: ServicesService,private toastr: ToastsManager) { 
  this.url = environment.productUrl;
   //this.getCustomerDetails();
   
@@ -55,6 +56,12 @@ constructor(private http: Http,  private router: Router, private persitService: 
       let headers = new Headers({'Content-Type': 'application/json'});
       return this.http.post(this.url+'/auth',JSON.stringify({username: username, password: password}),{headers: headers})
       .map((response: Response) => {
+        console.log(response);
+
+        if(response.json() == "Bad credentials!") {
+          alert("wring ce");
+        }
+
             // login successful if there's a jwt token in the response
             let token = response.json() && response.json().token;
 
@@ -71,7 +78,14 @@ constructor(private http: Http,  private router: Router, private persitService: 
               return false;
           }
       })
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .catch((errorResponse: Response | any)=>{
+        console.log('in error',errorResponse );
+
+        if(errorResponse.status == 401){
+          this.toastr.error("Wrong Username Or Password !!", "Error");
+        }
+        return Observable.throw(errorResponse);
+      });
     }
 
     public getToken(): String {
