@@ -15,13 +15,9 @@ export class CustomerService {
 private url: string;
 private customerDetails: any;
  
-
- 
-
 constructor(private http: Http,  private router: Router, private persitService: ServicesService,private toastr: ToastsManager) { 
  this.url = environment.productUrl;
   //this.getCustomerDetails();
-  
 }
     addOrUpdateCustomer(customer: Customer)
     {
