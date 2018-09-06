@@ -131,7 +131,7 @@ public class ProductManager {
 
     public List<ProductEcomerceDto> getAllProduct() {
 
-        return  setEcomerceDto(productRepository.getAllActiveProducts(new PageRequest(0, 1)));
+        return  setEcomerceDto(productRepository.getAllActiveProducts(new PageRequest(0, 10000)));
     }
 
     public List<ProductEcomerceDto> getFeaturedProducts() {
