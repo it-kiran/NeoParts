@@ -194,6 +194,8 @@ export class HeaderComponent implements OnInit {
 
   }
 
+ 
+
   // hideNavMenu(){
   //   $('#mainDiv').hide();
 

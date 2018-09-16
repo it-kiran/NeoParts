@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BackendService } from '../services/backend.service';
 import { Product, ProductPageComponent } from '../product-page/product-page.component';
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-home',
@@ -18,6 +20,7 @@ export class HomeComponent implements OnInit {
 
     this.getAllFeaturedProducts();
     this.getAllNewProducts();
+    // this.loadSlider();
   }
 
   getAllFeaturedProducts(){
@@ -33,5 +36,24 @@ export class HomeComponent implements OnInit {
       this.newProductDto = prodcut;
     });
   }
+
+  // loadSlider() {
+  //   $('.product-slider').owlCarousel({
+  //     loop:true,
+  //     margin:10,
+  //     nav:true,
+  //     responsive:{
+  //         0:{
+  //             items:1
+  //         },
+  //         600:{
+  //             items:3
+  //         },
+  //         1000:{
+  //             items:5
+  //         }
+  //     }
+  // })
+  // }
 
 }

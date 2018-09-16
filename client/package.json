@@ -33,8 +33,10 @@
         "ng2-notify-popup": "^0.1.25",
         "ng2-toastr": "^4.1.2",
         "ng4-click-outside": "^1.0.1",
+        "ngx-drag-scroll": "^2.0.0-beta.6",
         "popper.js": "^1.12.9",
         "rxjs": "^5.5.6",
+        "swiper": "^3.4.2",
         "zone.js": "^0.8.19"
     },
     "devDependencies": {

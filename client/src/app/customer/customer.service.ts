@@ -127,9 +127,8 @@ constructor(private http: Http,  private router: Router, private persitService: 
       .subscribe((test) =>{
         console.log('Reset password', test);
       })
-
-
   }
+  
 
     private extractData(res: Response): Customer[] {
     let body = res.json();

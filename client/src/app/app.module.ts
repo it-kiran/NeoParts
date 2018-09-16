@@ -26,6 +26,11 @@ import { ServicesService } from './shared/services.service';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingService } from './loading.service';
+import { DragScrollModule } from 'ngx-drag-scroll';
+
+
+
+
 
 
 
@@ -47,6 +52,7 @@ import { LoadingService } from './loading.service';
     CheckoutModule,
     VirtualScrollModule,
     AdminModule,
+    DragScrollModule,
     ToastModule.forRoot()
 
   ],

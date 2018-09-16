@@ -86,11 +86,26 @@ export class ProductPageComponent implements OnInit {
 
       this.backendService.getProductByCategoryId(id)
       .subscribe((product) =>{
+
+        let selectedCustomer:Customer = this.persistService.getCustomerDetailsForSale();
+
+        if(selectedCustomer){
+
+            product.forEach((product)=>{
+            if(selectedCustomer.tier == 3){
+              product.retail = product.tier3;
+            }
+            else if(selectedCustomer.tier == 2){
+              product.retail = product.tier2;
+            }
+            else if(selectedCustomer.tier == 1){
+              product.retail = product.tier1;
+            }
+          });
+        }
         this.productList = product;
         this.productList = this.productList.slice();
-
         this.loadingService.loading = false;
-
       });
     }
   
