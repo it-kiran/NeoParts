@@ -67,13 +67,13 @@ export class SignupComponent implements OnInit {
 
       console.log('response', response);
       if(response){
-        this.toastr.success('Wel-Come, Login Successfully!!', null, {positionClass: "toast-top-center"});
+        this.toastr.success('Welcome, Login Successfully!', null, {positionClass: "toast-top-center"});
         this.router.navigate(['']);
         this.globalService.getPurchasedProductList();
        // window.location.reload();
       }else {
         this.loginSuccess = false;
-        this.toastr.error('Wrong Username Or Password', null, {positionClass: "toast-top-center"});
+        this.toastr.error('Wrong Username Or Password!', null, {positionClass: "toast-top-center"});
       }
     }
     ,
@@ -102,7 +102,7 @@ export class SignupComponent implements OnInit {
     this.customerService.addOrUpdateCustomer(this.customerForm.value)
     .subscribe(data => {
       if(data.status == 200 || data.status == 201){
-        this.toastr.success('Wel-Come'+name+' Please check your email for login details', 'Registered Successfully!!');
+        this.toastr.success('Welcome'+name+' Please check your email for login details', 'Registered Successfully!!');
         this.router.navigate(['']);
       }
     },
