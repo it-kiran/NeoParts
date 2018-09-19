@@ -19,6 +19,7 @@ export class ProductPageComponent implements OnInit {
   productList: Product[] = [];
   menuDto: MenuDto[] = [];
   categoryList: Category[] = [];
+  brandList: Brand[] = [];
   cartCount: number = 0;
   alok: Product[] = [];
 
@@ -119,11 +120,19 @@ export class ProductPageComponent implements OnInit {
         //console.log('menu', data);
   
         for(var i =0;i<data.categoryDtoList.length;i++){
-          var str = data.categoryDtoList[i].name;
+          // var str = data.categoryDtoList[i].name;
           //console.log('str', str);
   
           this.categoryList.push(data.categoryDtoList[i]);
         }
+        for(var i = 0; i<data.webBrandDtoList.length; i++) {
+          var str = data.webBrandDtoList[i].name;
+                    // console.log('brand response', data.webBrandDtoList);
+
+          this.brandList.push(data.webBrandDtoList[i]);
+        }
+        this.brandList = this.brandList.slice();
+        console.log('BrandsList', this.brandList);
         this.categoryList = this.categoryList.slice();
         this.loadingService.loading = false;
 
@@ -163,6 +172,8 @@ export class ProductPageComponent implements OnInit {
       this.productList.forEach((addedProduct)=>{
         if(addedProduct.saleQuantity > 0) {
           addedProduct.customerPhoneNo = selectedCustomer.phoneNo;
+          addedProduct.status = 'Online';
+          addedProduct.date = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
           productOrderedList.push(addedProduct);
         }
       });
@@ -208,8 +219,9 @@ export class ProductPageComponent implements OnInit {
     categoryId: number;
   }
   export class Brand {
-    name: string;
+    brandName: string;
     brandId: number;
+    modelDtoList: Model[];
   }
   export class Model{
     name: string;

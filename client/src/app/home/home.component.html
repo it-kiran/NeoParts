@@ -74,132 +74,23 @@
         <h2>Featured Products</h2>
       </div>
       <hr>
-
-      <!-- <div>
-        <drag-scroll>
-          <img drag-scroll-item src="some-url" />
-          <img drag-scroll-item src="some-url" />
-          <img drag-scroll-item src="some-url" />
-        </drag-scroll>
-      </div> -->
-
-
-      <!-- <div class="main-product-slider" *ngIf="this.featuredProductDto != undefined">
-        <div class="product-slider owl-carousel owl-theme">
-          <div class="item" *ngFor="let featureProduct of this.featuredProductDto; let i = index">
-            <div class="product-box">
-              <a href="javascript:;">
-                {{i}} {{featureProduct.description}}
-              </a>
+      <div class="main-product-slider">
+          <div class="product-slider owl-carousel owl-theme">
+  
+            <div class="item" *ngFor="let featuredProduct of this.featuredProductDto">
+              <div class="product-box">
+                <a class="product-description-color" href="javascript:;">
+                  <img *ngIf="(featuredProduct.image!=null)" src="data:image/png;base64,{{featuredProduct.image}}" alt="" height="100" width="100">
+                  <!-- <img *ngIf="(featuredProduct.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png" height="100" width="100"> -->
+                  {{featuredProduct.description}}</a>
+              </div>
             </div>
           </div>
         </div>
-      </div> -->
 
-      <!-- <div class="owl-carousel owl-theme">
-        <div class="item"><h4>1</h4></div>
-        <div class="item"><h4>2</h4></div>
-        <div class="item"><h4>3</h4></div>
-        <div class="item"><h4>4</h4></div>
-        <div class="item"><h4>5</h4></div>
-        <div class="item"><h4>6</h4></div>
-        <div class="item"><h4>7</h4></div>
-        <div class="item"><h4>8</h4></div>
-        <div class="item"><h4>9</h4></div>
-        <div class="item"><h4>10</h4></div>
-        <div class="item"><h4>11</h4></div>
-        <div class="item"><h4>12</h4></div>
-    </div> -->
-      <!-- <div class="main-product-slider">
-        <div class="product-slider owl-carousel owl-theme">
 
-          <div class="item" *ngFor="let featureProduct of this.featuredProductDto">
-            <div class="product-box">
-              <a class = "product-description-color" href="javascript:;" >
-                <img *ngIf="(featureProduct.image!=null)" src="data:image/png;base64,{{featureProduct.image}}" alt="">
-                <img *ngIf="(featureProduct.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png">
-                {{featureProduct.description}}</a>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="main-product-slider">
-        <div class="product-slider owl-carousel owl-theme">
-          <div class="item">
-            <div class="product-box">
-              <a href="javascript:;"><img src="assets/image/mobile.png" alt="">Google-Pixel</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="product-box">
-              <a href="javascript:;"><img src="assets/image/mobile.png" alt="">Google-Pixel</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="product-box">
-              <a href="javascript:;"><img src="assets/image/mobile.png" alt="">Google-Pixel</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="product-box">
-              <a href="javascript:;"><img src="assets/image/mobile.png" alt="">Google-Pixel</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="product-box">
-              <a href="javascript:;"><img src="assets/image/mobile.png" alt="">Google-Pixel</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="product-box">
-              <a href="javascript:;"><img src="assets/image/mobile.png" alt="">Google-Pixel</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="product-box">
-              <a href="javascript:;"><img src="assets/image/mobile.png" alt="">Google-Pixel</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="product-box">
-              <a href="javascript:;"><img src="assets/image/mobile.png" alt="">Google-Pixel</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="product-box">
-              <a href="javascript:;"><img src="assets/image/mobile.png" alt="">Google-Pixel</a>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
 
-    Copy
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
     <div class="row">
       <hr>
 
@@ -213,8 +104,8 @@
           <div class="item" *ngFor="let newProducts of this.newProductDto">
             <div class="product-box">
               <a class="product-description-color" href="javascript:;">
-                <img *ngIf="(newProducts.image!=null)" src="data:image/png;base64,{{newProducts.image}}" alt="">
-                <img *ngIf="(newProducts.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png">
+                <img *ngIf="(newProducts.image!=null)" src="data:image/png;base64,{{newProducts.image}}" alt="" height="100" width="100">
+                <!-- <img *ngIf="(newProducts.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png" height="100" width="100"> -->
                 {{newProducts.description}}</a>
             </div>
           </div>
