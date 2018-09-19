@@ -64,28 +64,7 @@ export class BackendService {
       .catch(this.handleError);
   }
 
-  addProductToCart(webTransactionDao: Product) {
-    console.log("Transaction Amount", webTransactionDao);
-    this.http.post(this.url + '/addCartItem', webTransactionDao)
-      .subscribe(data => {
-        alert('ok');
-        console.log(data);
 
-        if (data) {
-          this.productList.push(webTransactionDao);
-        }
-      },
-        error => {
-          console.log(JSON.stringify(error.json()));
-        });
-
-    this.productList = this.productList.slice();
-
-    this.productList.forEach((list) => {
-      this.cartCount = +this.cartCount + list.saleQuantity;
-    })
-
-  }
   addImage(productNo: string, image: any) {
 
     let headers = new Headers({

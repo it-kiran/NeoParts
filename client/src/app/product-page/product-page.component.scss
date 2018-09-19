@@ -243,3 +243,16 @@ p {
     line-height: 32px;
 
 }
+
+.cart-button{
+    position: fixed;
+    right: 15px;
+    cursor: pointer;
+    text-align: center;
+    z-index: 10;
+    img{
+        width: 70px;
+        color: transparent;
+        vertical-align: middle;
+    }
+}

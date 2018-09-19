@@ -81,6 +81,54 @@ export class GlobalService {
           console.log(JSON.stringify(error.json()));
         });
   }
+
+  addAllProductToCart(webTransactionLineItemDaoList: Array<Product>) {
+
+    let headers = new Headers({
+      'Authorization': 'Bearer ' + this.customerService.getToken()
+    });
+    this.http.post(this.url+'/addAllToCart', webTransactionLineItemDaoList,{ headers: headers })
+    .subscribe((data)=>{
+      console.log('response After adding all to backend', data.json());
+
+      if(data.json)
+      {
+      // Adding product one by on to purchased produt array.
+      webTransactionLineItemDaoList.forEach((addedProducts)=>{
+        this.purchasedProductList.push(addedProducts);
+      });
+
+      this.purchasedProductList = this.purchasedProductList.slice();
+
+      let quantity = 0;
+      let totalAmount = 0;
+
+      this.purchasedProductList.forEach((count) => {
+        quantity = +quantity + count.saleQuantity;
+        totalAmount = +totalAmount + (count.saleQuantity * count.retail);
+      });
+       // To set decimal values to 2 digits.
+       totalAmount = Math.round(totalAmount * 1e2) / 1e2;
+
+       console.log('sale quanity forth check', quantity);
+
+       this.totalPurchasedProductCount = quantity;
+       this.totalPurchasedProductAmount = totalAmount;
+
+       this.purchasedProductListChange.next(this.purchasedProductList);
+       this.totalPurchasedProductCountChange.next(this.totalPurchasedProductCount);
+       this.totalPurchasedProductAmountChange.next(this.totalPurchasedProductAmount);
+
+       console.log('purchased product after add and slice', this.purchasedProductList)
+    }
+
+    },
+    error => {
+      console.log(JSON.stringify(error.json()));
+    });
+  }
+
+
   updateProductFromCart(webTransactionDao: Product) {
 
     let headers = new Headers({

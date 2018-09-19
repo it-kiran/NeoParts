@@ -31,6 +31,11 @@ public class TransactionController {
     {
         return webTransactionManager.addCartItem(webTransactionDao);
     }
+    @RequestMapping(method = RequestMethod.POST, value = "/addAllToCart", consumes = "application/json")
+    public List<WebTransactionLineItemDao> addAllToCart(@RequestBody List<WebTransactionLineItemDao> webTransactionLineItemDaoList)
+    {
+        return webTransactionManager.addAllTransactionLineItemToDB(webTransactionLineItemDaoList);
+    }
     @RequestMapping(value = "/getCartItem", method = RequestMethod.GET, produces = "application/json")
     public List<WebTransactionLineItemDao> getCartItem(String phoneNo)
     {

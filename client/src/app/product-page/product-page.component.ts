@@ -154,6 +154,24 @@ export class ProductPageComponent implements OnInit {
         
       //console.log('added cart product List', this.backendService.productList);
     }
+
+    addAllProducts()
+    {
+      let productOrderedList: Product[] =[];
+      let selectedCustomer: Customer = this.persistService.getCustomerDetailsForSale();
+
+      this.productList.forEach((addedProduct)=>{
+        if(addedProduct.saleQuantity > 0) {
+          addedProduct.customerPhoneNo = selectedCustomer.phoneNo;
+          productOrderedList.push(addedProduct);
+        }
+      });
+      this.globalService.addAllProductToCart(productOrderedList)
+    }
+
+    // getProducts(options: ProductOptions) {
+    //   return this.productService.getProducts(options);
+    // }
   
   }
 

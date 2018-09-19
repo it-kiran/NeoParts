@@ -1,6 +1,5 @@
 package com.abm.neo.NeoParts.manager;
 
-import com.abm.neo.NeoParts.entity.ProductDao;
 import com.abm.neo.NeoParts.entity.WebTransactionDao;
 import com.abm.neo.NeoParts.entity.WebTransactionLineItemDao;
 import com.abm.neo.NeoParts.repository.ProductRepository;
@@ -93,5 +92,11 @@ public class WebTransactionManager {
 
     public void clearCart(String username) {
         webTransactionLineItemRepository.deleteAllByCustomerPhoneNo(username);
+    }
+
+    public List<WebTransactionLineItemDao> addAllTransactionLineItemToDB(List<WebTransactionLineItemDao> webTransactionLineItemDaoList) {
+
+       return webTransactionLineItemRepository.save(webTransactionLineItemDaoList);
+
     }
 }
