@@ -1,10 +1,13 @@
 package com.abm.neo.NeoParts.manager;
 
+import com.abm.neo.NeoParts.dto.CustomerDao;
 import com.abm.neo.NeoParts.entity.TransactionDao;
 import com.abm.neo.NeoParts.entity.TransactionLineItemDao;
 import com.abm.neo.NeoParts.entity.WebTransactionLineItemDao;
+import com.abm.neo.NeoParts.repository.CustomerRepository;
 import com.abm.neo.NeoParts.repository.TransactionLineItemRepository;
 import com.abm.neo.NeoParts.repository.TransactionRepository;
+import com.abm.neo.NeoParts.repository.WebTransactionLineItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +28,12 @@ public class TransactionsManager {
 
     @Autowired
     private TransactionLineItemRepository transactionLineItemRepository;
+
+    @Autowired
+    private WebTransactionLineItemRepository webTransactionLineItemRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
 //    @Autowired
 //    private Utility utility;
@@ -73,9 +82,15 @@ public class TransactionsManager {
                 
                 transactionLineItemList.add(transactionLineItemDao);
             }
+
+             CustomerDao customerDao = customerRepository.findByPhoneNo(customerPhoneNo);
             
             // Now set transactionDao
             transactionDao.setCustomerPhoneno(customerPhoneNo);
+            if(null != customerDao)
+            {
+                transactionDao.setCustomerFirstLastName(customerDao.getName());
+            }
             transactionDao.setDate(currentDate);
             transactionDao.setStatus("Online");
             transactionDao.setSubtotal(totalAmount);
@@ -84,6 +99,14 @@ public class TransactionsManager {
             transactionDao.setTransactionLineItemDaoList(transactionLineItemList);
             
             transactionDao =  transactionRepository.save(transactionDao);
+
+            // This mean Online order successfully inserted into main transaction table, so i need to delete line item from web line item table.
+            if(null != transactionDao && transactionDao.getTransactionComId() > 0) {
+                webTransactionLineItemRepository.deleteAllByCustomerPhoneNo(transactionDao.getCustomerPhoneno());
+
+                // TODO also need to send an email to customer with order details.
+            }
+
             
         }
         

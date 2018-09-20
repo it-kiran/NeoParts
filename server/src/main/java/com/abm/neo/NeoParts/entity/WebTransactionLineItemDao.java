@@ -30,6 +30,7 @@ import javax.persistence.*;
         @Transient
         private byte[] image;
 
+
         public int getTransactionLineItemId() {
             return transactionLineItemId;
         }
@@ -149,4 +150,5 @@ import javax.persistence.*;
         public void setProductId(int productId) {
             this.productId = productId;
         }
+
     }
