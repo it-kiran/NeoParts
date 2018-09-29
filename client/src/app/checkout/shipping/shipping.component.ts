@@ -17,6 +17,13 @@ export class ShippingComponent implements OnInit {
   _subscription: any;
   _totalAmountSubscription: any;
   _totalQuantitySubscription: any;
+
+  fexExGround: number = 0;
+  fedExOverNight: number = 0;
+  USPSPriority: number = 0;
+  storePickup: number = 0;
+
+
   
   constructor(private globalService: GlobalService,private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) {
     this.globalService.getPurchasedProductList();
@@ -38,6 +45,14 @@ export class ShippingComponent implements OnInit {
     });
     this._totalAmountSubscription = this.globalService.totalPurchasedProductAmountChange.subscribe((totalAmount)=>{
       this.totalAmount = totalAmount;
+
+      if(this.totalAmount < 500){
+        this.fexExGround = 10;
+      }
+      if(this.totalAmount < 1000) {
+        this.fedExOverNight =  25;
+      }
+      
       console.log('subject Total Amount', this.totalAmount);
     });
     this._totalQuantitySubscription = this.globalService.totalPurchasedProductCountChange.subscribe((count)=>{
