@@ -1,9 +1,6 @@
 package com.abm.neo.NeoParts.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -15,8 +12,10 @@ import java.io.Serializable;
 public class ProductDao implements Serializable {
 
     @Id
-    private String productNo;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int productId;
 
+    private String productNo;
     private String description;
 
     private String categoryId;
@@ -46,7 +45,6 @@ public class ProductDao implements Serializable {
     private boolean newProduct;
     private boolean onSale;
     private boolean featured;
-
 
     private String returnRule;
     private double customLoyaltyAmount;
@@ -80,6 +78,14 @@ public class ProductDao implements Serializable {
     @Transient
     private String operationType;
 
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
 
     public String getProductNo() {
         return productNo;

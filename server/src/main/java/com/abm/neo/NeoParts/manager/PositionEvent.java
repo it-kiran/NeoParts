@@ -1,4 +1,4 @@
-package com.abm.pos.ABMPos.manager;
+package com.abm.neo.NeoParts.manager;
 
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;

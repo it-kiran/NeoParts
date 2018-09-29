@@ -22,6 +22,7 @@ export class ProductPageComponent implements OnInit {
   brandList: Brand[] = [];
   cartCount: number = 0;
   alok: Product[] = [];
+  
 
   constructor(private http:Http,private globalService:GlobalService, private backendService: BackendService,private router: Router, private route: ActivatedRoute, public customerService: CustomerService, private persistService: ServicesService,public loadingService: LoadingService) { 
   }
@@ -177,7 +178,22 @@ export class ProductPageComponent implements OnInit {
           productOrderedList.push(addedProduct);
         }
       });
-      this.globalService.addAllProductToCart(productOrderedList)
+     let rep = this.globalService.addAllProductToCart(productOrderedList);
+
+     console.log('response', rep);
+  // Now I need to set sale quantity to 0 so user won't buy same product again.
+
+      // this.productList.forEach((addedProduct)=>{
+      //   if(addedProduct.saleQuantity > 0) {
+      //     addedProduct.saleQuantity = 0;
+      //   }
+      // });
+    
+    
+      this.globalService.getPurchasedProductList();
+
+
+
     }
 
     // getProducts(options: ProductOptions) {

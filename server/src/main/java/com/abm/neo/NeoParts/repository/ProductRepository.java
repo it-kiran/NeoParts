@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Transactional
-public interface ProductRepository extends JpaRepository<ProductDao, String> {
+public interface ProductRepository extends JpaRepository<ProductDao, Integer> {
 
     public static final String KEY = "products";
 
@@ -50,6 +50,8 @@ public interface ProductRepository extends JpaRepository<ProductDao, String> {
     List<Object[]> getProductForSearch(String searchInput);
 
     List<ProductDao> findAll();
+
+    ProductDao findOneByProductId(Integer productId);
 
     ProductDao findOneByProductNo(String productNo);
 

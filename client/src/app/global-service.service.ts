@@ -82,11 +82,13 @@ export class GlobalService {
         });
   }
 
-  addAllProductToCart(webTransactionLineItemDaoList: Array<Product>) {
+  addAllProductToCart(webTransactionLineItemDaoList: Array<Product>): boolean {
 
     let headers = new Headers({
       'Authorization': 'Bearer ' + this.customerService.getToken()
     });
+
+    let response: boolean = false;
     this.http.post(this.url+'/addAllToCart', webTransactionLineItemDaoList,{ headers: headers })
     .subscribe((data)=>{
       console.log('response After adding all to backend', data.json());
@@ -106,6 +108,8 @@ export class GlobalService {
       this.purchasedProductList.forEach((count) => {
         quantity = +quantity + count.saleQuantity;
         totalAmount = +totalAmount + (count.saleQuantity * count.retail);
+
+        response = true;
       });
        // To set decimal values to 2 digits.
        totalAmount = Math.round(totalAmount * 1e2) / 1e2;
@@ -124,8 +128,11 @@ export class GlobalService {
 
     },
     error => {
+      response = false;
       console.log(JSON.stringify(error.json()));
     });
+
+    return response;
   }
 
 

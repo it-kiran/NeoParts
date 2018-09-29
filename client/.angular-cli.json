@@ -18,9 +18,9 @@
         "testTsconfig": "tsconfig.spec.json",
         "prefix": "app",
         "styles": [
+            "../src/assets/css/owl.carousel.css",
             "../src/assets/css/A_002.css",
             "../src/assets/css/A_003.css",
-            "../src/assets/css/owl.carousel.css",
             "../node_modules/bootstrap/dist/css/bootstrap.min.css",
             "styles.css"
         ],

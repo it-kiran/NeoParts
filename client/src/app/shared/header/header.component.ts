@@ -79,6 +79,8 @@ export class HeaderComponent implements OnInit {
     //this.list = this.globalService.purchasedProductList;
 
     //console.log('lit after simple', this.list);
+    this.getPurchasedProductList();
+
 
     this.loadingService.loading = true;
 

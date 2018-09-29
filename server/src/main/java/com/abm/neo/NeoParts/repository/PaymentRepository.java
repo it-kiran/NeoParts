@@ -1,13 +1,11 @@
-package com.abm.pos.ABMPos.repository;
+package com.abm.neo.NeoParts.repository;
 
-import com.abm.pos.ABMPos.dao.CategoryDao;
-import com.abm.pos.ABMPos.dao.PaymentDao;
+import com.abm.neo.NeoParts.entity.PaymentDao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

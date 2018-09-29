@@ -48,8 +48,8 @@ public class TransactionDao {
     @JoinColumn(name = "transaction_com_id")
     private List<TransactionLineItemDao> transactionLineItemDaoList;
 
-//    @Transient
-//    private List<PaymentDao> paymentDao;
+    @Transient
+    private List<PaymentDao> paymentDao;
 
 //    @Transient
 //    private List<PaymentDetails> paymentDetails;
@@ -269,5 +269,13 @@ public class TransactionDao {
 
     public void setTotalBalanceDue(double totalBalanceDue) {
         this.totalBalanceDue = totalBalanceDue;
+    }
+
+    public List<PaymentDao> getPaymentDao() {
+        return paymentDao;
+    }
+
+    public void setPaymentDao(List<PaymentDao> paymentDao) {
+        this.paymentDao = paymentDao;
     }
 }

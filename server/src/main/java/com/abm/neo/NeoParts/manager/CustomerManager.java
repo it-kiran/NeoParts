@@ -380,6 +380,11 @@ return response;
 
         return response;
     }
+
+    public CustomerDao getCustomerByPhoneNo(String phoneNo) {
+
+        return customerRepository.findByPhoneNo(phoneNo);
+    }
 //    private void sendEmailToAdmin(CustomerDto customerDto) throws MailException {
 //
 //        SimpleMailMessage mail = new SimpleMailMessage();

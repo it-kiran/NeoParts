@@ -4,47 +4,38 @@
       <div class="col-md-3 col-sm-12 col-xs-12">
         <div class="categories_slidebar">
           <h4 class="widget-title">Brands</h4>
-          <div class="accordion" id="accordionExample">
-              <div class="card" *ngFor="let brand of this.brandList; let index = index">
-                <div class="card-header" id="headingOne">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      {{brand.brandName}}
-                    </button>
-                  </h5>
-                </div>
-            
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                  <div class="card-body" *ngFor="let model of brand.modelDtoList; let index2 = index" >
-                    {{model.name}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <h4 class="widget-title">Category</h4>
-            <div class="accordion" id="accordionExample">
-                <div class="card" *ngFor="let category of this.categoryList; let index = index">
-                  <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        {{category.name}}
-                      </button>
-                    </h5>
-                  </div>
-                </div>
+
+          <div class="accordion">
+            <div class="card" *ngFor="let brand of this.brandList; let index = index">
+              <div class="card-header" id="products-tab">
+                <a data-toggle="collapse" data-parent="#products-tab" href="#collapseOne-{{index}}" aria-expanded="true"
+                  aria-controls="collapseOne" class="">
+                  {{brand.brandName}}
+                  <i class="fa fa-angle-up"></i>
+                </a>
               </div>
 
+              <div *ngFor="let model of brand.modelDtoList;" id="collapseOne-{{index}}" class="collapse in"
+                role="tabpanel" aria-labelledby="bags">
+                <ul class="card-body">
+                  <li>
+                    <a href="#">{{model.name}}</a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
-
-
+  
       <div class="col-md-9 col-sm-12 col-xs-12 pull-right">
 
-           <!-- This is add all to cart logic -->
-           <div *ngIf="this.customerService.getLogedInUser() != '' " class="cart-button" (click)="this.addAllProducts()">
-              <img src="/assets/images/Cart.png">
-              <p>Add All To Cart</p>
-          </div>
+        <!-- This is add all to cart logic -->
+        <div *ngIf="this.customerService.getLogedInUser() != '' " class="cart-button" (click)="this.addAllProducts()">
+          <img src="/assets/images/Cart.png">
+          <p>Add All To Cart</p>
+        </div>
 
         <!-- Product View With Customer login -->
         <div class="row products" *ngIf="this.customerService.getLogedInUser() != '' ">
@@ -61,7 +52,8 @@
                 <span class="product-image-inner">
                   <picture>
                     <img *ngIf="(product.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png">
-                    <img *ngIf="(product.image!=null)" src="data:image/png;base64,{{product.image}}" class="attachment-thegem_shop_catalog" alt="NEO">
+                    <img *ngIf="(product.image!=null)" src="data:image/png;base64,{{product.image}}" class="attachment-thegem_shop_catalog"
+                      alt="NEO">
                   </picture>
                   <!-- <picture>
                       <img src="/assets/images/final_logo_3000x1000.png" class="attachment-$size woo-product-hover" alt="NEO">
@@ -83,8 +75,8 @@
                     </span>
                   </span>
                 </div>
-                <input *ngIf="product.quantity > 0" type="number" class="form-control" placeholder="Enter Quantity" name=a{{index}} [(ngModel)]='product.saleQuantity'
-                  min="1">
+                <input *ngIf="product.quantity > 0" type="number" class="form-control" placeholder="Enter Quantity"
+                  name=a{{index}} [(ngModel)]='product.saleQuantity' min="1">
 
                 <div *ngIf="product.quantity > 0">
                   <button mat-button class="addToCartOnSalePage" (click)="this.addProductToCart(product)">
@@ -123,7 +115,8 @@
                 <span class="product-image-inner">
                   <picture>
                     <img *ngIf="(product.image==null)" class="mat-card-image-test mat-card-image" mat-card-image src="assets/images/noImage.png">
-                    <img *ngIf="(product.image!=null)" src="data:image/png;base64,{{product.image}}" class="attachment-thegem_shop_catalog" alt="NEO">
+                    <img *ngIf="(product.image!=null)" src="data:image/png;base64,{{product.image}}" class="attachment-thegem_shop_catalog"
+                      alt="NEO">
                   </picture>
 
                   <!-- <picture>
