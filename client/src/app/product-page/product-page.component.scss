@@ -18,6 +18,8 @@
     background: #f4f6f7;
     width: 100%;
     float: left;
+    font-size: 15px;
+    color: black;
 }
 
 #products-tab .card-header {padding: 0 12px;border-bottom: 1px solid #dfe5e8;}
@@ -255,4 +257,9 @@ p {
         color: transparent;
         vertical-align: middle;
     }
+}
+ ul {
+    padding-top: 5px;
+    padding-bottom: 0px;
+    font-size: 14px
 }

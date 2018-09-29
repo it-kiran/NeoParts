@@ -1,5 +1,12 @@
 <div class="bg-white">
   <main class="main-content container" role="main">
+    <div class="row mt-50 mb-50" style=" display: flex; justify-content: flex-end; margin-bottom: 10px;" >
+        <button style="max-width: 20%;" mat-button class="addToCartOnSalePage" (click)="this.addAllProducts()">
+            <i class="fa fa-cart-plus"></i>
+            Add All to Cart
+          </button>
+    </div>
+
     <div class="row mt-50 mb-50">
       <div class="col-md-3 col-sm-12 col-xs-12">
         <div class="categories_slidebar">
@@ -15,8 +22,8 @@
                 </a>
               </div>
 
-              <div *ngFor="let model of brand.modelDtoList;" id="collapseOne-{{index}}" class="collapse in"
-                role="tabpanel" aria-labelledby="bags">
+              <div *ngFor="let model of brand.modelDtoList;" id="collapseOne-{{index}}" class="collapse in" role="tabpanel"
+                aria-labelledby="bags">
                 <ul class="card-body">
                   <li>
                     <a href="#">{{model.name}}</a>
@@ -28,7 +35,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="col-md-9 col-sm-12 col-xs-12 pull-right">
 
         <!-- This is add all to cart logic -->
