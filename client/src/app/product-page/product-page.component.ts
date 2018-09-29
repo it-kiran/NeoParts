@@ -111,7 +111,7 @@ export class ProductPageComponent implements OnInit {
       });
     }
   
-    getMenuDetails(){
+    getMenuDetails() {
 
       this.loadingService.loading = true;
 
