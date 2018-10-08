@@ -163,6 +163,44 @@ export class ProductPageComponent implements OnInit {
 
         
       //console.log('added cart product List', this.backendService.productList);
+
+      setTimeout(() => {
+        this.test();  
+      }, 100);
+      
+      
+    }
+
+    test () {      
+      if ($('.header-container .menu-wrapper .mini-cart').length) {
+          $('.header-container').addClass("sticky-header");
+          var minicart = $('.header-container .mini-cart').html();
+          // $('.header-container .menu-wrapper .mini-cart')[$('.header-container .menu-wrapper .sticky-logo').length - 1].remove();
+          $('.header-container .menu-wrapper').append('<div class="mini-cart">' + minicart + '</div>');
+          var logo_image = $('<div>').append($('.header-container .header > .logo').clone()).html();
+          $('.header-container .menu-wrapper .sticky-logo')[$('.header-container .menu-wrapper .sticky-logo').length - 1].remove();
+          $('.header-container .menu-wrapper').prepend('<div class="sticky-logo">' + logo_image + '</div>');
+          $(".sticky-logo img").attr("src", "/assets/images/final_logo_3000x1000.png");
+          $('.header-container.type15.sticky-header .header > .logo img').addClass("hide");
+          $('.header-container.type15.sticky-header .header > .logo img.sticky-logo-image').remove();
+          $('.header-container.type15.sticky-header .header > .logo').append('<img src="/assets/images/final_logo_3000x1000.png" class="sticky-logo-image" alt="Sticky Logo"/>');
+          $('.header-container .header-wrapper > div').each(function() {
+              if ($(this).hasClass("container")) {
+                  $(this).addClass("already");
+              } else {
+                  $(this).addClass("container");
+              }
+          });
+          //scrolled = true;
+      }
+      $('.mini-cart').mouseover(function(e) {
+          $(this).children('.topCartContent').fadeIn(200);
+          return false;
+      }).mouseleave(function(e) {
+          $(this).children('.topCartContent').fadeOut(200);
+          return false;
+      });
+  
     }
 
     addAllProducts()

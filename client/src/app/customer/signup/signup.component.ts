@@ -98,6 +98,8 @@ export class SignupComponent implements OnInit {
     this.customerForm.get('createdTimestamp').setValue(moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'));
     this.customerForm.get('tier').setValue(3);
     this.customerForm.get('operationType').setValue('Add');
+
+    if(this.customerForm.get('taxId'))
   
     this.customerService.addOrUpdateCustomer(this.customerForm.value)
     .subscribe(data => {

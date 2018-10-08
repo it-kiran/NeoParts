@@ -56,6 +56,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   submitOrder(){
+    this.purchasedProductList.forEach((product) =>{
+      product.image = '';
+    })
     this.checkoutService.placeFinalOrder(this.purchasedProductList);
   }
   goToPaymentPage(){

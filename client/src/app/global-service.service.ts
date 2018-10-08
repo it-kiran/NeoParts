@@ -11,7 +11,7 @@ import { CustomerService } from './customer/customer.service';
 import { ServicesService } from './shared/services.service';
 import { element } from 'protractor';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import * as $ from 'jquery';
 
 
 @Injectable()
